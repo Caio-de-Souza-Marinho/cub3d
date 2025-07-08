@@ -1,0 +1,29 @@
+name: norminette
+
+on: [push, pull_request]
+
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.1.0
+        with:
+          python-version: '3.10'
+
+      - name: Install Norminette
+        run: python -m pip install norminette
+
+      - name: Run Norminette
+        run: |
+          norminette | tee norminette_output.txt
+          if grep -q "Error!" norminette_output.txt; then
+            echo "❌ Norminette found errors!"
+            exit 1
+          else
+            echo "✅ No norm errors found!"
+          fi
