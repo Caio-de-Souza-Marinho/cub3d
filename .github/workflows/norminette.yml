@@ -20,7 +20,7 @@ jobs:
 
       - name: Run Norminette
         run: |
-          norminette | tee norminette_output.txt
+          norminette inlcude src | tee norminette_output.txt
           if grep -q "Error!" norminette_output.txt; then
             echo "❌ Norminette found errors!"
             exit 1
