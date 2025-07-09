@@ -1,6 +1,6 @@
 NAME		= cub3D
 CC		= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 RM		= rm -rf
 
 SRC_DIR		= src/
@@ -12,7 +12,12 @@ MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 TEST_FILE	?= maps/map1.cub
 
+# DIRS
+PARSE_DIR	= $(SRC_DIR)parse/
+
 SRCS		= $(SRC_DIR)main.c \
+		  $(PARSE_DIR)parse.c \
+		  $(PARSE_DIR)is_line_function.c \
 
 OBJS		= ${SRCS:${SRC_DIR}%.c=${OBJ_DIR}%.o}
 
@@ -25,7 +30,7 @@ ${OBJ_DIR}:
 			@mkdir -p ${OBJ_DIR}
 
 ${OBJ_DIR}%.o:	${SRC_DIR}%.c
-			@mkdir -p ${OBJ_DIR}
+			@mkdir -p ${dir $@}
 			${CC} ${CFLAGS} -I . -I ${LIBFT_DIR} -I ${MLX_DIR} -c $< -o $@
 
 ${LIBFT_LIB}:
