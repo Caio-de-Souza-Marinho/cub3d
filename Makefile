@@ -28,6 +28,9 @@ RESET	= \033[0m
 
 all:		${NAME}
 
+run:		re
+		./${NAME}
+
 ${NAME}:	${OBJS} ${LIBFT_LIB} ${MLX_LIB}
 			@echo "${CYAN}[  COMPILING ]${RESET} Compiling source files..."
 			@${CC} ${CFLAGS} ${OBJS} ${LIBFT_LIB} ${MLX_LIB} ${LDFLAGS} -o ${NAME}
