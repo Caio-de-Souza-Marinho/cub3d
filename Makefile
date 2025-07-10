@@ -14,10 +14,19 @@ TEST_FILE	?= maps/map1.cub
 
 # DIRS
 PARSE_DIR	= $(SRC_DIR)parse/
+EXIT_DIR	= $(SRC_DIR)exit/
+UTILS_DIR	= $(SRC_DIR)utils/
 
 SRCS		= $(SRC_DIR)main.c \
 		  $(PARSE_DIR)parse.c \
 		  $(PARSE_DIR)is_line_function.c \
+		  $(PARSE_DIR)color_parser.c \
+		  $(PARSE_DIR)cub_check.c \
+		  $(PARSE_DIR)map_collector.c \
+		  $(PARSE_DIR)texture_parser.c \
+		  $(PARSE_DIR)parse_utils.c \
+		  $(EXIT_DIR)error.c \
+		  $(UTILS_DIR)array.c \
 
 OBJS		= ${SRCS:${SRC_DIR}%.c=${OBJ_DIR}%.o}
 

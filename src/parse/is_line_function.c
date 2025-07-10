@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:44:22 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/09 19:33:46 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:05:11 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,19 @@ int	is_map_line(char *line)
 			return (0);
 	}
 	return (valid);
+}
+
+int	is_empty_line(char *line)
+{
+	int	i;
+
+	i = -1;
+	if (!line)
+		return (0);
+	while (line[++i])
+	{
+		if (!ft_isspace(line[i]))
+			return (0);
+	}
+	return (1);
 }

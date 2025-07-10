@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/09 18:46:10 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:25:32 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,28 @@ int		parse_cub(char *filename, t_config *cfg);
 int		is_map_line(char *line);
 int		is_color_line(char *line);
 int		is_texture_line(char *line);
+int		is_empty_line(char *line);
+
+// error 
+int	error_msg(char *msg);
+
+// check_map
+int	check_line_map(char *line);
+int	check_final_file(int fd, char *line, t_list **map_lines);
+
+// texture_parser
+int	parse_texture_line(t_config *cfg, char *line);
+
+// color_parser
+int	parse_color_line(t_config *cfg, char *line);
+
+// map_collector
+int	add_map_line(t_list **map_lines, char *line);
+
+// array
+void	free_array(void **arr);
+
+// parse_utils
+char	*skip_spaces(char *str);
 
 #endif
