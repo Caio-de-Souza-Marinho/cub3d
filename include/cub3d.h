@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/10 18:25:32 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:37:05 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,12 @@ void	free_array(void **arr);
 // parse_utils
 char	*skip_spaces(char *str);
 
+// parse
+void	print_config(t_config *cfg);
+
+// free_config
+void	free_config(t_config *cfg);
+
+// init_config
+t_config	*init_config(void);
 #endif

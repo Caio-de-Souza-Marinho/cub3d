@@ -16,6 +16,9 @@ TEST_FILE	?= maps/map1.cub
 PARSE_DIR	= $(SRC_DIR)parse/
 EXIT_DIR	= $(SRC_DIR)exit/
 UTILS_DIR	= $(SRC_DIR)utils/
+DEBUG_DIR	= $(SRC_DIR)debug/
+FREE_DIR	= $(SRC_DIR)free/
+STRUCT_DIR	= $(SRC_DIR)struct/
 
 SRCS		= $(SRC_DIR)main.c \
 		  $(PARSE_DIR)parse.c \
@@ -26,7 +29,10 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(PARSE_DIR)texture_parser.c \
 		  $(PARSE_DIR)parse_utils.c \
 		  $(EXIT_DIR)error.c \
-		  $(UTILS_DIR)array.c \
+		  $(FREE_DIR)free_utils.c \
+		  $(FREE_DIR)free_config.c \
+		  $(STRUCT_DIR)init_config.c \
+		  $(DEBUG_DIR)print_config.c \
 
 OBJS		= ${SRCS:${SRC_DIR}%.c=${OBJ_DIR}%.o}
 

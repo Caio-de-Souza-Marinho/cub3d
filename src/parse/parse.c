@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:10:31 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/10 18:34:06 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:52:58 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ int	parse_cub(char *filename, t_config *cfg)
 	{
 		h_line = handle_line(line, cfg, &map_lines, &in_map);
 		if (h_line == 0)
-			return (free(line), 0);
+			return (free(line), free_config(cfg), 0);
 		if (h_line == 2)
 			return (check_final_file(fd, line, &map_lines, cfg));
 		free(line);
 		line = get_next_line(fd);
 	}
 	convert_list_to_matrix(&map_lines, cfg);
+	ft_lstclear(&map_lines, free);
 	return (1);
 }
 

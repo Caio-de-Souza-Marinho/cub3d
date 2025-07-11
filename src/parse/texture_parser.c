@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:45:35 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/10 18:39:28 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:53:07 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,26 @@ int	parse_texture_line(t_config *cfg, char *line)
 
 int	set_texture(char **target, char **values)
 {
-	int	fd;
+	// int	fd
 
 	if (*target)
 	{
 		free_array((void **) values);
 		return (error_msg("double Texture"));
 	}
-	values[1][ft_strlen(values[1]) - 1] = '\0';
-	fd = open(values[1], O_RDONLY);
-	if (fd < 0)
+	if (!values[1])
 	{
 		free_array((void **) values);
-		return (error_msg("Error to open file"));
+		return (error_msg("Missing texture path"));
 	}
-	close(fd);
+	values[1][ft_strlen(values[1]) - 1] = '\0';
+	// fd = open(values[1], O_RDONLY);
+	// if (fd < 0)
+	// {
+	// 	free_array((void **) values);
+	// 	return (error_msg("Error to open file"));
+	// }
+	// close(fd);
 	*target = ft_strdup(values[1]);
 	free_array((void **) values);
 	return (1);
