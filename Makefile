@@ -13,6 +13,8 @@ INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
 TEST_FILE	?= maps/map1.cub
 
+MAP_VAL_DIR	= ${SRC_DIR}map_validation
+
 SRCS		= $(SRC_DIR)main.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}

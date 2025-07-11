@@ -6,17 +6,14 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/08 19:21:54 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:59:25 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 char	**create_test_map(int *height);
-int	validate_map(char **grid);
-int	validate_chars(char c);
 void	free_map(t_config *config);
-int	in(const char *s, char c);
 
 int	main(void)
 {
@@ -27,27 +24,12 @@ int	main(void)
 	config.player.x = 4;
 	config.player.y = 2;
 	config.player.dir = 'N';
-	
-	if (validate_map(config.map.grid))
+	if (validate_map(&config.map))
 		printf("Map is valid\n");
 	else
 		printf("Map is invalid\n");
-
 	free_map(&config);
 	return (0);
-}
-
-void	free_map(t_config *config)
-{
-	int	i;
-
-	i = 0;
-	while (i < config->map.height)
-	{
-		free(config->map.grid[i]);
-		i++;
-	}
-	free(config->map.grid);
 }
 
 char	**create_test_map(int *height)
@@ -67,43 +49,15 @@ char	**create_test_map(int *height)
 	return (grid);
 }
 
-int	validate_map(char **grid)
+void	free_map(t_config *config)
 {
-	int	y;
-	int	x;
-	int	start_pos;
+	int	i;
 
-	y = 0;
-	start_pos = 0;
-	while (grid[y])
+	i = 0;
+	while (i < config->map.height)
 	{
-		x = 0;
-		while (grid[y][x])
-		{
-			if (!in("01NSEW", grid[y][x]))
-				return (0);
-			if (in("NSEW", grid[y][x]))
-				start_pos++;
-			if (start_pos > 1)
-				return (0);
-			x++;
-		}
-		y++;
+		free(config->map.grid[i]);
+		i++;
 	}
-	return (1);
-}
-
-// Checks if a character exists in a string
-// 1. Iterates through s to find c
-int	in(const char *s, char c)
-{
-	if (s == NULL)
-		return (0);
-	while (*s)
-	{
-		if (*s == c)
-			return (1);
-		s++;
-	}
-	return (0);
+	free(config->map.grid);
 }
