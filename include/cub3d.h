@@ -70,7 +70,7 @@ int	error_msg(char *msg);
 
 // check_map
 int	check_line_map(char *line);
-int	check_final_file(int fd, char *line, t_list **map_lines);
+int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg);
 
 // texture_parser
 int	parse_texture_line(t_config *cfg, char *line);
@@ -80,6 +80,7 @@ int	parse_color_line(t_config *cfg, char *line);
 
 // map_collector
 int	add_map_line(t_list **map_lines, char *line);
+void	convert_list_to_matrix(t_list **map_lines, t_config *cfg);
 
 // array
 void	free_array(void **arr);

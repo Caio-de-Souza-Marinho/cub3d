@@ -22,7 +22,7 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(PARSE_DIR)is_line_function.c \
 		  $(PARSE_DIR)color_parser.c \
 		  $(PARSE_DIR)cub_check.c \
-		  $(PARSE_DIR)map_collector.c \
+		  $(PARSE_DIR)map_builder.c \
 		  $(PARSE_DIR)texture_parser.c \
 		  $(PARSE_DIR)parse_utils.c \
 		  $(EXIT_DIR)error.c \

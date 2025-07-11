@@ -31,10 +31,11 @@ int	parse_cub(char *filename, t_config *cfg)
 		if (h_line == 0)
 			return (free(line), 0);
 		if (h_line == 2)
-			return (check_final_file(fd, line, &map_lines));
+			return (check_final_file(fd, line, &map_lines, cfg));
 		free(line);
 		line = get_next_line(fd);
 	}
+	convert_list_to_matrix(&map_lines, cfg);
 	return (1);
 }
 

@@ -21,7 +21,7 @@ int	check_line_map(char *line)
 	return (1);
 }
 
-int	check_final_file(int fd, char *line, t_list **map_lines)
+int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg)
 {
 	free(line);
 	line = get_next_line(fd);
@@ -44,5 +44,6 @@ int	check_final_file(int fd, char *line, t_list **map_lines)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	convert_list_to_matrix(map_lines, cfg);
 	return (1);
 }
