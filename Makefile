@@ -13,9 +13,12 @@ INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
 TEST_FILE	?= maps/map1.cub
 
-MAP_VAL_DIR	= ${SRC_DIR}map_validation
+MAP_VAL_DIR	= ${SRC_DIR}map_validation/
 
-SRCS		= $(SRC_DIR)main.c \
+SRCS		= ${SRC_DIR}main.c \
+		  ${MAP_VAL_DIR}map_validation.c \
+		  ${MAP_VAL_DIR}map_validation_utils.c \
+		  ${MAP_VAL_DIR}map_validation_clean.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 
@@ -50,8 +53,8 @@ ${MLX_LIB}:
 			@echo "${BLUE}[  BUILDING  ]${RESET} Building mlx..."
 			@make -s -C ${MLX_DIR} --no-print-directory > /dev/null 2>&1
 
-leak:
-			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${TEST_FILE}
+leak:		re
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME}
 
 clean:
 			@echo "${RED}[  CLEANING  ]${RESET} Removing object files..."

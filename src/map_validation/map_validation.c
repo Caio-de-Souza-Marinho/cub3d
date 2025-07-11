@@ -6,23 +6,46 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 16:57:30 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/11 16:59:32 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:07:35 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+int		validate_chars(t_map *map);
 int		check_top_bot(t_map *map, char *row);
 int		in(const char *s, char c);
+int		flood_fill(char **map, int y, int x, int height);
 
-int	validate_map(t_map *map)
+int	validate_map(t_map *map, t_player *player)
+{
+	char	**copy;
+
+	if (!validate_chars(map))
+		return (0);
+	if (!check_top_bot(map, map->grid[0])
+		|| !check_top_bot(map, map->grid[map->height - 1]))
+		return (0);
+	copy = copy_map(map);
+	if (!copy)
+		return (0);
+	if (!flood_fill(copy, player->y, player->x, map->height))
+	{
+		free_map_copy(copy, map->height);
+		return (0);
+	}
+	free_map_copy(copy, map->height);
+	return (1);
+}
+
+int	validate_chars(t_map *map)
 {
 	int	y;
 	int	x;
-	int	player_pos_count;
+	int	count;
 
 	y = 0;
-	player_pos_count = 0;
+	count = 0;
 	while (y < map->height)
 	{
 		x = 0;
@@ -31,17 +54,12 @@ int	validate_map(t_map *map)
 			if (!in("012NSEW", map->grid[y][x]))
 				return (0);
 			if (in("NSEW", map->grid[y][x]))
-				player_pos_count++;
-			if (player_pos_count > 1)
-				return (0);
-			if (y == 0 || y == map->height - 1)
-				if (!check_top_bot(map, map->grid[y]))
-					return (0);
+				count++;
 			x++;
 		}
 		y++;
 	}
-	return (1);
+	return (count == 1);
 }
 
 int	check_top_bot(t_map *map, char *row)
@@ -71,4 +89,24 @@ int	in(const char *s, char c)
 		s++;
 	}
 	return (0);
+}
+
+int	flood_fill(char **map, int y, int x, int height)
+{
+	if (y < 0 || x < 0 || !map[y] || x >= (int)ft_strlen(map[y]))
+		return (0);
+	if (map[y][x] == '2')
+		return (0);
+	if (!in("0NSEW", map[y][x]))
+		return (1);
+	map[y][x] = 'F';
+	if (!flood_fill(map, y - 1, x, height))
+		return (0);
+	if (!flood_fill(map, y + 1, x, height))
+		return (0);
+	if (!flood_fill(map, y, x - 1, height))
+		return (0);
+	if (!flood_fill(map, y, x + 1, height))
+		return (0);
+	return (1);
 }

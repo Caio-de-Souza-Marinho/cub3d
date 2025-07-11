@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/11 16:58:24 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:11:35 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ typedef struct s_config
 }	t_config;
 
 // map validation
-int		validate_map(t_map *map);
+int		validate_map(t_map *map, t_player *player);
+char	**copy_map(t_map *map);
+
+// map validation clean
+void	free_map_copy(char **map, int height);
 
 #endif

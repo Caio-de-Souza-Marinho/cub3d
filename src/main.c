@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/11 16:59:25 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:10:26 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(void)
 	config.player.x = 4;
 	config.player.y = 2;
 	config.player.dir = 'N';
-	if (validate_map(&config.map))
+	if (validate_map(&config.map, &config.player))
 		printf("Map is valid\n");
 	else
 		printf("Map is invalid\n");
