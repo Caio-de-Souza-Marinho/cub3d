@@ -24,3 +24,15 @@ void	free_array(void **arr)
 	}
 	free(arr);
 }
+
+void	free_gnl(int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+}

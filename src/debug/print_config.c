@@ -14,8 +14,8 @@
 
 void	print_config(t_config *cfg)
 {
-	int	i;
-	int	j;
+	// int	i;
+	// int	j;
 
 	printf("Textures:\n");
 	printf("NO: %s\n", cfg->texture.no);
@@ -25,22 +25,22 @@ void	print_config(t_config *cfg)
 	printf("\nColors:\n");
 	printf("Floor: R = %d, G = %d, B = %d\n", cfg->floor.r, cfg->floor.g, cfg->floor.b);
 	printf("Ceiling: R = %d, G = %d, B = %d\n", cfg->ceiling.r, cfg->ceiling.g, cfg->ceiling.b);
-	printf("\nMap:\n");
-	i = 0;
-	while (i < cfg->map.height)
-	{
-		printf("[ ");
-		j = 0;
-		while (j < cfg->map.width)
-		{
-			if (j == cfg->map.width - 1)
-				printf("%c", cfg->map.grid[i][j]);
-			else
-				printf("%c, ", cfg->map.grid[i][j]);
-			j++;
-		}
-		printf(" ]\n");
-		i++;
-	}
-	printf("width: %d, height: %d\n", cfg->map.width, cfg->map.height);
+	// printf("\nMap:\n");
+	// i = 0;
+	// while (i < cfg->map.height)
+	// {
+	// 	printf("[ ");
+	// 	j = 0;
+	// 	while (j < cfg->map.width)
+	// 	{
+	// 		if (j == cfg->map.width - 1)
+	// 			printf("%c", cfg->map.grid[i][j]);
+	// 		else
+	// 			printf("%c, ", cfg->map.grid[i][j]);
+	// 		j++;
+	// 	}
+	// 	printf(" ]\n");
+	// 	i++;
+	// }
+	// printf("width: %d, height: %d\n", cfg->map.width, cfg->map.height);
 }

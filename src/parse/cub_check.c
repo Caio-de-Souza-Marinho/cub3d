@@ -12,39 +12,29 @@
 
 #include "../../include/cub3d.h"
 
-int	check_line_map(char *line)
+int	check_colors_cub(t_config *cfg)
 {
-	if (is_color_line(line) || is_texture_line(line))
-		return (0);
-	else if (is_empty_line(line))
-		return (2);
-	return (1);
+	int	status;
+
+	status = 1;
+	if (cfg->floor.r == -1 || cfg->floor.g == -1
+		|| cfg->floor.b == -1)
+	{
+		status = 0;
+		printf("Floor collor missing\n");
+	}
+	if (cfg->ceiling.r == -1 || cfg->ceiling.g == -1
+		|| cfg->ceiling.b == -1)
+	{
+		status = 0;
+		printf("Ceiling collor missing\n");
+	}
+	return (status);
 }
 
-int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg)
+int	check_cub_complete(t_config *cfg)
 {
-	free(line);
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (!is_empty_line(line))
-		{
-			free(line);
-			ft_lstclear(map_lines, free);
-			line = get_next_line(fd);
-			while (line)
-			{
-				free(line);
-				line = get_next_line(fd);
-			}
-			close(fd);
-			return (error_msg("Find line after map"));
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	convert_list_to_matrix(map_lines, cfg);
-	ft_lstclear(map_lines, free);
+	if (!check_colors_cub(cfg))
+		return (0);
 	return (1);
 }

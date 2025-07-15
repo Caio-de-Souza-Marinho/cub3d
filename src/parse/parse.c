@@ -29,7 +29,7 @@ int	parse_cub(char *filename, t_config *cfg)
 	{
 		h_line = handle_line(line, cfg, &map_lines, &in_map);
 		if (h_line == 0)
-			return (free(line), free_config(cfg), 0);
+			return (free(line), free_gnl(fd), 0);
 		if (h_line == 2)
 			return (check_final_file(fd, line, &map_lines, cfg));
 		free(line);
@@ -57,10 +57,10 @@ int	handle_line(char *line, t_config *cfg, t_list **map_lines, int *in_map)
 	}
 	else if (is_texture_line(line))
 		return (parse_texture_line(cfg, line)
-			|| error_msg("Invalid Texture"));
+			|| 0);
 	else if (is_color_line(line))
 		return (parse_color_line(cfg, line)
-			|| error_msg("Invalid Color"));
+			|| 0);
 	else if (is_empty_line(line))
 		return (1);
 	return (error_msg("Invalid line in file .cub"));

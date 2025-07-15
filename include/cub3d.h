@@ -69,8 +69,7 @@ int		is_empty_line(char *line);
 int	error_msg(char *msg);
 
 // check_map
-int	check_line_map(char *line);
-int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg);
+int	check_cub_complete(t_config *cfg);
 
 // texture_parser
 int	parse_texture_line(t_config *cfg, char *line);
@@ -87,13 +86,17 @@ void	free_array(void **arr);
 
 // parse_utils
 char	*skip_spaces(char *str);
+int	check_line_map(char *line);
+int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg);
 
 // parse
 void	print_config(t_config *cfg);
 
 // free_config
 void	free_config(t_config *cfg);
+void	free_gnl(int fd);
 
 // init_config
 t_config	*init_config(void);
+
 #endif

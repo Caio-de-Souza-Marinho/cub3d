@@ -16,13 +16,14 @@ void	free_config(t_config *cfg)
 {
 	if (cfg->map.grid)
 		free_array((void **) cfg->map.grid);
-	if (!cfg->texture.no)
+	if (cfg->texture.no)
 		free(cfg->texture.no);
-	if (!cfg->texture.so)
+	if (cfg->texture.so)
 		free(cfg->texture.so);
-	if (!cfg->texture.we)
+	if (cfg->texture.we)
 		free(cfg->texture.we);
-	if (!cfg->texture.ea)
+	if (cfg->texture.ea)
 		free(cfg->texture.ea);
-	free(cfg);
+	if (cfg)
+		free(cfg);
 }

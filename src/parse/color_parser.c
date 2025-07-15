@@ -44,6 +44,13 @@ int	set_color(t_color *target, char *value_str)
 	return (1);
 }
 
+void	set_values(int values[3])
+{
+	values[0] = -1;
+	values[1] = -1;
+	values[2] = -1;
+}
+
 int	parse_rgb(t_color *color, char *value_str)
 {
 	char	**parts;
@@ -53,8 +60,9 @@ int	parse_rgb(t_color *color, char *value_str)
 	parts = ft_split(value_str, ',');
 	if (!parts)
 		return (0);
+	set_values(values);
 	i = 0;
-	while (parts[i])
+	while (parts[i] && parts[i][0] != '\n')
 	{
 		if (i >= 3)
 			return (free_array((void **) parts), 0);
@@ -63,8 +71,6 @@ int	parse_rgb(t_color *color, char *value_str)
 			return (free_array((void **) parts), 0);
 		i++;
 	}
-	if (i != 3)
-		return (free_array((void **) parts), 0);
 	color->r = values[0];
 	color->g = values[1];
 	color->b = values[2];

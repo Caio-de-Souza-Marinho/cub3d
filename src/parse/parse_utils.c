@@ -21,3 +21,40 @@ char	*skip_spaces(char *str)
 		i++;
 	return (&str[i]);
 }
+
+int	check_line_map(char *line)
+{
+	if (is_color_line(line) || is_texture_line(line))
+		return (0);
+	else if (is_empty_line(line))
+		return (2);
+	return (1);
+}
+
+int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg)
+{
+	free(line);
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (!is_empty_line(line))
+		{
+			free(line);
+			ft_lstclear(map_lines, free);
+			line = get_next_line(fd);
+			while (line)
+			{
+				free(line);
+				line = get_next_line(fd);
+			}
+			close(fd);
+			return (error_msg("Find line after map"));
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	convert_list_to_matrix(map_lines, cfg);
+	ft_lstclear(map_lines, free);
+	return (1);
+}

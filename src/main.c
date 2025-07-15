@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {
@@ -20,13 +19,12 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	cfg = init_config();
-	if (!parse_cub(argv[1], cfg))
+	if (!parse_cub(argv[1], cfg) || !check_cub_complete(cfg))
 	{
-		free(cfg);
-		printf("Invalid Map");
+		free_config(cfg);
 		return (1);
 	}
-	// print_config(cfg);
+	print_config(cfg);
 	free_config(cfg);
 	return (0);
 }
