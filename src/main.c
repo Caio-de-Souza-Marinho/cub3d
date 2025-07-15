@@ -17,9 +17,10 @@ int	main(int argc, char **argv)
 	t_config	*cfg;
 
 	(void)argc;
-	(void)argv;
+	if (ft_strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub") != 0)
+		return (printf("Invalid cub file\n"), 1);
 	cfg = init_config();
-	if (!parse_cub(argv[1], cfg) || !check_cub_complete(cfg))
+	if (!parse_cub(argv[1], cfg) || check_cub_complete(cfg))
 	{
 		free_config(cfg);
 		return (1);

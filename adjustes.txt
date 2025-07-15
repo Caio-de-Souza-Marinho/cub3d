@@ -1,20 +1,10 @@
 no errors:
 - empty
-- filetype_missing
-- filetype_wrong
 - forbidden
-- map_missing
-- map_only
-- map_too_small
 - player_multiple
 - player_none
 - player_on_edge
-- textures_dir
 - textures_forbidden
-- textures_invalid
-- textures_missing
-- textures_none
-- textures_not_xpm
 - wall_hole_east 
 - wall_hole_north 
 - wall_hole_south 
@@ -29,7 +19,17 @@ leak find:
 - color_invalid_rgb - done
 - color_missing_ceiling_rgb
 - color_missing_floor_rgb
+- filetype_missing
+- filetype_wrong
 - color_none
+- map_only
+- map_missing
+- map_too_small
+- textures_invalid
+- textures_missing
+- textures_none
+- textures_not_xpm
+- textures_dir
 
 two messages:
 - textures_duplicate - done

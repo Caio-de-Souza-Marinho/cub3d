@@ -34,7 +34,7 @@ int	parse_texture_line(t_config *cfg, char *line)
 
 int	set_texture(char **target, char **values)
 {
-	// int	fd
+	// int	fd;
 
 	if (*target)
 	{
