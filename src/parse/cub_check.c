@@ -24,11 +24,11 @@ int	check_colors_cub(t_config *cfg)
 		|| cfg->ceiling.b == -1)
 		status += 2;
 	if (status == 1)
-		printf("Floor collor missing\n");
+		printf("Missing floor color\n");
 	else if (status == 2)
-		printf("Ceiling collor missing\n");
+		printf("Missing ceiling color\n");
 	else if (status == 3)
-		printf("Floor and Ceiling collors missing\n");
+		printf("Misisng floor and ceiling colors\n");
 	return (status);
 }
 
@@ -61,7 +61,7 @@ int	check_texture_cub(t_config *cfg)
 		|| !cfg->texture.ea || !cfg->texture.we)
 		return (printf("Missing texture\n"), 1);
 	if (check_type_f(cfg))
-		return (printf("Invalid texture type file\n"), 1);
+		return (printf("Texture file must have .xpm extension\n"), 1);
 	fd[0] = open(cfg->texture.no, O_RDONLY);
 	fd[1] = open(cfg->texture.so, O_RDONLY);
 	fd[2] = open(cfg->texture.ea, O_RDONLY);
@@ -76,7 +76,7 @@ int	check_texture_cub(t_config *cfg)
 			close(fd[i]);
 	}
 	if (status)
-		printf("Can't open %d textures files\n", status);
+		printf("Can't open %d texture files\n", status);
 	return (status);
 }
 

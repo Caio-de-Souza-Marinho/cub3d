@@ -37,7 +37,7 @@ int	set_texture(char **target, char **values)
 	if (*target)
 	{
 		free_array((void **) values);
-		return (error_msg("double Texture"));
+		return (error_msg("Double texture"));
 	}
 	if (!values[1])
 	{

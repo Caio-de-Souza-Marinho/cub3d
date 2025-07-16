@@ -69,9 +69,9 @@ typedef struct s_player
 
 typedef struct s_config
 {
-	t_texture	texture;
-	t_color		floor;
 	t_color		ceiling;
+	t_color		floor;
+	t_texture	texture;
 	t_map		map;
 	t_player	player;
 }	t_config;

@@ -49,7 +49,7 @@ int	handle_line(char *line, t_config *cfg, t_list **map_lines, int *in_map)
 	{
 		map_status = check_line_map(line);
 		if (map_status == 0)
-			return (error_msg("Invalid line in map"));
+			return (error_msg("Invalid line in the map"));
 		if (map_status == 2)
 			return (2);
 		*in_map = 1;
@@ -64,5 +64,5 @@ int	handle_line(char *line, t_config *cfg, t_list **map_lines, int *in_map)
 			|| 0);
 	else if (is_empty_line(line))
 		return (1);
-	return (error_msg("Invalid line in file .cub"));
+	return (error_msg("Invalid line in the .cub file"));
 }
