@@ -13,7 +13,6 @@
 #include "../../include/cub3d.h"
 
 int		validate_chars(t_map *map);
-int		check_top_bot(t_map *map, char *row);
 int		in(const char *s, char c);
 int		flood_fill(char **map, int y, int x, int height);
 
@@ -23,11 +22,6 @@ int	validate_map(t_map *map, t_player *player)
 
 	if (!validate_chars(map))
 		return (0);
-	/*
-	if (!check_top_bot(map, map->grid[0])
-		|| !check_top_bot(map, map->grid[map->height - 1]))
-		return (0);
-	*/
 	copy = copy_map(map);
 	if (!copy)
 		return (0);
@@ -62,20 +56,6 @@ int	validate_chars(t_map *map)
 		y++;
 	}
 	return (count == 1);
-}
-
-int	check_top_bot(t_map *map, char *row)
-{
-	int	x;
-
-	x = 0;
-	while (x < map->width)
-	{
-		if (!in("1", row[x]))
-			return (0);
-		x++;
-	}
-	return (1);
 }
 
 // Checks if a character exists in a string
