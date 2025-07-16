@@ -6,3 +6,4 @@ a.out
 *.tests
 obj/
 cub3D
+*.txt

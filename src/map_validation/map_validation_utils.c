@@ -17,7 +17,7 @@ char	**copy_map(t_map *map)
 	char	**copy;
 	int		i;
 
-	copy = (char **)malloc(sizeof(char *) * map->height + 1);
+	copy = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!copy)
 		return (NULL);
 	i = 0;
