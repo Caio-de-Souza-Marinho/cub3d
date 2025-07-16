@@ -1,6 +1,6 @@
 NAME		= cub3D
 CC		= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 RM		= rm -rf
 
 SRC_DIR		= src/
@@ -13,9 +13,28 @@ INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
 TEST_FILE	?= maps/map1.cub
 
+# DIRS
 MAP_VAL_DIR	= ${SRC_DIR}map_validation/
+PARSE_DIR	= $(SRC_DIR)parse/
+EXIT_DIR	= $(SRC_DIR)exit/
+UTILS_DIR	= $(SRC_DIR)utils/
+DEBUG_DIR	= $(SRC_DIR)debug/
+FREE_DIR	= $(SRC_DIR)free/
+STRUCT_DIR	= $(SRC_DIR)struct/
 
-SRCS		= ${SRC_DIR}main.c \
+SRCS		= $(SRC_DIR)main.c \
+		  $(PARSE_DIR)parse.c \
+		  $(PARSE_DIR)is_line_function.c \
+		  $(PARSE_DIR)color_parser.c \
+		  $(PARSE_DIR)cub_check.c \
+		  $(PARSE_DIR)map_builder.c \
+		  $(PARSE_DIR)texture_parser.c \
+		  $(PARSE_DIR)parse_utils.c \
+		  $(EXIT_DIR)error.c \
+		  $(FREE_DIR)free_utils.c \
+		  $(FREE_DIR)free_config.c \
+		  $(STRUCT_DIR)init_config.c \
+		  $(DEBUG_DIR)print_config.c \
 		  ${MAP_VAL_DIR}map_validation.c \
 		  ${MAP_VAL_DIR}map_validation_utils.c \
 		  ${MAP_VAL_DIR}map_validation_clean.c \
@@ -44,6 +63,9 @@ ${NAME}:	${OBJS} ${LIBFT_LIB} ${MLX_LIB}
 ${OBJ_DIR}/%.o:	${SRC_DIR}/%.c
 			@mkdir -p ${@D}
 			@${CC} ${CFLAGS} ${INCLUDE} -c $< -o $@
+
+${OBJ_DIR}:
+			@mkdir -p ${OBJ_DIR}
 
 ${LIBFT_LIB}:
 			@echo "${BLUE}[  BUILDING  ]${RESET} Building libft..."

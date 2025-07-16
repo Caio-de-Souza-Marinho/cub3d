@@ -1,0 +1,35 @@
+no errors:
+- empty
+- forbidden
+- player_multiple
+- player_none
+- player_on_edge
+- textures_forbidden
+- wall_hole_east 
+- wall_hole_north 
+- wall_hole_south 
+- wall_hole_west 
+- wall_none
+
+leak find:
+- file_letter_end - done
+- map_first - done
+- map_middle - done
+- color_missing - done
+- color_invalid_rgb - done
+- color_missing_ceiling_rgb
+- color_missing_floor_rgb
+- filetype_missing
+- filetype_wrong
+- color_none
+- map_only
+- map_missing
+- map_too_small
+- textures_invalid
+- textures_missing
+- textures_none
+- textures_not_xpm
+- textures_dir
+
+two messages:
+- textures_duplicate - done

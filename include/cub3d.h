@@ -15,6 +15,7 @@
 
 # include "../lib/libft/include/libft.h"
 # include "../lib/minilibx-linux/mlx.h"
+# include "colors.h"
 
 # include <math.h>
 
@@ -36,11 +37,12 @@
 // gettimeofday
 # include <sys/time.h>
 
+// Stucts
 typedef struct s_color
 {
-	int	r;
-	int	g;
-	int	b;
+	int		r;
+	int		g;
+	int		b;
 }	t_color;
 
 typedef struct s_texture
@@ -73,6 +75,51 @@ typedef struct s_config
 	t_map		map;
 	t_player	player;
 }	t_config;
+
+// parse
+t_config	*init_cub(void);
+int			parse_cub(char *filename, t_config *cfg);
+
+// is_line_functions
+int			is_map_line(char *line);
+int			is_color_line(char *line);
+int			is_texture_line(char *line);
+int			is_empty_line(char *line);
+
+// error 
+int			error_msg(char *msg);
+
+// check_map
+int			check_cub_complete(t_config *cfg);
+
+// texture_parser
+int			parse_texture_line(t_config *cfg, char *line);
+
+// color_parser
+int			parse_color_line(t_config *cfg, char *line);
+
+// map_collector
+int			add_map_line(t_list **map_lines, char *line);
+void		convert_list_to_matrix(t_list **map_lines, t_config *cfg);
+
+// array
+void		free_array(void **arr);
+
+// parse_utils
+char		*skip_spaces(char *str);
+int			check_line_map(char *line);
+int			check_final_file(int fd, char *line, t_list **map_l, t_config *cfg);
+
+// parse
+void		print_config(t_config *cfg);
+
+// free_config
+void		free_config(t_config *cfg);
+void		free_gnl(int fd);
+
+// init_config
+t_config	*init_config(void);
+
 
 // map validation
 int		validate_map(t_map *map, t_player *player);
