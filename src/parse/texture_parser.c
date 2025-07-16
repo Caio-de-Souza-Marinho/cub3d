@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:45:35 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/11 19:53:07 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/15 22:36:05 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	set_texture(char **target, char **values)
 		free_array((void **) values);
 		return (error_msg("Missing texture path"));
 	}
-	values[1][ft_strlen(values[1]) - 1] = '\0';
+	if (values[1][ft_strlen(values[1]) - 1] == '\n')
+		values[1][ft_strlen(values[1]) - 1] = '\0';
 	*target = ft_strdup(values[1]);
 	free_array((void **) values);
 	return (1);
