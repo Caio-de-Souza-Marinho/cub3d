@@ -31,7 +31,7 @@ int	check_line_map(char *line)
 	return (1);
 }
 
-int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg)
+int	check_final_file(int fd, char *line, t_list **map_l, t_config *cfg)
 {
 	free(line);
 	line = get_next_line(fd);
@@ -40,7 +40,7 @@ int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg)
 		if (!is_empty_line(line))
 		{
 			free(line);
-			ft_lstclear(map_lines, free);
+			ft_lstclear(map_l, free);
 			line = get_next_line(fd);
 			while (line)
 			{
@@ -54,7 +54,7 @@ int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	convert_list_to_matrix(map_lines, cfg);
-	ft_lstclear(map_lines, free);
+	convert_list_to_matrix(map_l, cfg);
+	ft_lstclear(map_l, free);
 	return (1);
 }

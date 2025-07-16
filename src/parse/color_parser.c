@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
 int	set_color(t_color *target, char *value_str);
 int	parse_rgb(t_color *color, char *value_str);
 
@@ -54,8 +55,8 @@ void	set_values(int values[3])
 int	parse_rgb(t_color *color, char *value_str)
 {
 	char	**parts;
-	int	i;
-	int	values[3];
+	int		i;
+	int		values[3];
 
 	parts = ft_split(value_str, ',');
 	if (!parts)

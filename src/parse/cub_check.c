@@ -32,12 +32,23 @@ int	check_colors_cub(t_config *cfg)
 	return (status);
 }
 
-int	check_type_f(char *filename)
+int	check_type_f(t_config *cfg)
 {
-	if (ft_strcmp(&filename[ft_strlen(filename) - 4], ".xpm") != 0)
+	char	*fl[4];
+
+	fl[0] = cfg->texture.no;
+	fl[1] = cfg->texture.so;
+	fl[2] = cfg->texture.ea;
+	fl[3] = cfg->texture.we;
+	if (ft_strcmp(&fl[0][ft_strlen(fl[0]) - 4], ".xpm") != 0)
+		return (1);
+	if (ft_strcmp(&fl[1][ft_strlen(fl[1]) - 4], ".xpm") != 0)
+		return (1);
+	if (ft_strcmp(&fl[2][ft_strlen(fl[2]) - 4], ".xpm") != 0)
+		return (1);
+	if (ft_strcmp(&fl[3][ft_strlen(fl[3]) - 4], ".xpm") != 0)
 		return (1);
 	return (0);
-
 }
 
 int	check_texture_cub(t_config *cfg)
@@ -49,13 +60,12 @@ int	check_texture_cub(t_config *cfg)
 	if (!cfg->texture.no || !cfg->texture.so
 		|| !cfg->texture.ea || !cfg->texture.we)
 		return (printf("Missing texture\n"), 1);
-	if (check_type_f(cfg->texture.no) || check_type_f(cfg->texture.so)
-		|| check_type_f(cfg->texture.ea) || check_type_f(cfg->texture.we))
+	if (check_type_f(cfg))
 		return (printf("Invalid texture type file\n"), 1);
 	fd[0] = open(cfg->texture.no, O_RDONLY);
 	fd[1] = open(cfg->texture.so, O_RDONLY);
 	fd[2] = open(cfg->texture.ea, O_RDONLY);
-	fd[3] = open(cfg->texture.we, O_RDONLY);	
+	fd[3] = open(cfg->texture.we, O_RDONLY);
 	i = -1;
 	status = 0;
 	while (++i < 4)

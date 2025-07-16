@@ -34,8 +34,6 @@ int	parse_texture_line(t_config *cfg, char *line)
 
 int	set_texture(char **target, char **values)
 {
-	// int	fd;
-
 	if (*target)
 	{
 		free_array((void **) values);
@@ -47,13 +45,6 @@ int	set_texture(char **target, char **values)
 		return (error_msg("Missing texture path"));
 	}
 	values[1][ft_strlen(values[1]) - 1] = '\0';
-	// fd = open(values[1], O_RDONLY);
-	// if (fd < 0)
-	// {
-	// 	free_array((void **) values);
-	// 	return (error_msg("Error to open file"));
-	// }
-	// close(fd);
 	*target = ft_strdup(values[1]);
 	free_array((void **) values);
 	return (1);

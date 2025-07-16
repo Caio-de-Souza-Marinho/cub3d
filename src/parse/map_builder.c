@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-#include <stdlib.h>
 
 int	add_map_line(t_list **map_lines, char *line)
 {
@@ -55,8 +54,8 @@ void	make_matrix(t_list **map_lines, char **matrix, int width)
 {
 	t_list	*tmp;
 	char	*str;
-	int	line;
-	int	i;
+	int		line;
+	int		i;
 
 	tmp = *map_lines;
 	line = 0;
@@ -84,8 +83,8 @@ void	convert_list_to_matrix(t_list **map_lines, t_config *cfg)
 {
 	t_list	*tmp;
 	char	**matrix;
-	int	width;
-	int	height;
+	int		width;
+	int		height;
 
 	width = 0;
 	height = 0;

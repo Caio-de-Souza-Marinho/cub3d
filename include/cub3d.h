@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/11 19:37:05 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/15 20:56:10 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 # include <stdio.h>
 # include "../lib/libft/include/libft.h"
+# include "colors.h"
 
 // Stucts
 typedef struct s_color
 {
-	int	r;
-	int	g;
-	int	b;
+	int		r;
+	int		g;
+	int		b;
 }	t_color;
 
 typedef struct s_texture
@@ -35,66 +36,66 @@ typedef struct s_texture
 typedef struct s_map
 {
 	char	**grid;
-	int	width;
-	int	height;
+	int		width;
+	int		height;
 }	t_map;
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	dir;
 }	t_player;
 
 typedef struct s_config
 {
 	t_texture	texture;
-	t_color	floor;
-	t_color	ceiling;
-	t_map	map;
+	t_color		floor;
+	t_color		ceiling;
+	t_map		map;
 	t_player	player;
 }	t_config;
 
-
-t_config	*init_cub();
-int		parse_cub(char *filename, t_config *cfg);
+// parse
+t_config	*init_cub(void);
+int			parse_cub(char *filename, t_config *cfg);
 
 // is_line_functions
-int		is_map_line(char *line);
-int		is_color_line(char *line);
-int		is_texture_line(char *line);
-int		is_empty_line(char *line);
+int			is_map_line(char *line);
+int			is_color_line(char *line);
+int			is_texture_line(char *line);
+int			is_empty_line(char *line);
 
 // error 
-int	error_msg(char *msg);
+int			error_msg(char *msg);
 
 // check_map
-int	check_cub_complete(t_config *cfg);
+int			check_cub_complete(t_config *cfg);
 
 // texture_parser
-int	parse_texture_line(t_config *cfg, char *line);
+int			parse_texture_line(t_config *cfg, char *line);
 
 // color_parser
-int	parse_color_line(t_config *cfg, char *line);
+int			parse_color_line(t_config *cfg, char *line);
 
 // map_collector
-int	add_map_line(t_list **map_lines, char *line);
-void	convert_list_to_matrix(t_list **map_lines, t_config *cfg);
+int			add_map_line(t_list **map_lines, char *line);
+void		convert_list_to_matrix(t_list **map_lines, t_config *cfg);
 
 // array
-void	free_array(void **arr);
+void		free_array(void **arr);
 
 // parse_utils
-char	*skip_spaces(char *str);
-int	check_line_map(char *line);
-int	check_final_file(int fd, char *line, t_list **map_lines, t_config *cfg);
+char		*skip_spaces(char *str);
+int			check_line_map(char *line);
+int			check_final_file(int fd, char *line, t_list **map_l, t_config *cfg);
 
 // parse
-void	print_config(t_config *cfg);
+void		print_config(t_config *cfg);
 
 // free_config
-void	free_config(t_config *cfg);
-void	free_gnl(int fd);
+void		free_config(t_config *cfg);
+void		free_gnl(int fd);
 
 // init_config
 t_config	*init_config(void);

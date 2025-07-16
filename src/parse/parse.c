@@ -11,14 +11,15 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
 int	handle_line(char *line, t_config *cfg, t_list **map_lines, int *in_map);
 
 int	parse_cub(char *filename, t_config *cfg)
 {
 	char	*line;
-	int	fd;
-	int	in_map;
-	int	h_line;
+	int		fd;
+	int		in_map;
+	int		h_line;
 	t_list	*map_lines;
 
 	fd = open(filename, O_RDONLY);
@@ -29,7 +30,7 @@ int	parse_cub(char *filename, t_config *cfg)
 	{
 		h_line = handle_line(line, cfg, &map_lines, &in_map);
 		if (h_line == 0)
-			return (free(line), free_gnl(fd), 0);
+			return (close(fd), free(line), free_gnl(fd), 0);
 		if (h_line == 2)
 			return (check_final_file(fd, line, &map_lines, cfg));
 		free(line);
@@ -37,7 +38,7 @@ int	parse_cub(char *filename, t_config *cfg)
 	}
 	convert_list_to_matrix(&map_lines, cfg);
 	ft_lstclear(&map_lines, free);
-	return (1);
+	return (close(fd), 1);
 }
 
 int	handle_line(char *line, t_config *cfg, t_list **map_lines, int *in_map)
