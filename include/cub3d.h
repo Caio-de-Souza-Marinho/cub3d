@@ -120,12 +120,11 @@ void		free_gnl(int fd);
 // init_config
 t_config	*init_config(void);
 
-
 // map validation
-int		validate_map(t_map *map, t_player *player);
-char	**copy_map(t_map *map);
+int			validate_map(t_map *map, t_player *player);
+char		**copy_map(t_map *map);
 
 // map validation clean
-void	free_map_copy(char **map, int height);
+void		free_map_copy(char **map, int height);
 
 #endif
