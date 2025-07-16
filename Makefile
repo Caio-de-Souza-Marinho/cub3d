@@ -11,7 +11,7 @@ MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
-TEST_FILE	?= maps/map1.cub
+TEST_FILE	?= maps/good/dungeon.cub
 
 # DIRS
 MAP_VAL_DIR	= ${SRC_DIR}map_validation/
@@ -21,6 +21,8 @@ UTILS_DIR	= $(SRC_DIR)utils/
 DEBUG_DIR	= $(SRC_DIR)debug/
 FREE_DIR	= $(SRC_DIR)free/
 STRUCT_DIR	= $(SRC_DIR)struct/
+GAME_DIR	= $(SRC_DIR)game/
+RENDER_DIR	= $(SRC_DIR)render/
 
 SRCS		= $(SRC_DIR)main.c \
 		  $(PARSE_DIR)parse.c \
@@ -39,6 +41,8 @@ SRCS		= $(SRC_DIR)main.c \
 		  ${MAP_VAL_DIR}map_validation.c \
 		  ${MAP_VAL_DIR}map_validation_utils.c \
 		  ${MAP_VAL_DIR}map_validation_clean.c \
+		  $(GAME_DIR)init_game.c \
+		  $(RENDER_DIR)render.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 
@@ -54,7 +58,7 @@ RESET	= \033[0m
 all:		${NAME}
 
 run:		re
-		./${NAME}
+		./${NAME} ${TEST_FILE}
 
 ${NAME}:	${OBJS} ${LIBFT_LIB} ${MLX_LIB}
 			@echo "${CYAN}[  COMPILING ]${RESET} Compiling source files..."
@@ -77,7 +81,7 @@ ${MLX_LIB}:
 			@make -s -C ${MLX_DIR} --no-print-directory > /dev/null 2>&1
 
 leak:		re
-			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME}
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${TEST_FILE}
 
 clean:
 			@echo "${RED}[  CLEANING  ]${RESET} Removing object files..."

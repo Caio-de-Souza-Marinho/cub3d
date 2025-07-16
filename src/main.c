@@ -6,26 +6,32 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/15 22:16:47 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:33:20 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+t_game	*init_game(void);
+int		render_frame(t_game *game);
+
 int	main(int argc, char **argv)
 {
-	t_cfg	*cfg;
+	t_game	*game;
 
 	(void)argc;
 	if (ft_strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub") != 0)
 		return (printf("Not a .cub file\n"), 1);
-	cfg = init_config();
-	if (!parse_cub(argv[1], cfg) || check_cub_complete(cfg))
+	game = init_game();
+	if (!parse_cub(argv[1], game->cfg) || check_cub_complete(game->cfg))
 	{
-		free_config(cfg);
+		free_config(game->cfg);
 		return (1);
 	}
-	print_config(cfg);
-	free_config(cfg);
+	print_config(game->cfg);
+	mlx_loop_hook(game->mlx, &render_frame, game);
+	free_config(game->cfg);
 	return (0);
 }
+
+

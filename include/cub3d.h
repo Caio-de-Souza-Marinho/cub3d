@@ -37,6 +37,16 @@
 // gettimeofday
 # include <sys/time.h>
 
+// Macros
+# ifndef WIN_HEIGHT
+#  define WIN_HEIGHT 720
+# endif
+
+# ifndef WIN_WIDTH
+#  define WIN_WIDTH 1280
+# endif
+
+
 // Stucts
 typedef struct s_color
 {
