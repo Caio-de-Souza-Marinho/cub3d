@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/15 22:12:56 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:37:57 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@
 #  define WIN_WIDTH 1280
 # endif
 
-
 // Stucts
 typedef struct s_color
 {
@@ -81,9 +80,9 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int	bits_per_pixel;
-	int	size_len;
-	int	endian;
+	int		bits_per_pixel;
+	int		size_len;
+	int		endian;
 }	t_img;
 
 typedef struct s_cfg
@@ -105,56 +104,56 @@ typedef struct s_game
 
 // parse
 t_cfg	*init_cub(void);
-int			parse_cub(char *filename, t_cfg *cfg);
+int		parse_cub(char *filename, t_cfg *cfg);
 
 // is_line_functions
-int			is_map_line(char *line);
-int			is_color_line(char *line);
-int			is_texture_line(char *line);
-int			is_empty_line(char *line);
+int		is_map_line(char *line);
+int		is_color_line(char *line);
+int		is_texture_line(char *line);
+int		is_empty_line(char *line);
 
 // error 
-int			error_msg(char *msg);
+int		error_msg(char *msg);
 
 // check_map
-int			check_cub_complete(t_cfg *cfg);
+int		check_cub_complete(t_cfg *cfg);
 
 // texture_parser
-int			parse_texture_line(t_cfg *cfg, char *line);
+int		parse_texture_line(t_cfg *cfg, char *line);
 
 // color_parser
-int			parse_color_line(t_cfg *cfg, char *line);
+int		parse_color_line(t_cfg *cfg, char *line);
 
 // map_collector
-int			add_map_line(t_list **map_lines, char *line);
-void		convert_list_to_matrix(t_list **map_lines, t_cfg *cfg);
+int		add_map_line(t_list **map_lines, char *line);
+void	convert_list_to_matrix(t_list **map_lines, t_cfg *cfg);
 
 // array
-void		free_array(void **arr);
+void	free_array(void **arr);
 
 // parse_utils
-char		*skip_spaces(char *str);
-int			check_line_map(char *line);
-int			check_final_file(int fd, char *line, t_list **map_l, t_cfg *cfg);
+char	*skip_spaces(char *str);
+int		check_line_map(char *line);
+int		check_final_file(int fd, char *line, t_list **map_l, t_cfg *cfg);
 
 // parse
-void		print_config(t_cfg *cfg);
+void	print_config(t_cfg *cfg);
 
 // free_config
-void		free_config(t_cfg *cfg);
-void		free_gnl(int fd);
+void	free_config(t_cfg *cfg);
+void	free_gnl(int fd);
 
 // init_config
 t_cfg	*init_config(void);
 
 // map validation
-int			validate_map(t_map *map, t_player *player);
-char		**copy_map(t_map *map);
+int		validate_map(t_map *map, t_player *player);
+char	**copy_map(t_map *map);
 
 // map validation clean
-void		free_map_copy(char **map, int height);
+void	free_map_copy(char **map, int height);
 
 // get_player
-void		get_player_position(t_cfg *cfg);
+void	get_player_position(t_cfg *cfg);
 
 #endif

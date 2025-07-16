@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/16 20:33:20 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:38:27 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,3 @@ int	main(int argc, char **argv)
 	free_config(game->cfg);
 	return (0);
 }
-
-
