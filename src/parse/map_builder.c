@@ -79,7 +79,7 @@ void	make_matrix(t_list **map_lines, char **matrix, int width)
 	}
 }
 
-void	convert_list_to_matrix(t_list **map_lines, t_config *cfg)
+void	convert_list_to_matrix(t_list **map_lines, t_cfg *cfg)
 {
 	t_list	*tmp;
 	char	**matrix;

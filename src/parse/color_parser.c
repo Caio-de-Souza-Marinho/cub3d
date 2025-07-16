@@ -15,7 +15,7 @@
 int	set_color(t_color *target, char *value_str);
 int	parse_rgb(t_color *color, char *value_str);
 
-int	parse_color_line(t_config *cfg, char *line)
+int	parse_color_line(t_cfg *cfg, char *line)
 {
 	char	*start;
 	int		success;

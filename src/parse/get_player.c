@@ -24,7 +24,7 @@ void	set_player_position(t_player *player, int x, int y, char dir)
 	player->dir = dir;
 }
 
-void	get_player_position(t_config *cfg)
+void	get_player_position(t_cfg *cfg)
 {
 	int	x;
 	int	y;

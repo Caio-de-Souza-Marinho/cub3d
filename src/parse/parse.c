@@ -12,9 +12,9 @@
 
 #include "../../include/cub3d.h"
 
-int	handle_line(char *line, t_config *cfg, t_list **map_lines, int *in_map);
+int	handle_line(char *line, t_cfg *cfg, t_list **map_lines, int *in_map);
 
-int	parse_cub(char *filename, t_config *cfg)
+int	parse_cub(char *filename, t_cfg *cfg)
 {
 	char	*line;
 	int		fd;
@@ -41,7 +41,7 @@ int	parse_cub(char *filename, t_config *cfg)
 	return (close(fd), 1);
 }
 
-int	handle_line(char *line, t_config *cfg, t_list **map_lines, int *in_map)
+int	handle_line(char *line, t_cfg *cfg, t_list **map_lines, int *in_map)
 {
 	int	map_status;
 

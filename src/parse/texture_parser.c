@@ -14,7 +14,7 @@
 
 int	set_texture(char **target, char **values);
 
-int	parse_texture_line(t_config *cfg, char *line)
+int	parse_texture_line(t_cfg *cfg, char *line)
 {
 	char	**values;
 

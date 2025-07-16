@@ -13,7 +13,7 @@
 #include "../../include/cub3d.h"
 #include <stdio.h>
 
-void	print_details(t_config *cfg)
+void	print_details(t_cfg *cfg)
 {
 	printf(BLUE "Textures:\n");
 	printf("NO: %s\n", cfg->texture.no);
@@ -27,7 +27,7 @@ void	print_details(t_config *cfg)
 	printf("B = %d\n" RESET, cfg->ceiling.b);
 }
 
-void	print_player(t_config *cfg)
+void	print_player(t_cfg *cfg)
 {
 	printf(BLUE "\nPlayer:\n");
 	printf("X: %f\n", cfg->player.x);
@@ -35,7 +35,7 @@ void	print_player(t_config *cfg)
 	printf("Dir: %c\n" RESET, cfg->player.dir);
 }
 
-void	print_config(t_config *cfg)
+void	print_config(t_cfg *cfg)
 {
 	int	i;
 	int	j;

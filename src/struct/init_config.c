@@ -12,11 +12,11 @@
 
 #include "../../include/cub3d.h"
 
-t_config	*init_config(void)
+t_cfg	*init_config(void)
 {
-	t_config	*cfg;
+	t_cfg	*cfg;
 
-	cfg = (t_config *) malloc(sizeof(t_config));
+	cfg = (t_cfg *) malloc(sizeof(t_cfg));
 	cfg->ceiling.r = -1;
 	cfg->ceiling.g = -1;
 	cfg->ceiling.b = -1;

@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_config	*cfg;
+	t_cfg	*cfg;
 
 	(void)argc;
 	if (ft_strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub") != 0)

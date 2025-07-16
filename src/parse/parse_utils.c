@@ -31,7 +31,7 @@ int	check_line_map(char *line)
 	return (1);
 }
 
-int	check_final_file(int fd, char *line, t_list **map_l, t_config *cfg)
+int	check_final_file(int fd, char *line, t_list **map_l, t_cfg *cfg)
 {
 	free(line);
 	line = get_next_line(fd);

@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-void	free_config(t_config *cfg)
+void	free_config(t_cfg *cfg)
 {
 	if (cfg->map.grid)
 		free_array((void **) cfg->map.grid);

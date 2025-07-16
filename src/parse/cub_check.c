@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-int	check_colors_cub(t_config *cfg)
+int	check_colors_cub(t_cfg *cfg)
 {
 	int	status;
 
@@ -32,7 +32,7 @@ int	check_colors_cub(t_config *cfg)
 	return (status);
 }
 
-int	check_type_f(t_config *cfg)
+int	check_type_f(t_cfg *cfg)
 {
 	char	*fl[4];
 
@@ -51,7 +51,7 @@ int	check_type_f(t_config *cfg)
 	return (0);
 }
 
-int	check_texture_cub(t_config *cfg)
+int	check_texture_cub(t_cfg *cfg)
 {
 	int	fd[4];
 	int	i;
@@ -80,7 +80,7 @@ int	check_texture_cub(t_config *cfg)
 	return (status);
 }
 
-int	check_map_cub(t_config *cfg)
+int	check_map_cub(t_cfg *cfg)
 {
 	int	status;
 
@@ -96,7 +96,7 @@ int	check_map_cub(t_config *cfg)
 	return (status);
 }
 
-int	check_cub_complete(t_config *cfg)
+int	check_cub_complete(t_cfg *cfg)
 {
 	int	status;
 
