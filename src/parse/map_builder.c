@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_collector.c                                    :+:      :+:    :+:   */
+/*   map_builder.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:49:02 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/10 14:57:24 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/15 22:11:46 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,5 @@ void	convert_list_to_matrix(t_list **map_lines, t_config *cfg)
 	cfg->map.grid = matrix;
 	cfg->map.width = width;
 	cfg->map.height = height;
+	get_player_position(cfg);
 }

@@ -6,11 +6,12 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:38:04 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/15 21:02:09 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/15 22:06:28 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+#include <stdio.h>
 
 void	print_details(t_config *cfg)
 {
@@ -26,12 +27,21 @@ void	print_details(t_config *cfg)
 	printf("B = %d\n" RESET, cfg->ceiling.b);
 }
 
+void	print_player(t_config *cfg)
+{
+	printf(BLUE "\nPlayer:\n");
+	printf("X: %f\n", cfg->player.x);
+	printf("Y: %f\n", cfg->player.y);
+	printf("Dir: %c\n" RESET, cfg->player.dir);
+}
+
 void	print_config(t_config *cfg)
 {
 	int	i;
 	int	j;
 
 	print_details(cfg);
+	print_player(cfg);
 	printf(GREEN "\nMap:\n" RESET);
 	i = -1;
 	while (++i < cfg->map.height)
