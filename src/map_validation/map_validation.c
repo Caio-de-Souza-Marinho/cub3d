@@ -23,9 +23,11 @@ int	validate_map(t_map *map, t_player *player)
 
 	if (!validate_chars(map))
 		return (0);
+	/*
 	if (!check_top_bot(map, map->grid[0])
 		|| !check_top_bot(map, map->grid[map->height - 1]))
 		return (0);
+	*/
 	copy = copy_map(map);
 	if (!copy)
 		return (0);
@@ -95,9 +97,7 @@ int	flood_fill(char **map, int y, int x, int height)
 {
 	if (y < 0 || x < 0 || !map[y] || x >= (int)ft_strlen(map[y]))
 		return (0);
-	if (map[y][x] == '2')
-		return (0);
-	if (!in("0NSEW", map[y][x]))
+	if (!in("02NSEW", map[y][x]))
 		return (1);
 	map[y][x] = 'F';
 	if (!flood_fill(map, y - 1, x, height))
