@@ -30,6 +30,7 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(PARSE_DIR)map_builder.c \
 		  $(PARSE_DIR)texture_parser.c \
 		  $(PARSE_DIR)parse_utils.c \
+		  $(PARSE_DIR)get_player.c \
 		  $(EXIT_DIR)error.c \
 		  $(FREE_DIR)free_utils.c \
 		  $(FREE_DIR)free_config.c \

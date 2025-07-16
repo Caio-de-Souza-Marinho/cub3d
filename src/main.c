@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/11 19:37:19 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/15 22:16:47 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ int	main(int argc, char **argv)
 	cfg->player.x = 1;
 	cfg->player.y = 1;
 	cfg->player.dir = 'N';
-	if (!parse_cub(argv[1], cfg) || check_cub_complete(cfg)
-		|| !validate_map(&cfg->map, &cfg->player))
+	if (!parse_cub(argv[1], cfg) || check_cub_complete(cfg))
 	{
-		printf("erro\n");
 		free_config(cfg);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:17:45 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/11 19:43:00 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/15 22:16:33 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,10 @@ int	check_cub_complete(t_config *cfg)
 	status += check_colors_cub(cfg);
 	status += check_map_cub(cfg);
 	status += check_texture_cub(cfg);
+	if (!validate_map(&cfg->map, &cfg->player))
+	{
+		status++;
+		printf("Find hole in map\n");
+	}
 	return (status);
 }

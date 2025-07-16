@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/11 20:11:35 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/15 22:12:56 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	float	x;
+	float	y;
 	char	dir;
 }	t_player;
 
@@ -126,5 +126,8 @@ char		**copy_map(t_map *map);
 
 // map validation clean
 void		free_map_copy(char **map, int height);
+
+// get_player
+void		get_player_position(t_config *cfg);
 
 #endif
