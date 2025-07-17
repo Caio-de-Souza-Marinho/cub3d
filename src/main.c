@@ -6,14 +6,11 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/16 20:38:27 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:57:26 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-t_game	*init_game(void);
-int		render_frame(t_game *game);
 
 int	main(int argc, char **argv)
 {
@@ -30,6 +27,7 @@ int	main(int argc, char **argv)
 	}
 	print_config(game->cfg);
 	mlx_loop_hook(game->mlx, &render_frame, game);
+	mlx_loop(game->mlx);
 	free_config(game->cfg);
 	return (0);
 }

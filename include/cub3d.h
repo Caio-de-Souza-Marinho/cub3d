@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/16 20:37:57 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:57:26 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,5 +155,11 @@ void	free_map_copy(char **map, int height);
 
 // get_player
 void	get_player_position(t_cfg *cfg);
+
+// game
+t_game	*init_game(void);
+
+// render
+int		render_frame(t_game *game);
 
 #endif

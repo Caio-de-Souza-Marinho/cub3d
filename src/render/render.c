@@ -15,6 +15,5 @@
 int	render_frame(t_game *game)
 {
 	(void)game;
-	printf("a\n");
 	return (0);
 }
