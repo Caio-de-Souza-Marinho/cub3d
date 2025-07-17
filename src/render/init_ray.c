@@ -1,25 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 20:33:05 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/16 22:55:58 by caide-so         ###   ########.fr       */
+/*   Created: 2025/07/16 22:50:33 by caide-so          #+#    #+#             */
+/*   Updated: 2025/07/16 22:50:40 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-int	render_frame(t_game *game)
-{
-	game->img->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
-	game->img->addr = mlx_get_data_addr(game->img->img,
-			&game->img->bits_per_pixel, &game->img->size_len,
-			&game->img->endian);
-	raycast_and_draw(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
-	mlx_destroy_image(game->mlx, game->img->img);
-	return (0);
-}

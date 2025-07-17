@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/16 20:57:26 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:57:23 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,24 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_ray
+{
+	double	dir_x;
+	double	dir_y;
+	double	camera_x;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+}	t_ray;
+
 typedef struct s_cfg
 {
 	t_color		ceiling;
@@ -161,5 +179,8 @@ t_game	*init_game(void);
 
 // render
 int		render_frame(t_game *game);
+
+// raycast
+void	raycast_and_draw(t_game *game);
 
 #endif

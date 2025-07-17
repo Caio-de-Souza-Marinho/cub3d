@@ -43,6 +43,8 @@ SRCS		= $(SRC_DIR)main.c \
 		  ${MAP_VAL_DIR}map_validation_clean.c \
 		  $(GAME_DIR)init_game.c \
 		  $(RENDER_DIR)render.c \
+		  $(RENDER_DIR)raycast.c \
+		  $(RENDER_DIR)init_ray.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 
