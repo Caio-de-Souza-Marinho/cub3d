@@ -12,7 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-
 void	draw_minimap(t_game *game)
 {
 	draw_minimap_grid(game);
