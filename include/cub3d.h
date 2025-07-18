@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/18 17:26:13 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/18 20:15:05 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,8 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_minimap_tile(t_game *game, int px, int py, int color);
 void	draw_minimap_grid(t_game *game);
 void	draw_minimap_player(t_game *game);
+
+// textures
+int		load_all_textures(t_game *game);
 
 #endif

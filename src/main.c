@@ -23,7 +23,8 @@ int	main(int argc, char **argv)
 	if (ft_strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub") != 0)
 		return (printf("Not a .cub file\n"), 1);
 	game = init_game();
-	if (!parse_cub(argv[1], game->cfg) || check_cub_complete(game->cfg))
+	if (!parse_cub(argv[1], game->cfg) || check_cub_complete(game->cfg)
+		|| load_all_textures(game))
 	{
 		free_config(game->cfg);
 		return (1);

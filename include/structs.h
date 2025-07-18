@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:26:06 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 22:26:43 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 20:23:09 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_ray
 	int		side;
 	t_tex	*wall_tex;
 	double	wall_x;
-	int	tex_x;
+	int		tex_x;
 }	t_ray;
 
 typedef struct s_cfg

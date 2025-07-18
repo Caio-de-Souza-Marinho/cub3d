@@ -45,6 +45,7 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)minimap.c \
 		  $(RENDER_DIR)minimap_grid.c \
 		  $(RENDER_DIR)minimap_player.c \
+		  $(RENDER_DIR)load_texture.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 
