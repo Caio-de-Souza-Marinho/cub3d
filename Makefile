@@ -14,17 +14,17 @@ LDFLAGS		= -lm -lXext -lX11
 TEST_FILE	?= maps/good/creepy.cub
 
 # DIRS
-MAP_VAL_DIR	= ${SRC_DIR}map_validation/
+INIT_DIR	= ${SRC_DIR}init/
 PARSE_DIR	= $(SRC_DIR)parse/
+MAP_DIR		= ${SRC_DIR}map/
 ERROR_DIR	= $(SRC_DIR)error/
-UTILS_DIR	= $(SRC_DIR)utils/
 DEBUG_DIR	= $(SRC_DIR)debug/
 FREE_DIR	= $(SRC_DIR)free/
-STRUCT_DIR	= $(SRC_DIR)struct/
-GAME_DIR	= $(SRC_DIR)game/
 RENDER_DIR	= $(SRC_DIR)render/
 
 SRCS		= $(SRC_DIR)main.c \
+		  $(INIT_DIR)init_game.c \
+		  $(INIT_DIR)init_config.c \
 		  $(PARSE_DIR)parse.c \
 		  $(PARSE_DIR)is_line_function.c \
 		  $(PARSE_DIR)color_parser.c \
@@ -33,15 +33,13 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(PARSE_DIR)texture_parser.c \
 		  $(PARSE_DIR)parse_utils.c \
 		  $(PARSE_DIR)get_player.c \
+		  ${MAP_DIR}map_validation.c \
+		  ${MAP_DIR}map_validation_utils.c \
 		  $(ERROR_DIR)error.c \
+		  $(DEBUG_DIR)print_config.c \
 		  $(FREE_DIR)free_utils.c \
 		  $(FREE_DIR)free_config.c \
-		  $(STRUCT_DIR)init_config.c \
-		  $(DEBUG_DIR)print_config.c \
-		  ${MAP_VAL_DIR}map_validation.c \
-		  ${MAP_VAL_DIR}map_validation_utils.c \
-		  ${MAP_VAL_DIR}map_validation_clean.c \
-		  $(GAME_DIR)init_game.c \
+		  ${FREE_DIR}free_map_validation.c \
 		  $(RENDER_DIR)render.c \
 		  $(RENDER_DIR)raycast.c \
 		  $(RENDER_DIR)init_ray.c \
