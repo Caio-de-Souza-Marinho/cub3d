@@ -15,9 +15,13 @@
 int	render_frame(t_game *game)
 {
 	game->img->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!game->img->img)
+		return (1);
 	game->img->addr = mlx_get_data_addr(game->img->img,
 			&game->img->bits_per_pixel, &game->img->size_len,
 			&game->img->endian);
+	if (!game->img->addr)
+		return (1);
 	raycast_and_draw(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	mlx_destroy_image(game->mlx, game->img->img);

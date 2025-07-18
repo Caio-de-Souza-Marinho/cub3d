@@ -11,12 +11,12 @@ MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
-TEST_FILE	?= maps/good/dungeon.cub
+TEST_FILE	?= maps/good/creepy.cub
 
 # DIRS
 MAP_VAL_DIR	= ${SRC_DIR}map_validation/
 PARSE_DIR	= $(SRC_DIR)parse/
-EXIT_DIR	= $(SRC_DIR)exit/
+ERROR_DIR	= $(SRC_DIR)error/
 UTILS_DIR	= $(SRC_DIR)utils/
 DEBUG_DIR	= $(SRC_DIR)debug/
 FREE_DIR	= $(SRC_DIR)free/
@@ -33,7 +33,7 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(PARSE_DIR)texture_parser.c \
 		  $(PARSE_DIR)parse_utils.c \
 		  $(PARSE_DIR)get_player.c \
-		  $(EXIT_DIR)error.c \
+		  $(ERROR_DIR)error.c \
 		  $(FREE_DIR)free_utils.c \
 		  $(FREE_DIR)free_config.c \
 		  $(STRUCT_DIR)init_config.c \
@@ -84,6 +84,9 @@ ${MLX_LIB}:
 
 leak:		re
 			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${TEST_FILE}
+
+leakfile:		re
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind.log ./${NAME} ${TEST_FILE}
 
 clean:
 			@echo "${RED}[  CLEANING  ]${RESET} Removing object files..."

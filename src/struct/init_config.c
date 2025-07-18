@@ -17,6 +17,8 @@ t_cfg	*init_config(void)
 	t_cfg	*cfg;
 
 	cfg = (t_cfg *) malloc(sizeof(t_cfg));
+	if (!cfg)
+		return (NULL);
 	cfg->ceiling.r = -1;
 	cfg->ceiling.g = -1;
 	cfg->ceiling.b = -1;
