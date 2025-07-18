@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/16 20:57:26 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:26:13 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@
 
 # ifndef WIN_WIDTH
 #  define WIN_WIDTH 1280
+# endif
+
+# ifndef TILE_SIZE
+#  define TILE_SIZE 16
 # endif
 
 // Stucts
@@ -161,5 +165,16 @@ t_game	*init_game(void);
 
 // render
 int		render_frame(t_game *game);
+
+//minimap
+void	draw_minimap(t_game *game);
+void	put_pixel(t_img *img, int x, int y, int color);
+
+// minimap_grid
+void	draw_minimap_tile(t_game *game, int px, int py, int color);
+void	draw_minimap_grid(t_game *game);
+
+// minimap_player
+void	draw_minimap_player(t_game *game);
 
 #endif

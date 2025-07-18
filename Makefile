@@ -43,6 +43,9 @@ SRCS		= $(SRC_DIR)main.c \
 		  ${MAP_VAL_DIR}map_validation_clean.c \
 		  $(GAME_DIR)init_game.c \
 		  $(RENDER_DIR)render.c \
+		  $(RENDER_DIR)minimap.c \
+		  $(RENDER_DIR)minimap_grid.c \
+		  $(RENDER_DIR)minimap_player.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 

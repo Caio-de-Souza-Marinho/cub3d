@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 20:55:15 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/15 20:55:58 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:26:38 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,12 @@
 # define BMAGENTA     "\033[1;35m"
 # define BCYAN        "\033[1;36m"
 # define BWHITE       "\033[1;37m"
+
+# define COLOR_FLOOR 0xCCCCCC
+# define COLOR_WALL  0x444444
+# define COLOR_VOID  0x000000
+# define COLOR_GREEN 0x00FF00
+# define COLOR_RED 0xFF0000
+# define COLOR_BLUE 0x2B58DE // 0x577AE4
 
 #endif

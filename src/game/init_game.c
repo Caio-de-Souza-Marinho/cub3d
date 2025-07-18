@@ -20,5 +20,8 @@ t_game	*init_game(void)
 	game->cfg = init_config();
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
+	game->img = (t_img *)malloc(sizeof(t_img));
+	if (!game->img)
+		return (NULL);
 	return (game);
 }
