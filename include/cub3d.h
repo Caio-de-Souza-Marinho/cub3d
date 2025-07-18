@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 22:34:58 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:26:13 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ void	free_config(t_cfg *cfg);
 void	free_map_copy(char **map, int height);
 void	free_gnl(int fd);
 
-// init_config
+// init
 t_cfg	*init_config(void);
+t_game	*init_game(void);
 
 // map validation
 int		validate_map(t_map *map, t_player *player);
@@ -94,7 +95,6 @@ char	**copy_map(t_map *map);
 void	get_player_position(t_cfg *cfg);
 
 // game
-t_game	*init_game(void);
 
 // render
 int		render_frame(t_game *game);
@@ -104,5 +104,12 @@ void	raycast_and_draw(t_game *game);
 void	init_ray(t_player *player, t_ray *ray, int x);
 void	perform_dda(t_ray *ray, t_game *game);
 void	draw_column(t_ray *ray, t_game *game, int x);
+
+//minimap
+void	draw_minimap(t_game *game);
+void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_minimap_tile(t_game *game, int px, int py, int color);
+void	draw_minimap_grid(t_game *game);
+void	draw_minimap_player(t_game *game);
 
 #endif

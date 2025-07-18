@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:33:05 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 21:13:35 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:37:57 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	render_frame(t_game *game)
 	if (!game->img->addr)
 		return (1);
 	raycast_and_draw(game);
+	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	mlx_destroy_image(game->mlx, game->img->img);
 	return (0);

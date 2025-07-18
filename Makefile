@@ -42,6 +42,9 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)render.c \
 		  $(RENDER_DIR)raycast.c \
 		  $(RENDER_DIR)draw.c \
+		  $(RENDER_DIR)minimap.c \
+		  $(RENDER_DIR)minimap_grid.c \
+		  $(RENDER_DIR)minimap_player.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 
