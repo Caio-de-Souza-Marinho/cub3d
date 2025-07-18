@@ -11,20 +11,20 @@ MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
-TEST_FILE	?= maps/good/dungeon.cub
+TEST_FILE	?= maps/good/library.cub
 
 # DIRS
-MAP_VAL_DIR	= ${SRC_DIR}map_validation/
+INIT_DIR	= ${SRC_DIR}init/
 PARSE_DIR	= $(SRC_DIR)parse/
-EXIT_DIR	= $(SRC_DIR)exit/
-UTILS_DIR	= $(SRC_DIR)utils/
+MAP_DIR		= ${SRC_DIR}map/
+ERROR_DIR	= $(SRC_DIR)error/
 DEBUG_DIR	= $(SRC_DIR)debug/
 FREE_DIR	= $(SRC_DIR)free/
-STRUCT_DIR	= $(SRC_DIR)struct/
-GAME_DIR	= $(SRC_DIR)game/
 RENDER_DIR	= $(SRC_DIR)render/
 
 SRCS		= $(SRC_DIR)main.c \
+		  $(INIT_DIR)init_game.c \
+		  $(INIT_DIR)init_config.c \
 		  $(PARSE_DIR)parse.c \
 		  $(PARSE_DIR)is_line_function.c \
 		  $(PARSE_DIR)color_parser.c \
@@ -33,16 +33,18 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(PARSE_DIR)texture_parser.c \
 		  $(PARSE_DIR)parse_utils.c \
 		  $(PARSE_DIR)get_player.c \
-		  $(EXIT_DIR)error.c \
-		  $(FREE_DIR)free_utils.c \
-		  $(FREE_DIR)free_config.c \
-		  $(STRUCT_DIR)init_config.c \
+		  ${MAP_DIR}map_validation.c \
+		  ${MAP_DIR}map_validation_utils.c \
+		  $(ERROR_DIR)error.c \
 		  $(DEBUG_DIR)print_config.c \
-		  ${MAP_VAL_DIR}map_validation.c \
-		  ${MAP_VAL_DIR}map_validation_utils.c \
-		  ${MAP_VAL_DIR}map_validation_clean.c \
-		  $(GAME_DIR)init_game.c \
+		  $(FREE_DIR)free_all.c \
+		  $(FREE_DIR)free_utils.c \
 		  $(RENDER_DIR)render.c \
+		  $(RENDER_DIR)raycast.c \
+		  $(RENDER_DIR)draw.c \
+		  $(RENDER_DIR)minimap.c \
+		  $(RENDER_DIR)minimap_grid.c \
+		  $(RENDER_DIR)minimap_player.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 
@@ -82,6 +84,9 @@ ${MLX_LIB}:
 
 leak:		re
 			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${TEST_FILE}
+
+leakfile:		re
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind.log ./${NAME} ${TEST_FILE}
 
 clean:
 			@echo "${RED}[  CLEANING  ]${RESET} Removing object files..."

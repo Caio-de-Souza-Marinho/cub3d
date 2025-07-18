@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 20:32:15 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/16 20:50:52 by caide-so         ###   ########.fr       */
+/*   Created: 2025/07/17 22:27:04 by caide-so          #+#    #+#             */
+/*   Updated: 2025/07/17 22:34:49 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#ifndef MACROS_H
+# define MACROS_H
 
-t_game	*init_game(void)
-{
-	t_game	*game;
+# ifndef WIN_HEIGHT
+#  define WIN_HEIGHT 720
+# endif
 
-	game = (t_game *)malloc(sizeof(t_game));
-	game->cfg = init_config();
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
-	return (game);
-}
+# ifndef WIN_WIDTH
+#  define WIN_WIDTH 1280
+# endif
+
+# ifndef TILE_SIZE
+#  define TILE_SIZE 16
+# endif
+
+#endif

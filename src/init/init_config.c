@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 19:33:19 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/11 19:53:16 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:09:21 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_cfg	*init_config(void)
 	t_cfg	*cfg;
 
 	cfg = (t_cfg *) malloc(sizeof(t_cfg));
+	if (!cfg)
+		return (NULL);
 	cfg->ceiling.r = -1;
 	cfg->ceiling.g = -1;
 	cfg->ceiling.b = -1;

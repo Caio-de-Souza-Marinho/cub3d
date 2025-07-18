@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation_clean.c                             :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 19:48:32 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/11 19:49:22 by caide-so         ###   ########.fr       */
+/*   Created: 2025/07/16 20:32:15 by caide-so          #+#    #+#             */
+/*   Updated: 2025/07/16 20:50:52 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	free_map_copy(char **map, int height)
+t_game	*init_game(void)
 {
-	int	i;
+	t_game	*game;
 
-	if (!map)
-		return ;
-	i = 0;
-	while (i < height)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
+	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
+		return (NULL);
+	game->cfg = init_config();
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
+	game->img = (t_img *)malloc(sizeof(t_img));
+	if (!game->img)
+		return (NULL);
+	return (game);
 }

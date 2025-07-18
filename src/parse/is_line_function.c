@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:44:22 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/10 14:05:11 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:01:09 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int	is_map_line(char *line)
 			valid = 1;
 		if (line[i] != '1' && line[i] != '0' && line[i] != ' '
 			&& line[i] != 'N' && line[i] != 'S'
-			&& line[i] != 'W' && line[i] != 'E')
+			&& line[i] != 'W' && line[i] != 'E'
+			&& line[i] != 'D' && line[i] != 'd')
 			return (0);
 	}
 	return (valid);
