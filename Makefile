@@ -11,7 +11,7 @@ MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
-TEST_FILE	?= maps/good/creepy.cub
+TEST_FILE	?= maps/good/library.cub
 
 # DIRS
 INIT_DIR	= ${SRC_DIR}init/
@@ -42,7 +42,7 @@ SRCS		= $(SRC_DIR)main.c \
 		  ${FREE_DIR}free_map_validation.c \
 		  $(RENDER_DIR)render.c \
 		  $(RENDER_DIR)raycast.c \
-		  $(RENDER_DIR)init_ray.c \
+		  $(RENDER_DIR)draw.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 

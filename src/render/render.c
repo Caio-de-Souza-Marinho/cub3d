@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:33:05 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/16 22:55:58 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 21:13:35 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,21 @@ int	render_frame(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	mlx_destroy_image(game->mlx, game->img->img);
 	return (0);
+}
+
+void	raycast_and_draw(t_game *game)
+{
+	int			x;
+	t_ray		ray;
+	t_player	*player;
+
+	player = &game->cfg->player;
+	x = 0;
+	while (x < WIN_WIDTH)
+	{
+		init_ray(&game->cfg->player, &ray, x);
+		perform_dda(&ray, game);
+		draw_column(&ray, game, x);
+		x++;
+	}
 }
