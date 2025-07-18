@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 22:33:09 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 22:39:21 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	main(int argc, char **argv)
 	mlx_hook(game->win, 17, 0, exit_game, game);
 	mlx_hook(game->win, 2, 1L << 0, handle_key, game);
 	mlx_loop(game->mlx);
-	free_config(game->cfg);
 	return (0);
 }
 
