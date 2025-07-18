@@ -16,10 +16,10 @@
 void	print_details(t_cfg *cfg)
 {
 	printf(BLUE "Textures:\n");
-	printf("NO: %s\n", cfg->texture.no);
-	printf("SO: %s\n", cfg->texture.so);
-	printf("WE: %s\n", cfg->texture.we);
-	printf("EA: %s\n", cfg->texture.ea);
+	printf("NO: %s\n", cfg->texture.no.path);
+	printf("SO: %s\n", cfg->texture.so.path);
+	printf("WE: %s\n", cfg->texture.we.path);
+	printf("EA: %s\n", cfg->texture.ea.path);
 	printf("\nColors:\n");
 	printf("Floor: R = %d, G = %d, ", cfg->floor.r, cfg->floor.g);
 	printf("B = %d\n", cfg->floor.b);

@@ -12,6 +12,8 @@
 
 #include "../../include/cub3d.h"
 
+void	init_textures(t_cfg *cfg);
+
 t_cfg	*init_config(void)
 {
 	t_cfg	*cfg;
@@ -25,10 +27,7 @@ t_cfg	*init_config(void)
 	cfg->floor.r = -1;
 	cfg->floor.g = -1;
 	cfg->floor.b = -1;
-	cfg->texture.no = NULL;
-	cfg->texture.so = NULL;
-	cfg->texture.we = NULL;
-	cfg->texture.ea = NULL;
+	init_textures(cfg);
 	cfg->map.grid = NULL;
 	cfg->map.height = -1;
 	cfg->map.width = -1;
@@ -36,4 +35,16 @@ t_cfg	*init_config(void)
 	cfg->player.y = -1;
 	cfg->player.dir = -1;
 	return (cfg);
+}
+
+void	init_textures(t_cfg *cfg)
+{
+	cfg->texture.no.path = NULL;
+	cfg->texture.so.path = NULL;
+	cfg->texture.we.path = NULL;
+	cfg->texture.ea.path = NULL;
+	cfg->texture.no.img = NULL;
+	cfg->texture.so.img = NULL;
+	cfg->texture.we.img = NULL;
+	cfg->texture.ea.img = NULL;
 }

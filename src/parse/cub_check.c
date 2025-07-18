@@ -36,10 +36,10 @@ int	check_type_f(t_cfg *cfg)
 {
 	char	*fl[4];
 
-	fl[0] = cfg->texture.no;
-	fl[1] = cfg->texture.so;
-	fl[2] = cfg->texture.ea;
-	fl[3] = cfg->texture.we;
+	fl[0] = cfg->texture.no.path;
+	fl[1] = cfg->texture.so.path;
+	fl[2] = cfg->texture.ea.path;
+	fl[3] = cfg->texture.we.path;
 	if (ft_strcmp(&fl[0][ft_strlen(fl[0]) - 4], ".xpm") != 0)
 		return (1);
 	if (ft_strcmp(&fl[1][ft_strlen(fl[1]) - 4], ".xpm") != 0)
@@ -57,15 +57,15 @@ int	check_texture_cub(t_cfg *cfg)
 	int	i;
 	int	status;
 
-	if (!cfg->texture.no || !cfg->texture.so
-		|| !cfg->texture.ea || !cfg->texture.we)
+	if (!cfg->texture.no.path || !cfg->texture.so.path
+		|| !cfg->texture.ea.path || !cfg->texture.we.path)
 		return (printf("Missing texture\n"), 1);
 	if (check_type_f(cfg))
 		return (printf("Texture file must have .xpm extension\n"), 1);
-	fd[0] = open(cfg->texture.no, O_RDONLY);
-	fd[1] = open(cfg->texture.so, O_RDONLY);
-	fd[2] = open(cfg->texture.ea, O_RDONLY);
-	fd[3] = open(cfg->texture.we, O_RDONLY);
+	fd[0] = open(cfg->texture.no.path, O_RDONLY);
+	fd[1] = open(cfg->texture.so.path, O_RDONLY);
+	fd[2] = open(cfg->texture.ea.path, O_RDONLY);
+	fd[3] = open(cfg->texture.we.path, O_RDONLY);
 	i = -1;
 	status = 0;
 	while (++i < 4)

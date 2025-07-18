@@ -20,12 +20,24 @@ typedef struct s_color
 	int		b;
 }	t_color;
 
+typedef struct s_tex
+{
+	char	*path;
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		size_len;
+	int		endian;
+}	t_tex;
+
 typedef struct s_texture
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
+	t_tex	no;
+	t_tex	so;
+	t_tex	we;
+	t_tex	ea;
 }	t_texture;
 
 typedef struct s_map
@@ -67,6 +79,9 @@ typedef struct s_ray
 	int		step_y;
 	int		hit;
 	int		side;
+	t_tex	*wall_tex;
+	double	wall_x;
+	int	tex_x;
 }	t_ray;
 
 typedef struct s_cfg
