@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 21:16:22 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 22:34:58 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "../lib/libft/include/libft.h"
 # include "../lib/minilibx-linux/mlx.h"
 # include "colors.h"
+# include "keys.h"
+# include "structs.h"
+# include "macros.h"
 
 # include <math.h>
 
@@ -36,89 +39,6 @@
 
 // gettimeofday
 # include <sys/time.h>
-
-// Macros
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 720
-# endif
-
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH 1280
-# endif
-
-// Stucts
-typedef struct s_color
-{
-	int		r;
-	int		g;
-	int		b;
-}	t_color;
-
-typedef struct s_texture
-{
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-}	t_texture;
-
-typedef struct s_map
-{
-	char	**grid;
-	int		width;
-	int		height;
-}	t_map;
-
-typedef struct s_player
-{
-	float	x;
-	float	y;
-	char	dir;
-}	t_player;
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		size_len;
-	int		endian;
-}	t_img;
-
-typedef struct s_ray
-{
-	double	dir_x;
-	double	dir_y;
-	double	camera_x;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-}	t_ray;
-
-typedef struct s_cfg
-{
-	t_color		ceiling;
-	t_color		floor;
-	t_texture	texture;
-	t_map		map;
-	t_player	player;
-}	t_cfg;
-
-typedef struct s_game
-{
-	t_cfg	*cfg;
-	void	*mlx;
-	void	*win;
-	t_img	*img;
-}	t_game;
 
 // parse
 t_cfg	*init_cub(void);
@@ -157,8 +77,10 @@ int		check_final_file(int fd, char *line, t_list **map_l, t_cfg *cfg);
 // parse
 void	print_config(t_cfg *cfg);
 
-// free_config
+// free
+void	free_game(t_game *game);
 void	free_config(t_cfg *cfg);
+void	free_map_copy(char **map, int height);
 void	free_gnl(int fd);
 
 // init_config
@@ -167,9 +89,6 @@ t_cfg	*init_config(void);
 // map validation
 int		validate_map(t_map *map, t_player *player);
 char	**copy_map(t_map *map);
-
-// map validation clean
-void	free_map_copy(char **map, int height);
 
 // get_player
 void	get_player_position(t_cfg *cfg);

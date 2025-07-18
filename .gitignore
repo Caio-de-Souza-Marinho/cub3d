@@ -8,4 +8,6 @@ obj/
 cub3D
 *.txt
 apagar.c
+*.log
 valgrind.log
+*.sup

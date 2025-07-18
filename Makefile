@@ -37,9 +37,8 @@ SRCS		= $(SRC_DIR)main.c \
 		  ${MAP_DIR}map_validation_utils.c \
 		  $(ERROR_DIR)error.c \
 		  $(DEBUG_DIR)print_config.c \
+		  $(FREE_DIR)free_all.c \
 		  $(FREE_DIR)free_utils.c \
-		  $(FREE_DIR)free_config.c \
-		  ${FREE_DIR}free_map_validation.c \
 		  $(RENDER_DIR)render.c \
 		  $(RENDER_DIR)raycast.c \
 		  $(RENDER_DIR)draw.c \

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map_validation.c                              :+:      :+:    :+:   */
+/*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 21:02:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 21:02:59 by caide-so         ###   ########.fr       */
+/*   Created: 2025/07/17 22:27:04 by caide-so          #+#    #+#             */
+/*   Updated: 2025/07/17 22:34:49 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#ifndef MACROS_H
+# define MACROS_H
 
-void	free_map_copy(char **map, int height)
-{
-	int	i;
+# ifndef WIN_HEIGHT
+#  define WIN_HEIGHT 720
+# endif
 
-	if (!map)
-		return ;
-	i = 0;
-	while (i < height)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
+# ifndef WIN_WIDTH
+#  define WIN_WIDTH 1280
+# endif
+
+#endif
