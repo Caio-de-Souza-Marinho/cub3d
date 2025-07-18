@@ -67,13 +67,3 @@ void	draw_column(t_ray *ray, t_game *game, int x)
 	while (y < WIN_HEIGHT)
 		put_pixel(game->img, x, y++, 0x444444);
 }
-
-void	put_pixel(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
-		return ;
-	dst = img->addr + (y * img->size_len + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
