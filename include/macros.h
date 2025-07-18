@@ -21,4 +21,8 @@
 #  define WIN_WIDTH 1280
 # endif
 
+# ifndef TILE_SIZE
+#  define TILE_SIZE 16
+# endif
+
 #endif
