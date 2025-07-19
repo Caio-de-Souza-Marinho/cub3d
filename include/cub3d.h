@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/18 20:15:05 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/19 14:29:41 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,11 @@ int		render_frame(t_game *game);
 void	raycast_and_draw(t_game *game);
 void	init_ray(t_player *player, t_ray *ray, int x);
 void	perform_dda(t_ray *ray, t_game *game);
+
+// draw
 void	draw_column(t_ray *ray, t_game *game, int x);
+void	draw_texture_column(t_game *game, t_ray *ray, int x, int line_height);
+int		get_rgb(t_color color);
 
 //minimap
 void	draw_minimap(t_game *game);
