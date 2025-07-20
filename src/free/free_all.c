@@ -19,7 +19,7 @@ void	free_game(t_game *game)
 	if (game->img)
 		free(game->img);
 	if (game->cfg)
-		free_config(game->cfg);
+		free_config(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -30,25 +30,25 @@ void	free_game(t_game *game)
 	free(game);
 }
 
-void	free_config(t_cfg *cfg)
+void	free_config(t_game *game)
 {
-	if (cfg->map.grid)
-		free_array((void **) cfg->map.grid);
-	if (cfg->texture.no.img)
-		free(cfg->texture.no.img);
-	if (cfg->texture.so.img)
-		free(cfg->texture.so.img);
-	if (cfg->texture.we.img)
-		free(cfg->texture.we.img);
-	if (cfg->texture.ea.img)
-		free(cfg->texture.ea.img);
-	free(cfg->texture.no.path);
-	free(cfg->texture.so.path);
-	free(cfg->texture.we.path);
-	free(cfg->texture.ea.path);
-	if (cfg)
-		free(cfg);
-	cfg = NULL;
+	if (game->cfg->map.grid)
+		free_array((void **) game->cfg->map.grid);
+	if (game->cfg->texture.no.img)
+		mlx_destroy_image(game->mlx, game->cfg->texture.no.img);
+	if (game->cfg->texture.so.img)
+		mlx_destroy_image(game->mlx, game->cfg->texture.so.img);
+	if (game->cfg->texture.we.img)
+		mlx_destroy_image(game->mlx, game->cfg->texture.we.img);
+	if (game->cfg->texture.ea.img)
+		mlx_destroy_image(game->mlx, game->cfg->texture.ea.img);
+	free(game->cfg->texture.no.path);
+	free(game->cfg->texture.so.path);
+	free(game->cfg->texture.we.path);
+	free(game->cfg->texture.ea.path);
+	if (game->cfg)
+		free(game->cfg);
+	game->cfg = NULL;
 }
 
 void	free_map_copy(char **map, int height)

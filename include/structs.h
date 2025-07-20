@@ -88,6 +88,15 @@ typedef struct s_ray
 	int		tex_x;
 }	t_ray;
 
+typedef struct s_draw_args
+{
+	int		x;
+	int		start;
+	int		end;
+	double	tex_pos;
+	double	step;
+}	t_draw_args;
+
 typedef struct s_cfg
 {
 	t_color		ceiling;

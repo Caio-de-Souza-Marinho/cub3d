@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	if (!parse_cub(argv[1], game->cfg) || check_cub_complete(game->cfg)
 		|| load_all_textures(game))
 	{
-		free_config(game->cfg);
+		free_game(game);
 		return (1);
 	}
 	print_config(game->cfg);

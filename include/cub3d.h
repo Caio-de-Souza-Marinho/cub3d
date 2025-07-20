@@ -66,9 +66,6 @@ int		parse_color_line(t_cfg *cfg, char *line);
 int		add_map_line(t_list **map_lines, char *line);
 void	convert_list_to_matrix(t_list **map_lines, t_cfg *cfg);
 
-// array
-void	free_array(void **arr);
-
 // parse_utils
 char	*skip_spaces(char *str);
 int		check_line_map(char *line);
@@ -79,8 +76,9 @@ void	print_config(t_cfg *cfg);
 
 // free
 void	free_game(t_game *game);
-void	free_config(t_cfg *cfg);
+void	free_config(t_game *game);
 void	free_map_copy(char **map, int height);
+void	free_array(void **arr);
 void	free_gnl(int fd);
 
 // init
