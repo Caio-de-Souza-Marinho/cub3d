@@ -67,3 +67,8 @@ void	draw_column(t_ray *ray, t_game *game, int x)
 	while (y < WIN_HEIGHT)
 		put_pixel(game->img, x, y++, get_rgb(game->cfg->floor));
 }
+
+int	get_rgb(t_color color)
+{
+	return ((color.r << 16) | (color.g << 8) | color.b);
+}
