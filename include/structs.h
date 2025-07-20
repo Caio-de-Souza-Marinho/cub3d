@@ -94,7 +94,7 @@ typedef struct s_draw_args
 	int		start;
 	int		end;
 	double	tex_pos;
-	double	step;
+	float	step;
 }	t_draw_args;
 
 typedef struct s_cfg

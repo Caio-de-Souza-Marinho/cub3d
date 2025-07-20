@@ -40,11 +40,11 @@ void	set_player_direction(t_player *player, char dir)
 
 void	set_player_position(t_player *player, int x, int y, char dir)
 {
-	float	f_x;
-	float	f_y;
+	double	f_x;
+	double	f_y;
 
-	f_x = (float) x + 0.5;
-	f_y = (float) y + 0.5;
+	f_x = (double) x + 0.5;
+	f_y = (double) y + 0.5;
 	player->x = f_x;
 	player->y = f_y;
 	player->dir = dir;

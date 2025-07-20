@@ -34,7 +34,10 @@ void	perform_dda(t_ray *ray, t_game *game)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (grid[ray->map_y][ray->map_x] == '1')
+		if (ray->map_x < 0 || ray->map_x >= game->cfg->map.width
+			|| ray->map_y < 0 || ray->map_y >= game->cfg->map.height)
+			ray->hit = 1;
+		else if (grid[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
 }
