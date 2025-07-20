@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:25:06 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 21:47:44 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/19 15:02:23 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	perform_dda(t_ray *ray, t_game *game)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (grid[ray->map_y][ray->map_x] == '1')
+		if (ray->map_x < 0 || ray->map_x >= game->cfg->map.width
+			|| ray->map_y < 0 || ray->map_y >= game->cfg->map.height)
+			ray->hit = 1;
+		else if (grid[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
 }
@@ -61,9 +64,14 @@ void	draw_column(t_ray *ray, t_game *game, int x)
 		draw_end = WIN_HEIGHT - 1;
 	y = 0;
 	while (y < draw_start)
-		put_pixel(game->img, x, y++, 0x222222);
-	while (y <= draw_end)
-		put_pixel(game->img, x, y++, 0xFFFFFF);
+		put_pixel(game->img, x, y++, get_rgb(game->cfg->ceiling));
+	y = draw_end + 1;
+	draw_texture_column(game, ray, x, line_height);
 	while (y < WIN_HEIGHT)
-		put_pixel(game->img, x, y++, 0x444444);
+		put_pixel(game->img, x, y++, get_rgb(game->cfg->floor));
+}
+
+int	get_rgb(t_color color)
+{
+	return ((color.r << 16) | (color.g << 8) | color.b);
 }

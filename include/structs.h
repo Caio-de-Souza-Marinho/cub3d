@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:26:06 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 22:26:43 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 20:23:09 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,24 @@ typedef struct s_color
 	int		b;
 }	t_color;
 
+typedef struct s_tex
+{
+	char	*path;
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		size_len;
+	int		endian;
+}	t_tex;
+
 typedef struct s_texture
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
+	t_tex	no;
+	t_tex	so;
+	t_tex	we;
+	t_tex	ea;
 }	t_texture;
 
 typedef struct s_map
@@ -37,8 +49,12 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	char	dir;
 }	t_player;
 
@@ -67,7 +83,19 @@ typedef struct s_ray
 	int		step_y;
 	int		hit;
 	int		side;
+	t_tex	*wall_tex;
+	double	wall_x;
+	int		tex_x;
 }	t_ray;
+
+typedef struct s_draw_args
+{
+	int		x;
+	int		start;
+	int		end;
+	double	tex_pos;
+	float	step;
+}	t_draw_args;
 
 typedef struct s_cfg
 {

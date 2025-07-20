@@ -33,9 +33,7 @@ void	raycast_and_draw(t_game *game)
 {
 	int			x;
 	t_ray		ray;
-	t_player	*player;
 
-	player = &game->cfg->player;
 	x = 0;
 	while (x < WIN_WIDTH)
 	{

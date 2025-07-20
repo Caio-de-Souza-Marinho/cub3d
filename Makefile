@@ -11,7 +11,7 @@ MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
-TEST_FILE	?= maps/good/library.cub
+TEST_FILE	?= maps/good/subject_map.cub
 
 # DIRS
 INIT_DIR	= ${SRC_DIR}init/
@@ -45,6 +45,8 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)minimap.c \
 		  $(RENDER_DIR)minimap_grid.c \
 		  $(RENDER_DIR)minimap_player.c \
+		  $(RENDER_DIR)load_texture.c \
+		  $(RENDER_DIR)draw_texture.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 

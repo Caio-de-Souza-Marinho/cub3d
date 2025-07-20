@@ -22,13 +22,13 @@ int	parse_texture_line(t_cfg *cfg, char *line)
 	if (!values)
 		return (0);
 	if (ft_strcmp(values[0], "NO") == 0)
-		return (set_texture(&cfg->texture.no, values));
+		return (set_texture(&cfg->texture.no.path, values));
 	else if (ft_strcmp(values[0], "SO") == 0)
-		return (set_texture(&cfg->texture.so, values));
+		return (set_texture(&cfg->texture.so.path, values));
 	else if (ft_strcmp(values[0], "WE") == 0)
-		return (set_texture(&cfg->texture.we, values));
+		return (set_texture(&cfg->texture.we.path, values));
 	else if (ft_strcmp(values[0], "EA") == 0)
-		return (set_texture(&cfg->texture.ea, values));
+		return (set_texture(&cfg->texture.ea.path, values));
 	return (0);
 }
 

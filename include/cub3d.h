@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/18 17:26:13 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/19 14:29:41 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ int		parse_color_line(t_cfg *cfg, char *line);
 int		add_map_line(t_list **map_lines, char *line);
 void	convert_list_to_matrix(t_list **map_lines, t_cfg *cfg);
 
-// array
-void	free_array(void **arr);
-
 // parse_utils
 char	*skip_spaces(char *str);
 int		check_line_map(char *line);
@@ -79,8 +76,9 @@ void	print_config(t_cfg *cfg);
 
 // free
 void	free_game(t_game *game);
-void	free_config(t_cfg *cfg);
+void	free_config(t_game *game);
 void	free_map_copy(char **map, int height);
+void	free_array(void **arr);
 void	free_gnl(int fd);
 
 // init
@@ -103,7 +101,11 @@ int		render_frame(t_game *game);
 void	raycast_and_draw(t_game *game);
 void	init_ray(t_player *player, t_ray *ray, int x);
 void	perform_dda(t_ray *ray, t_game *game);
+
+// draw
 void	draw_column(t_ray *ray, t_game *game, int x);
+void	draw_texture_column(t_game *game, t_ray *ray, int x, int line_height);
+int		get_rgb(t_color color);
 
 //minimap
 void	draw_minimap(t_game *game);
@@ -111,5 +113,8 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_minimap_tile(t_game *game, int px, int py, int color);
 void	draw_minimap_grid(t_game *game);
 void	draw_minimap_player(t_game *game);
+
+// textures
+int		load_all_textures(t_game *game);
 
 #endif

@@ -12,13 +12,13 @@
 
 #include "../../include/cub3d.h"
 
-void	calc_ray_dir(t_ray *ray, int x);
+void	calc_ray_dir(t_ray *ray, int x, t_player *player);
 void	calc_delta_dist(t_ray *ray, t_player *player);
 void	calc_step_and_side_dist(t_ray *ray, t_player *player);
 
 void	init_ray(t_player *player, t_ray *ray, int x)
 {
-	calc_ray_dir(ray, x);
+	calc_ray_dir(ray, x, player);
 	calc_delta_dist(ray, player);
 	calc_step_and_side_dist(ray, player);
 }
@@ -26,7 +26,7 @@ void	init_ray(t_player *player, t_ray *ray, int x)
 // part 1
 // player direction vector (default: facing north = (0, -1))
 // camera plane (perpendicular to direction)
-void	calc_ray_dir(t_ray *ray, int x)
+void	calc_ray_dir(t_ray *ray, int x, t_player *player)
 {
 	double	camera_x;
 	double	dir_x;
@@ -34,10 +34,10 @@ void	calc_ray_dir(t_ray *ray, int x)
 	double	plane_x;
 	double	plane_y;
 
-	dir_x = 0;
-	dir_y = -1;
-	plane_x = 0.66;
-	plane_y = 0.0;
+	dir_x = player->dir_x;
+	dir_y = player->dir_y;
+	plane_x = player->plane_x;
+	plane_y = player->plane_y;
 	camera_x = 2 * x / (double)WIN_WIDTH - 1;
 	ray->dir_x = dir_x + plane_x * camera_x;
 	ray->dir_y = dir_y + plane_y * camera_x;
