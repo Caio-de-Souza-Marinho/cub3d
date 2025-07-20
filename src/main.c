@@ -70,11 +70,41 @@ void	rotate_player(int keycode, t_game *game, double angle)
 	}
 }
 
+void	move_player(int keycode, t_game *game, double speed)
+{
+	t_player	*p;
+
+	p = &game->cfg->player;
+	if (keycode == KEY_W)
+	{
+		p->x += p->dir_x * speed;
+		p->y += p->dir_y * speed;
+	}
+	else if (keycode == KEY_S)
+	{
+		p->x -= p->dir_x * speed;
+		p->y -= p->dir_y * speed;
+	}
+	else if (keycode == KEY_D)
+	{
+		p->x -= p->dir_y * speed;
+		p->y += p->dir_x * speed;
+	}
+	else if (keycode == KEY_A)
+	{
+		p->x += p->dir_y * speed;
+		p->y -= p->dir_x * speed;
+	}
+}
+
 int	handle_key(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		exit_game(game);
 	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		rotate_player(keycode, game, 0.05);
+	else if (keycode == KEY_W || keycode == KEY_S
+		|| keycode == KEY_A || keycode == KEY_D)
+		move_player(keycode, game, 1);
 	return (0);
 }
