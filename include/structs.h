@@ -49,8 +49,12 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	char	dir;
 }	t_player;
 
