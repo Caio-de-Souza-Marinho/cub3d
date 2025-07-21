@@ -83,7 +83,9 @@ void	draw_texture_loop(t_game *game, t_ray *ray, t_tex *tex, t_draw_args da)
 	y = da.start;
 	while (y <= da.end)
 	{
-		tex_y = (int)da.tex_pos & (tex->height - 1);
+		tex_y = (int)da.tex_pos;
+		if (tex_y >= tex->height)
+			tex_y = tex->height - 1;
 		color = *(unsigned int *)(tex->addr + tex_y * tex->size_len
 				+ tex_x * (tex->bits_per_pixel / 8));
 		put_pixel(game->img, da.x, y, color);

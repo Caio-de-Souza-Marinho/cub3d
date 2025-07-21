@@ -10,4 +10,3 @@ cub3D
 apagar.c
 *.log
 valgrind.log
-*.sup

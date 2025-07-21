@@ -12,8 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-void	put_pixel(t_img *img, int x, int y, int color);
-
 // part 4
 void	perform_dda(t_ray *ray, t_game *game)
 {
