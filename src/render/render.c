@@ -14,18 +14,22 @@
 
 int	render_frame(t_game *game)
 {
-	game->img->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (!game->img->img)
-		return (1);
-	game->img->addr = mlx_get_data_addr(game->img->img,
-			&game->img->bits_per_pixel, &game->img->size_len,
-			&game->img->endian);
-	if (!game->img->addr)
-		return (1);
+	if (game->keys.w)
+		move_player(KEY_W, game, 0.05);
+	if (game->keys.s)
+		move_player(KEY_S, game, 0.05);
+	if (game->keys.a)
+		move_player(KEY_A, game, 0.05);
+	if (game->keys.d)
+		move_player(KEY_D, game, 0.05);
+	if (game->keys.left)
+		rotate_player(KEY_LEFT, game, 0.05);
+	if (game->keys.right)
+		rotate_player(KEY_RIGHT, game, 0.05);
+	ft_memset(game->img->addr, 0, WIN_HEIGHT * game->img->size_len);
 	raycast_and_draw(game);
 	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
-	mlx_destroy_image(game->mlx, game->img->img);
 	return (0);
 }
 

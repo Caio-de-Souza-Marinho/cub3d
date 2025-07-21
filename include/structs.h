@@ -88,6 +88,16 @@ typedef struct s_ray
 	int		tex_x;
 }	t_ray;
 
+typedef struct s_keys
+{
+	int	w;
+	int	s;
+	int	a;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
+
 typedef struct s_draw_args
 {
 	int		x;
@@ -112,6 +122,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	t_img	*img;
+	t_keys	keys;
 }	t_game;
 
 #endif

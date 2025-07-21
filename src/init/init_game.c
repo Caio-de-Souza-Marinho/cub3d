@@ -27,6 +27,15 @@ t_game	*init_game(void)
 	game->img = (t_img *)malloc(sizeof(t_img));
 	if (!game->img)
 		return (NULL);
+	game->img->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!game->img->img)
+		return (NULL);
+	game->img->addr = mlx_get_data_addr(game->img->img,
+			&game->img->bits_per_pixel, &game->img->size_len,
+			&game->img->endian);
+	if (!game->img->addr)
+		return (NULL);
+	ft_memset(&game->keys, 0, sizeof(t_keys));
 	return (game);
 }
 

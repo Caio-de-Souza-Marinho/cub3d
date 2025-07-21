@@ -16,8 +16,9 @@ void	free_game(t_game *game)
 {
 	if (!game)
 		return ;
-	if (game->img)
-		free(game->img);
+	if (game->img->img)
+		mlx_destroy_image(game->mlx, game->img->img);
+	free(game->img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->cfg)

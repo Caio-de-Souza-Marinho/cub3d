@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/21 15:37:00 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/21 20:54:22 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,11 @@ void	draw_minimap_player(t_game *game);
 int		load_all_textures(t_game *game);
 
 // movements
-int	handle_key(int keycode, t_game *game);
-int	exit_game(t_game *game);
+int		handle_key(int keycode, t_game *game);
+void	move_player(int keycode, t_game *game, double speed);
+void	rotate_player(int keycode, t_game *game, double angle);
+int		exit_game(t_game *game);
+int		handle_key_press(int keycode, t_game *game);
+int		handle_key_release(int keycode, t_game *game);
 
 #endif

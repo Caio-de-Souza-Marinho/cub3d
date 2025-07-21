@@ -12,9 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-void	rotate_player(int keycode, t_game *game, double angle);
-void	move_player(int keycode, t_game *game, double speed);
-
 int	handle_key(int keycode, t_game *game)
 {
 	double	move_speed;
