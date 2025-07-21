@@ -24,7 +24,6 @@ RENDER_DIR	= $(SRC_DIR)render/
 
 SRCS		= $(SRC_DIR)main.c \
 		  $(INIT_DIR)init_game.c \
-		  $(INIT_DIR)init_config.c \
 		  $(PARSE_DIR)parse.c \
 		  $(PARSE_DIR)is_line_function.c \
 		  $(PARSE_DIR)color_parser.c \

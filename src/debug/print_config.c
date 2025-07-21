@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-#include <stdio.h>
 
 void	print_details(t_cfg *cfg)
 {
-	printf(BLUE "Textures:\n");
+	printf(BBLUE "Textures:\n");
 	printf("NO: %s\n", cfg->texture.no.path);
 	printf("SO: %s\n", cfg->texture.so.path);
 	printf("WE: %s\n", cfg->texture.we.path);
@@ -29,7 +28,7 @@ void	print_details(t_cfg *cfg)
 
 void	print_player(t_cfg *cfg)
 {
-	printf(BLUE "\nPlayer:\n");
+	printf(BBLUE "\nPlayer:\n");
 	printf("X: %f\n", cfg->player.x);
 	printf("Y: %f\n", cfg->player.y);
 	printf("Dir: %c\n" RESET, cfg->player.dir);
@@ -42,7 +41,7 @@ void	print_config(t_cfg *cfg)
 
 	print_details(cfg);
 	print_player(cfg);
-	printf(GREEN "\nMap:\n" RESET);
+	printf(BGREEN "\nMap:\n" RESET);
 	i = -1;
 	while (++i < cfg->map.height)
 	{
@@ -50,11 +49,11 @@ void	print_config(t_cfg *cfg)
 		while (++j < cfg->map.width)
 		{
 			if (cfg->map.grid[i][j] == '0')
-				printf(BLUE "%c" RESET, cfg->map.grid[i][j]);
+				printf(BBLUE "%c" RESET, cfg->map.grid[i][j]);
 			else if (cfg->map.grid[i][j] == '1')
-				printf(GREEN "%c" RESET, cfg->map.grid[i][j]);
+				printf(BGREEN "%c" RESET, cfg->map.grid[i][j]);
 			else if (cfg->map.grid[i][j] == '2')
-				printf(RED "%c" RESET, cfg->map.grid[i][j]);
+				printf(BRED "%c" RESET, cfg->map.grid[i][j]);
 			else
 				printf(BYELLOW "%c" RESET, cfg->map.grid[i][j]);
 		}
