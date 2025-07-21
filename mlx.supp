@@ -1,0 +1,49 @@
+{
+   mlx_x11_uninitialized_errors
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   fun:*libxcb.so*
+   fun:*libxcb.so*
+   fun:xcb_writev
+   fun:_XSend
+   fun:_XReadEvents
+   fun:XWindowEvent
+   obj:*/cub3D
+   fun:mlx_int_wait_first_expose
+   fun:mlx_new_window
+}
+
+{
+   mlx_x11_init_errors
+   Memcheck:Param
+   writev(vector[0])
+   fun:calloc
+   fun:XOpenDisplay
+   obj:*/cub3D
+   fun:mlx_init
+}
+
+{
+   mlx_anti_resize_stack
+   Memcheck:Value8
+   obj:*/cub3D
+   fun:mlx_int_anti_resize_win
+}
+
+{                                                                                                                                                                                                                                            
+   mlx_writev
+   Memcheck:Param                                                                                                                                                                                                                            
+   writev(vector[0])                                                                                                                                                                                                                         
+   fun:writev                                                                                                         
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0                                                                      
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0                                                                      
+   fun:xcb_writev                                                                                                     
+   fun:_XSend                                                                                                         
+   fun:_XReadEvents                                                                                                   
+   fun:XWindowEvent                                                                                                   
+   fun:mlx_int_wait_first_expose                                                                                      
+   fun:mlx_new_window                                                                                                 
+   fun:init_game                                                                                                      
+   fun:main                                                                                                           
+}  

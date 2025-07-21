@@ -84,7 +84,7 @@ ${MLX_LIB}:
 			@make -s -C ${MLX_DIR} --no-print-directory > /dev/null 2>&1
 
 leak:		re
-			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${TEST_FILE}
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=mlx.supp ./${NAME} ${TEST_FILE}
 
 leakfile:		re
 			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind.log ./${NAME} ${TEST_FILE}

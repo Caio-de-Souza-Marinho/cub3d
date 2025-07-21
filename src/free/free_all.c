@@ -18,10 +18,10 @@ void	free_game(t_game *game)
 		return ;
 	if (game->img)
 		free(game->img);
-	if (game->cfg)
-		free_config(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
+	if (game->cfg)
+		free_config(game);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
@@ -32,8 +32,6 @@ void	free_game(t_game *game)
 
 void	free_config(t_game *game)
 {
-	if (game->cfg->map.grid)
-		free_array((void **) game->cfg->map.grid);
 	if (game->cfg->texture.no.img)
 		mlx_destroy_image(game->mlx, game->cfg->texture.no.img);
 	if (game->cfg->texture.so.img)
@@ -46,9 +44,9 @@ void	free_config(t_game *game)
 	free(game->cfg->texture.so.path);
 	free(game->cfg->texture.we.path);
 	free(game->cfg->texture.ea.path);
-	if (game->cfg)
-		free(game->cfg);
-	game->cfg = NULL;
+	if (game->cfg->map.grid)
+		free_array((void **) game->cfg->map.grid);
+	free(game->cfg);
 }
 
 void	free_map_copy(char **map, int height)
