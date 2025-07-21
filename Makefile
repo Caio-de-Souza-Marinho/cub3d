@@ -21,6 +21,7 @@ ERROR_DIR	= $(SRC_DIR)error/
 DEBUG_DIR	= $(SRC_DIR)debug/
 FREE_DIR	= $(SRC_DIR)free/
 RENDER_DIR	= $(SRC_DIR)render/
+MOVE_DIR	= $(SRC_DIR)move/
 
 SRCS		= $(SRC_DIR)main.c \
 		  $(INIT_DIR)init_game.c \
@@ -46,6 +47,7 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)minimap_player.c \
 		  $(RENDER_DIR)load_texture.c \
 		  $(RENDER_DIR)draw_texture.c \
+		  $(MOVE_DIR)movements.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 
