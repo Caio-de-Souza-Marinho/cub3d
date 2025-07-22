@@ -88,5 +88,9 @@ int	init_game_graphics(t_game *game)
 			&game->img->endian);
 	if (!game->img->addr)
 		return (1);
+	mlx_mouse_hide(game->mlx, game->win);
+	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	game->mouse_x = WIN_WIDTH / 2;
+	game->mouse_y = WIN_HEIGHT / 2;
 	return (0);
 }

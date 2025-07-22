@@ -126,6 +126,8 @@ typedef struct s_game
 	t_img			*img;
 	t_keys			keys;
 	struct timeval	last_frame_time;
+	int				mouse_x;
+	int				mouse_y;
 }	t_game;
 
 #endif

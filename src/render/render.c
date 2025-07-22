@@ -12,9 +12,22 @@
 
 #include "../../include/cub3d.h"
 
+void	player_camera_move(t_game *game);
 double	get_delta_time(t_game *game);
 
 int	render_frame(t_game *game)
+{
+	player_camera_move(game);
+	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	game->mouse_x = WIN_WIDTH / 2;
+	ft_memset(game->img->addr, 0, WIN_HEIGHT * game->img->size_len);
+	raycast_and_draw(game);
+	draw_minimap(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
+	return (0);
+}
+
+void	player_camera_move(t_game *game)
 {
 	double	delta;
 	double	move_speed;
@@ -35,11 +48,6 @@ int	render_frame(t_game *game)
 		rotate_player(KEY_LEFT, game, rot_speed);
 	if (game->keys.right)
 		rotate_player(KEY_RIGHT, game, rot_speed);
-	ft_memset(game->img->addr, 0, WIN_HEIGHT * game->img->size_len);
-	raycast_and_draw(game);
-	draw_minimap(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
-	return (0);
 }
 
 void	raycast_and_draw(t_game *game)
