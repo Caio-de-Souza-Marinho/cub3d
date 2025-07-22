@@ -101,3 +101,26 @@ void	move_player(int keycode, t_game *game, double speed)
 		p->y -= p->dir_x * speed;
 	}
 }
+
+int	handle_mouse_move(int x, int y, t_game *game)
+{
+	int		center_x;
+	int		dx;
+	double	sensitivity;
+	int		max_dx;
+
+	(void)y;
+	center_x = WIN_WIDTH / 2;
+	dx = x - center_x;
+	sensitivity = 0.003;
+	max_dx = 30;
+	if (dx > max_dx)
+		dx = max_dx;
+	else if (dx < -max_dx)
+		dx = -max_dx;
+	if (dx < 0)
+		rotate_player(KEY_LEFT, game, fabs((double)dx) * sensitivity);
+	else if (dx > 0)
+		rotate_player(KEY_RIGHT, game, fabs((double)dx) * sensitivity);
+	return (0);
+}

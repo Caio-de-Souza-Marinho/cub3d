@@ -122,5 +122,6 @@ void	rotate_player(int keycode, t_game *game, double angle);
 int		exit_game(t_game *game);
 int		handle_key_press(int keycode, t_game *game);
 int		handle_key_release(int keycode, t_game *game);
+int		handle_mouse_move(int x, int y, t_game *game);
 
 #endif
