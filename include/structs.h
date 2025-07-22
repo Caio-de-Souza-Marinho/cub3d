@@ -13,6 +13,8 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include <sys/time.h>
+
 typedef struct s_color
 {
 	int		r;
@@ -88,6 +90,16 @@ typedef struct s_ray
 	int		tex_x;
 }	t_ray;
 
+typedef struct s_keys
+{
+	int	w;
+	int	s;
+	int	a;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
+
 typedef struct s_draw_args
 {
 	int		x;
@@ -108,10 +120,14 @@ typedef struct s_cfg
 
 typedef struct s_game
 {
-	t_cfg	*cfg;
-	void	*mlx;
-	void	*win;
-	t_img	*img;
+	t_cfg			*cfg;
+	void			*mlx;
+	void			*win;
+	t_img			*img;
+	t_keys			keys;
+	struct timeval	last_frame_time;
+	int				mouse_x;
+	int				mouse_y;
 }	t_game;
 
 #endif

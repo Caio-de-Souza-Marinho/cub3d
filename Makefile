@@ -21,6 +21,7 @@ ERROR_DIR	= $(SRC_DIR)error/
 DEBUG_DIR	= $(SRC_DIR)debug/
 FREE_DIR	= $(SRC_DIR)free/
 RENDER_DIR	= $(SRC_DIR)render/
+MOVE_DIR	= $(SRC_DIR)move/
 
 SRCS		= $(SRC_DIR)main.c \
 		  $(INIT_DIR)init_game.c \
@@ -46,6 +47,7 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)minimap_player.c \
 		  $(RENDER_DIR)load_texture.c \
 		  $(RENDER_DIR)draw_texture.c \
+		  $(MOVE_DIR)movements.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 
@@ -84,10 +86,16 @@ ${MLX_LIB}:
 			@make -s -C ${MLX_DIR} --no-print-directory > /dev/null 2>&1
 
 leak:		re
-			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=mlx.supp ./${NAME} ${TEST_FILE}
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${TEST_FILE}
 
-leakfile:		re
+leakfile:	re
 			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind.log ./${NAME} ${TEST_FILE}
+
+leaksup:	re
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=suppression.sup ./${NAME} ${TEST_FILE}
+
+leakfilesup:	re
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=suppression.sup --log-file=valgrind.log ./${NAME} ${TEST_FILE}
 
 clean:
 			@echo "${RED}[  CLEANING  ]${RESET} Removing object files..."

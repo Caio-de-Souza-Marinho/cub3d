@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/19 14:29:41 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/21 21:30:26 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 t_cfg	*init_cub(void);
 int		parse_cub(char *filename, t_cfg *cfg);
 
-// is_line_functions
+// is_line functions
 int		is_map_line(char *line);
 int		is_color_line(char *line);
 int		is_texture_line(char *line);
@@ -71,7 +71,7 @@ char	*skip_spaces(char *str);
 int		check_line_map(char *line);
 int		check_final_file(int fd, char *line, t_list **map_l, t_cfg *cfg);
 
-// parse
+// debug
 void	print_config(t_cfg *cfg);
 
 // free
@@ -83,16 +83,15 @@ void	free_gnl(int fd);
 
 // init
 t_cfg	*init_config(void);
-t_game	*init_game(void);
+t_game	*init_empty_game(void);
+int		init_game_graphics(t_game *game);
 
 // map validation
 int		validate_map(t_map *map, t_player *player);
 char	**copy_map(t_map *map);
 
-// get_player
+// get player
 void	get_player_position(t_cfg *cfg);
-
-// game
 
 // render
 int		render_frame(t_game *game);
@@ -116,5 +115,12 @@ void	draw_minimap_player(t_game *game);
 
 // textures
 int		load_all_textures(t_game *game);
+
+// movements
+void	move_player(int keycode, t_game *game, double speed);
+void	rotate_player(int keycode, t_game *game, double angle);
+int		exit_game(t_game *game);
+int		handle_key_press(int keycode, t_game *game);
+int		handle_key_release(int keycode, t_game *game);
 
 #endif
