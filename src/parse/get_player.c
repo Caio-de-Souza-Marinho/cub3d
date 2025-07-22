@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 21:50:42 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/15 22:12:06 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/21 21:12:32 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	set_player_direction(t_player *player, char dir)
 		if (dir == 'W')
 			player->dir_x *= -1;
 		if (dir == 'W')
-			player->plane_x *= -1;
+			player->plane_y *= -1;
 	}
 }
 
