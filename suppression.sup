@@ -63,3 +63,202 @@
    fun:mlx_new_window
    ...
 }
+
+{
+   x11_locale_still_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:*alloc
+   ...
+   fun:_XlcCreateLocaleDataBase
+}
+
+{
+   x11_resource_still_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:*alloc
+   ...
+   fun:XrmInitialize
+}
+
+{
+   x11_cursor_still_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:*alloc
+   ...
+   fun:*cursor*
+}
+
+{
+   X11_locale_still_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcAddCT
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   X11_charset_still_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_XlcCreateDefaultCharSet
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   X11_CreateDefaultCharSet_malloc
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   X11_AddCharSet_malloc
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcAddCharSet
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   X11_CreateDefaultCharSet_malloc2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   DynamicLoader_dl_new_object
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:calloc
+   fun:_dl_new_object
+   ...
+}
+
+{
+   DynamicLoader_dl_map_object_deps
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:calloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   ...
+}
+
+{
+   X11_all_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   DynamicLoader_all_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_*
+   ...
+}
+
+{
+   X11_CreateDefaultCharSet_malloc
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   X11_AddCharSet_malloc
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcAddCharSet
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   X11_CreateDefaultCharSet_malloc2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   DynamicLoader_strdup
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   ...
+}
+
+{
+   DynamicLoader_dl_new_object_malloc
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:malloc
+   fun:_dl_new_object
+   ...
+}
+
+{
+   DynamicLoader_general
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:_dl_*
+   ...
+}
+
+{
+   X11_all_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+}
+
+{
+   DynamicLoader_all_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_*
+   ...
+}
