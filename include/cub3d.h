@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/21 20:54:22 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/21 21:30:26 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	free_gnl(int fd);
 
 // init
 t_cfg	*init_config(void);
-t_game	*init_game(void);
+t_game	*init_empty_game(void);
+int		init_game_graphics(t_game *game);
 
 // map validation
 int		validate_map(t_map *map, t_player *player);

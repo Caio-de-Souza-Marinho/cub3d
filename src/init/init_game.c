@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:32:15 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/16 20:50:52 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/21 21:41:06 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_textures(t_cfg *cfg);
 
-t_game	*init_game(void)
+t_game	*init_empty_game(void)
 {
 	t_game	*game;
 
@@ -22,19 +22,14 @@ t_game	*init_game(void)
 	if (!game)
 		return (NULL);
 	game->cfg = init_config();
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
-	game->img = (t_img *)malloc(sizeof(t_img));
-	if (!game->img)
+	if (!game->cfg)
+	{
+		free(game);
 		return (NULL);
-	game->img->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (!game->img->img)
-		return (NULL);
-	game->img->addr = mlx_get_data_addr(game->img->img,
-			&game->img->bits_per_pixel, &game->img->size_len,
-			&game->img->endian);
-	if (!game->img->addr)
-		return (NULL);
+	}
+	game->mlx = NULL;
+	game->win = NULL;
+	game->img = NULL;
 	ft_memset(&game->keys, 0, sizeof(t_keys));
 	return (game);
 }
@@ -72,4 +67,26 @@ void	init_textures(t_cfg *cfg)
 	cfg->texture.so.img = NULL;
 	cfg->texture.we.img = NULL;
 	cfg->texture.ea.img = NULL;
+}
+
+int	init_game_graphics(t_game *game)
+{
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		return (1);
+	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
+	if (!game->win)
+		return (1);
+	game->img = (t_img *)malloc(sizeof(t_img));
+	if (!game->img)
+		return (1);
+	game->img->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!game->img->img)
+		return (1);
+	game->img->addr = mlx_get_data_addr(game->img->img,
+			&game->img->bits_per_pixel, &game->img->size_len,
+			&game->img->endian);
+	if (!game->img->addr)
+		return (1);
+	return (0);
 }

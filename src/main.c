@@ -6,25 +6,25 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/21 21:04:12 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/21 21:37:45 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+int	check_errors(char *arg, t_game *game);
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	(void)argc;
-	if (ft_strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub") != 0)
+	if (argc != 2 || ft_strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub") != 0)
 		return (printf("Not a .cub file\n"), 1);
-	game = init_game();
-	if (!parse_cub(argv[1], game->cfg) || check_cub_complete(game->cfg)
-		|| load_all_textures(game))
+	game = init_empty_game();
+	if (!check_errors(argv[1], game))
 	{
 		free_game(game);
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	print_config(game->cfg);
 	mlx_loop_hook(game->mlx, &render_frame, game);
@@ -32,7 +32,19 @@ int	main(int argc, char **argv)
 	mlx_hook(game->win, 2, 1L << 0, handle_key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, handle_key_release, game);
 	mlx_loop(game->mlx);
-	return (0);
+	return (EXIT_SUCCESS);
+}
+
+int	check_errors(char *arg, t_game *game)
+{
+	if (!game || !parse_cub(arg, game->cfg)
+		|| check_cub_complete(game->cfg))
+		return (0);
+	if (init_game_graphics(game))
+		return (0);
+	if (load_all_textures(game))
+		return (0);
+	return (1);
 }
 
 int	exit_game(t_game *game)

@@ -16,9 +16,12 @@ void	free_game(t_game *game)
 {
 	if (!game)
 		return ;
-	if (game->img->img)
-		mlx_destroy_image(game->mlx, game->img->img);
-	free(game->img);
+	if (game->img)
+	{
+		if (game->img->img)
+			mlx_destroy_image(game->mlx, game->img->img);
+		free(game->img);
+	}
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->cfg)
@@ -33,6 +36,8 @@ void	free_game(t_game *game)
 
 void	free_config(t_game *game)
 {
+	if (!game || !game->cfg)
+		return ;
 	if (game->cfg->texture.no.img)
 		mlx_destroy_image(game->mlx, game->cfg->texture.no.img);
 	if (game->cfg->texture.so.img)

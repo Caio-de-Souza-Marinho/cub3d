@@ -22,6 +22,8 @@ int	validate_map(t_map *map, t_player *player)
 
 	if (!validate_chars(map))
 		return (0);
+	if (player->x < 0 || player->y < 0)
+		return (0);
 	copy = copy_map(map);
 	if (!copy)
 		return (0);
