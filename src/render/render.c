@@ -12,13 +12,17 @@
 
 #include "../../include/cub3d.h"
 
+double	get_delta_time(t_game *game);
+
 int	render_frame(t_game *game)
 {
+	double	delta;
 	double	move_speed;
 	double	rot_speed;
 
-	move_speed = 0.05;
-	rot_speed = 0.05;
+	delta = get_delta_time(game);
+	move_speed = 3.0 * delta;
+	rot_speed = 2.0 * delta;
 	if (game->keys.w)
 		move_player(KEY_W, game, move_speed);
 	if (game->keys.s)
@@ -51,4 +55,16 @@ void	raycast_and_draw(t_game *game)
 		draw_column(&ray, game, x);
 		x++;
 	}
+}
+
+double	get_delta_time(t_game *game)
+{
+	struct timeval	current;
+	double			delta;
+
+	gettimeofday(&current, NULL);
+	delta = (current.tv_sec - game->last_frame_time.tv_sec)
+		+ (current.tv_usec - game->last_frame_time.tv_usec) / 1e6;
+	game->last_frame_time = current;
+	return (delta);
 }

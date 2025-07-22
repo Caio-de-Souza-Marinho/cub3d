@@ -13,6 +13,8 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include <sys/time.h>
+
 typedef struct s_color
 {
 	int		r;
@@ -118,11 +120,12 @@ typedef struct s_cfg
 
 typedef struct s_game
 {
-	t_cfg	*cfg;
-	void	*mlx;
-	void	*win;
-	t_img	*img;
-	t_keys	keys;
+	t_cfg			*cfg;
+	void			*mlx;
+	void			*win;
+	t_img			*img;
+	t_keys			keys;
+	struct timeval	last_frame_time;
 }	t_game;
 
 #endif

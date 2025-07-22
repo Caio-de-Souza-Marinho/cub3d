@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	print_config(game->cfg);
+	gettimeofday(&game->last_frame_time, NULL);
 	mlx_loop_hook(game->mlx, &render_frame, game);
 	mlx_hook(game->win, 17, 0, exit_game, game);
 	mlx_hook(game->win, 2, 1L << 0, handle_key_press, game);
