@@ -117,7 +117,6 @@ void	draw_minimap_player(t_game *game);
 int		load_all_textures(t_game *game);
 
 // movements
-int		handle_key(int keycode, t_game *game);
 void	move_player(int keycode, t_game *game, double speed);
 void	rotate_player(int keycode, t_game *game, double angle);
 int		exit_game(t_game *game);

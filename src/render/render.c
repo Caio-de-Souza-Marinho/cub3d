@@ -14,18 +14,23 @@
 
 int	render_frame(t_game *game)
 {
+	double	move_speed;
+	double	rot_speed;
+
+	move_speed = 0.05;
+	rot_speed = 0.05;
 	if (game->keys.w)
-		move_player(KEY_W, game, 0.05);
+		move_player(KEY_W, game, move_speed);
 	if (game->keys.s)
-		move_player(KEY_S, game, 0.05);
+		move_player(KEY_S, game, move_speed);
 	if (game->keys.a)
-		move_player(KEY_A, game, 0.05);
+		move_player(KEY_A, game, move_speed);
 	if (game->keys.d)
-		move_player(KEY_D, game, 0.05);
+		move_player(KEY_D, game, move_speed);
 	if (game->keys.left)
-		rotate_player(KEY_LEFT, game, 0.05);
+		rotate_player(KEY_LEFT, game, rot_speed);
 	if (game->keys.right)
-		rotate_player(KEY_RIGHT, game, 0.05);
+		rotate_player(KEY_RIGHT, game, rot_speed);
 	ft_memset(game->img->addr, 0, WIN_HEIGHT * game->img->size_len);
 	raycast_and_draw(game);
 	draw_minimap(game);

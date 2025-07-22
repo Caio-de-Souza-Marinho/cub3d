@@ -48,7 +48,6 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)load_texture.c \
 		  $(RENDER_DIR)draw_texture.c \
 		  $(MOVE_DIR)movements.c \
-		  $(MOVE_DIR)handle_keys.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 

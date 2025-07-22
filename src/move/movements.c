@@ -12,20 +12,39 @@
 
 #include "../../include/cub3d.h"
 
-int	handle_key(int keycode, t_game *game)
+int	handle_key_press(int keycode, t_game *game)
 {
-	double	move_speed;
-	double	rot_speed;
-
-	move_speed = 0.08;
-	rot_speed = 0.06;
 	if (keycode == KEY_ESC)
 		exit_game(game);
-	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
-		rotate_player(keycode, game, rot_speed);
-	else if (keycode == KEY_W || keycode == KEY_S
-		|| keycode == KEY_A || keycode == KEY_D)
-		move_player(keycode, game, move_speed);
+	else if (keycode == KEY_W)
+		game->keys.w = 1;
+	else if (keycode == KEY_S)
+		game->keys.s = 1;
+	else if (keycode == KEY_A)
+		game->keys.a = 1;
+	else if (keycode == KEY_D)
+		game->keys.d = 1;
+	else if (keycode == KEY_LEFT)
+		game->keys.left = 1;
+	else if (keycode == KEY_RIGHT)
+		game->keys.right = 1;
+	return (0);
+}
+
+int	handle_key_release(int keycode, t_game *game)
+{
+	if (keycode == KEY_W)
+		game->keys.w = 0;
+	else if (keycode == KEY_S)
+		game->keys.s = 0;
+	else if (keycode == KEY_A)
+		game->keys.a = 0;
+	else if (keycode == KEY_D)
+		game->keys.d = 0;
+	else if (keycode == KEY_LEFT)
+		game->keys.left = 0;
+	else if (keycode == KEY_RIGHT)
+		game->keys.right = 0;
 	return (0);
 }
 
