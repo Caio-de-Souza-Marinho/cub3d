@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/21 21:37:45 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/22 22:37:25 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	check_errors(char *arg, t_game *game)
 	if (init_game_graphics(game))
 		return (0);
 	if (load_all_textures(game))
+		return (0);
+	if (init_sprite(game))
 		return (0);
 	return (1);
 }

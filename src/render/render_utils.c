@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 22:27:04 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 22:34:49 by caide-so         ###   ########.fr       */
+/*   Created: 2025/07/22 22:40:45 by caide-so          #+#    #+#             */
+/*   Updated: 2025/07/22 22:41:36 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
+#include "../../include/cub3d.h"
 
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 720
-# endif
+double	get_delta_time(t_game *game)
+{
+	struct timeval	current;
+	double			delta;
 
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH 1280
-# endif
-
-# ifndef TILE_SIZE
-#  define TILE_SIZE 16
-# endif
-
-# ifndef SPRITE_FRAMES
-#  define SPRITE_FRAMES 4
-# endif
-
-#endif
+	gettimeofday(&current, NULL);
+	delta = (current.tv_sec - game->last_frame_time.tv_sec)
+		+ (current.tv_usec - game->last_frame_time.tv_usec) / 1e6;
+	game->last_frame_time = current;
+	return (delta);
+}

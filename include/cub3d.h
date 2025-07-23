@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/21 21:30:26 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/22 22:47:44 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	free_gnl(int fd);
 t_cfg	*init_config(void);
 t_game	*init_empty_game(void);
 int		init_game_graphics(t_game *game);
+int		init_sprite(t_game *game);
 
 // map validation
 int		validate_map(t_map *map, t_player *player);
@@ -95,6 +96,9 @@ void	get_player_position(t_cfg *cfg);
 
 // render
 int		render_frame(t_game *game);
+
+// render utils
+double	get_delta_time(t_game *game);
 
 // raycast
 void	raycast_and_draw(t_game *game);
@@ -123,5 +127,10 @@ int		exit_game(t_game *game);
 int		handle_key_press(int keycode, t_game *game);
 int		handle_key_release(int keycode, t_game *game);
 int		handle_mouse_move(int x, int y, t_game *game);
+
+// sprite
+int		load_sprite_frames(t_game *game, t_sprite *sprite);
+void	update_sprite_animation(t_sprite *sprite, double delta);
+void	draw_sprite(t_game *game);
 
 #endif

@@ -6,13 +6,16 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:26:06 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/18 20:23:09 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/22 22:48:40 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include "macros.h"
+
+// gettimeofday
 # include <sys/time.h>
 
 typedef struct s_color
@@ -109,6 +112,16 @@ typedef struct s_draw_args
 	float	step;
 }	t_draw_args;
 
+typedef struct s_sprite
+{
+	double	x;
+	double	y;
+	void	*frames[SPRITE_FRAMES];
+	int		current_frame;
+	double	frame_timer;
+	double	frame_delay;
+}	t_sprite;
+
 typedef struct s_cfg
 {
 	t_color		ceiling;
@@ -128,6 +141,7 @@ typedef struct s_game
 	struct timeval	last_frame_time;
 	int				mouse_x;
 	int				mouse_y;
+	t_sprite		sprite;
 }	t_game;
 
 #endif
