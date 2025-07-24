@@ -88,6 +88,8 @@ int	init_game_graphics(t_game *game)
 			&game->img->endian);
 	if (!game->img->addr)
 		return (1);
+	game->img->width = WIN_WIDTH;
+	game->img->height = WIN_HEIGHT;
 	mlx_mouse_hide(game->mlx, game->win);
 	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	game->mouse_x = WIN_WIDTH / 2;
@@ -100,11 +102,11 @@ int	init_sprite(t_game *game)
 	t_sprite	*sprite;
 
 	sprite = &game->sprite;
-	sprite->x = 4.5;
-	sprite->y = 4.5;
+	sprite->x = 2.5;
+	sprite->y = 2.5;
 	sprite->current_frame = 0;
 	sprite->frame_timer = 0.0;
-	sprite->frame_delay = 0.15;
+	sprite->frame_delay = 0.5;
 	if (load_sprite_frames(game, sprite))
 	{
 		printf("Failed to load sprite frames\n");

@@ -80,8 +80,8 @@ void	free_sprite(t_game *game)
 	i = 0;
 	while (i < SPRITE_FRAMES)
 	{
-		if (game->sprite.frames[i])
-			mlx_destroy_image(game->mlx, game->sprite.frames[i]);
+		if (game->sprite.frames[i].img)
+			mlx_destroy_image(game->mlx, game->sprite.frames[i].img);
 		i++;
 	}
 }

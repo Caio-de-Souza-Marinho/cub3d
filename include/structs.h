@@ -70,6 +70,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		size_len;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_ray
@@ -116,10 +118,10 @@ typedef struct s_sprite
 {
 	double	x;
 	double	y;
-	void	*frames[SPRITE_FRAMES];
 	int		current_frame;
 	double	frame_timer;
 	double	frame_delay;
+	t_img	frames[SPRITE_FRAMES];
 }	t_sprite;
 
 typedef struct s_cfg
@@ -130,6 +132,12 @@ typedef struct s_cfg
 	t_map		map;
 	t_player	player;
 }	t_cfg;
+
+typedef struct s_z_buffer
+{
+	double	*buffer;
+	int	width;
+}	t_z_buffer;
 
 typedef struct s_game
 {
@@ -142,6 +150,7 @@ typedef struct s_game
 	int				mouse_x;
 	int				mouse_y;
 	t_sprite		sprite;
+	t_z_buffer	z_buffer;
 }	t_game;
 
 #endif
