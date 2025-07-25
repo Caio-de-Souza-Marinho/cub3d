@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/24 21:05:51 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/25 01:13:28 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ int		exit_game(t_game *game);
 int		handle_key_press(int keycode, t_game *game);
 int		handle_key_release(int keycode, t_game *game);
 int		handle_mouse_move(int x, int y, t_game *game);
+void	get_new_xy(int keycode, double new_xy[2], t_game *game, double speed);
+void	handle_door(t_game *game);
 
 // sprite
 int		load_sprite_frames(t_game *game, t_sprite *sprite);

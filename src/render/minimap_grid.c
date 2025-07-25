@@ -6,13 +6,20 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:20:51 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/18 17:22:42 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/25 00:58:18 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 void	add_door_to_list(t_game *game, int x, int y);
+
+int	get_door_color(char door)
+{
+	if (door == 'D')
+		return (COLOR_RED);
+	return (COLOR_GREEN);
+}
 
 void	draw_minimap_grid(t_game *game)
 {
@@ -25,8 +32,8 @@ void	draw_minimap_grid(t_game *game)
 	y = 0;
 	while (y < game->cfg->map.height)
 	{
-		x = 0;
-		while (x < game->cfg->map.width)
+		x = -1;
+		while (++x < game->cfg->map.width)
 		{
 			if (grid[y][x] == '0' || in("NSWE", grid[y][x]))
 				color = COLOR_FLOOR;
@@ -34,10 +41,9 @@ void	draw_minimap_grid(t_game *game)
 				color = COLOR_WALL;
 			else if (grid[y][x] == '2')
 				color = COLOR_GREEN;
-			else if (grid[y][x] == 'D')
-				color = COLOR_RED;
+			else if (grid[y][x] == 'D' || grid[y][x] == 'd')
+				color = get_door_color(grid[y][x]);
 			draw_minimap_tile(game, x * TILE_SIZE, y * TILE_SIZE, color);
-			x++;
 		}
 		y++;
 	}
