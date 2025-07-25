@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:31:13 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/22 22:47:24 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/24 22:06:00 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ void	free_config(t_game *game)
 	free(game->cfg);
 }
 
+void	free_sprite(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < SPRITE_FRAMES)
+	{
+		if (game->sprite.frames[i].img)
+			mlx_destroy_image(game->mlx, game->sprite.frames[i].img);
+		i++;
+	}
+}
+
 void	free_map_copy(char **map, int height)
 {
 	int	i;
@@ -73,17 +86,4 @@ void	free_map_copy(char **map, int height)
 		i++;
 	}
 	free(map);
-}
-
-void	free_sprite(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < SPRITE_FRAMES)
-	{
-		if (game->sprite.frames[i].img)
-			mlx_destroy_image(game->mlx, game->sprite.frames[i].img);
-		i++;
-	}
 }

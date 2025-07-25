@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 21:05:17 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/24 21:07:40 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/24 21:56:32 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	draw_sprite_column(t_game *game, t_sprite_calc *calc, int stripe)
 	sprite_img = &game->sprite.frames[game->sprite.current_frame];
 	if (!sprite_img->img || !sprite_img->addr)
 		return ;
-	if (calc->transform_y <= game->z_buffer[stripe])
+	if (calc->transform_y >= game->z_buffer[stripe])
 		return ;
 	tex_x = (int)(256 * (stripe - (-calc->sprite_width / 2
 					+ calc->sprite_screen_x)) * sprite_img->width

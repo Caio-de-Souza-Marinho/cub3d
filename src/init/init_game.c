@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:32:15 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/22 22:47:59 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/24 21:50:22 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ int	init_sprite(t_game *game)
 	t_sprite	*sprite;
 
 	sprite = &game->sprite;
-	sprite->x = game->cfg->player.x;
-	sprite->y = game->cfg->player.y;
+	sprite->x = game->cfg->player.x + 2.0;
+	sprite->y = game->cfg->player.y + 2.0;
 	sprite->current_frame = 0;
 	sprite->frame_timer = 0.0;
 	sprite->frame_delay = 0.5;
