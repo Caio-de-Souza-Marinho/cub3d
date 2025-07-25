@@ -29,6 +29,8 @@ void	free_game(t_game *game)
 	if (game->cfg)
 		free_config(game);
 	free_sprite(game);
+	if (game->z_buffer)
+		free(game->z_buffer);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);

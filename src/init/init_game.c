@@ -90,6 +90,7 @@ int	init_game_graphics(t_game *game)
 		return (1);
 	game->img->width = WIN_WIDTH;
 	game->img->height = WIN_HEIGHT;
+	game->z_buffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
 	mlx_mouse_hide(game->mlx, game->win);
 	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	game->mouse_x = WIN_WIDTH / 2;
@@ -102,8 +103,8 @@ int	init_sprite(t_game *game)
 	t_sprite	*sprite;
 
 	sprite = &game->sprite;
-	sprite->x = 2.5;
-	sprite->y = 2.5;
+	sprite->x = game->cfg->player.x;
+	sprite->y = game->cfg->player.y;
 	sprite->current_frame = 0;
 	sprite->frame_timer = 0.0;
 	sprite->frame_delay = 0.5;

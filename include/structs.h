@@ -124,6 +124,19 @@ typedef struct s_sprite
 	t_img	frames[SPRITE_FRAMES];
 }	t_sprite;
 
+typedef struct s_sprite_calc
+{
+	double	transform_x;
+	double	transform_y;
+	int		sprite_screen_x;
+	int		sprite_height;
+	int		sprite_width;
+	int		draw_start_y;
+	int		draw_start_x;
+	int		draw_end_y;
+	int		draw_end_x;
+}	t_sprite_calc;
+
 typedef struct s_cfg
 {
 	t_color		ceiling;
@@ -132,12 +145,6 @@ typedef struct s_cfg
 	t_map		map;
 	t_player	player;
 }	t_cfg;
-
-typedef struct s_z_buffer
-{
-	double	*buffer;
-	int	width;
-}	t_z_buffer;
 
 typedef struct s_game
 {
@@ -150,7 +157,7 @@ typedef struct s_game
 	int				mouse_x;
 	int				mouse_y;
 	t_sprite		sprite;
-	t_z_buffer	z_buffer;
+	double			*z_buffer;
 }	t_game;
 
 #endif

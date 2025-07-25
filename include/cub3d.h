@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/22 22:47:44 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/24 21:05:51 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,10 @@ int		handle_mouse_move(int x, int y, t_game *game);
 int		load_sprite_frames(t_game *game, t_sprite *sprite);
 void	update_sprite_animation(t_sprite *sprite, double delta);
 void	draw_sprite(t_game *game);
+int		get_sprite_pixel(t_img *sprite_img, int tex_x, int tex_y);
+void	calc_sprite_transform(t_game *game, t_sprite_calc *calc);
+void	calc_sprite_screen_params(t_sprite_calc *calc);
+void	calc_draw_bounds(t_sprite_calc *calc);
+void	draw_sprite_column(t_game *game, t_sprite_calc *calc, int stripe);
 
 #endif

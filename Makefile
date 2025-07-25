@@ -49,6 +49,7 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)load_texture.c \
 		  $(RENDER_DIR)draw_texture.c \
 		  $(RENDER_DIR)sprite.c \
+		  $(RENDER_DIR)sprite_utils.c \
 		  $(MOVE_DIR)movements.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}

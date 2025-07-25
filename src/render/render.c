@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:33:05 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/22 22:41:39 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/24 21:08:13 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,16 @@ void	raycast_and_draw(t_game *game)
 	int			x;
 	t_ray		ray;
 
-	if (!game->z_buffer.buffer)
-	{
-		game->z_buffer.buffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
-		game->z_buffer.width = WIN_WIDTH;
-	}
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
 		init_ray(&game->cfg->player, &ray, x);
 		perform_dda(&ray, game);
 		if (ray.side == 0)
-			game->z_buffer.buffer[x] = (ray.map_x - game->cfg->player.x + 
-				(1.0 - ray.step_x) / 2) / ray.dir_x;
+			game->z_buffer[x] = (ray.map_x - game->cfg->player.x
+					+ (1.0 - ray.step_x) / 2) / ray.dir_x;
 		else
-			game->z_buffer.buffer[x] = (ray.map_y - game->cfg->player.y + 
-				(1.0 - ray.step_y) / 2) / ray.dir_y;
+			game->z_buffer[x] = fabs(game->z_buffer[x]);
 		draw_column(&ray, game, x);
 		x++;
 	}
