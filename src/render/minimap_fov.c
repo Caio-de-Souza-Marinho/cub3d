@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 20:19:16 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/26 00:54:28 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/26 01:40:25 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,7 @@ void	draw_minimap_fov(t_game *game)
 		fov.ray_dir_x = p->dir_x + p->plane_x * fov.camera_x;
 		fov.ray_dir_y = p->dir_y + p->plane_y * fov.camera_x;
 		end = cast_ray_on_minimap(game, fov.ray_dir_x, fov.ray_dir_y);
-		// if ((game->keys.left || game->keys.right) && (i == 0 || i == NUM_RAYS / 2 || i == NUM_RAYS - 1))
-		// {
-		// 	printf(BLUE "Line Number %d\n" RESET, i);
-		// 	printf(GREEN "Player Position: X = %f, y = %f\n",game->cfg->player.x,game->cfg->player.y);
-		// 	printf("Player Dir: X = %f, y = %f\n" RESET,game->cfg->player.dir_x,game->cfg->player.dir_y);
-		// 	printf(RED "Colision %d: X = %f, Y = %f\n" RESET, i, end.x, end.y);
-		// }
 		draw_line_on_minimap(game, end, COLOR_RED);
 		i++;
 	}
 }
-

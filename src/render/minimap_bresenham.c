@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 00:34:45 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/26 01:15:11 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/26 01:42:27 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ t_bres	set_vars_bres(t_point p0, t_point p1)
 void	draw_bresenham_line(t_game *game, t_point p0, t_point p1, int color)
 {
 	t_bres	vars;
-	int	base_color;
+	int		b_color;
 
 	vars = set_vars_bres(p0, p1);
 	(void) color;
 	while (1)
 	{
-		base_color = get_pixel(game->img, p0.x, p0.y);
-		put_pixel(game->img, p0.x, p0.y, blend_colors(base_color, COLOR_FOV, 0.2));
+		b_color = get_pixel(game->img, p0.x, p0.y);
+		put_pixel(game->img, p0.x, p0.y, blend_colors(b_color, COLOR_FOV, 0.2));
 		if (p0.x == p1.x && p0.y == p1.y)
 			break ;
 		vars.e2 = 2 * vars.err;

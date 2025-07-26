@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:54:18 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/26 01:05:52 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/26 01:41:53 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ int	get_pixel(t_img *img, int x, int y)
 	return (color);
 }
 
-int	blend_colors(int base, int overlay, double alpha)
+int	blend_colors(int base, int overlay, double a)
 {
-	int	r, g, b;
+	int	r;
+	int	g;
+	int	b;
 
-	r = (int)(((overlay >> 16 & 0xFF) * alpha) + ((base >> 16 & 0xFF) * (1 - alpha)));
-	g = (int)(((overlay >> 8 & 0xFF) * alpha) + ((base >> 8 & 0xFF) * (1 - alpha)));
-	b = (int)(((overlay & 0xFF) * alpha) + ((base & 0xFF) * (1 - alpha)));
+	r = (int)(((overlay >> 16 & 0xFF) * a) + ((base >> 16 & 0xFF) * (1 - a)));
+	g = (int)(((overlay >> 8 & 0xFF) * a) + ((base >> 8 & 0xFF) * (1 - a)));
+	b = (int)(((overlay & 0xFF) * a) + ((base & 0xFF) * (1 - a)));
 	return ((r << 16) | (g << 8) | b);
 }
