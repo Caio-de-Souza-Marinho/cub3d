@@ -46,6 +46,9 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)minimap.c \
 		  $(RENDER_DIR)minimap_grid.c \
 		  $(RENDER_DIR)minimap_player.c \
+		  $(RENDER_DIR)minimap_dda.c \
+		  $(RENDER_DIR)minimap_fov.c \
+		  $(RENDER_DIR)minimap_bresenham.c \
 		  $(RENDER_DIR)load_texture.c \
 		  $(RENDER_DIR)draw_texture.c \
 		  $(RENDER_DIR)sprite.c \

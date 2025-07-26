@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:26:06 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/22 22:48:40 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/26 00:36:35 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,45 @@ typedef struct s_img
 	int		width;
 	int		height;
 }	t_img;
+
+typedef struct s_bres
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}	t_bres;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
+typedef	struct s_fov
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+}	t_fov;
+
+typedef struct s_dda
+{
+	int	map_x;
+	int	map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int	step_x;
+	int	step_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int	side;
+	int	hit;
+	t_player	*p;
+	double	perp_wall_dist;
+}	t_dda;
 
 typedef struct s_ray
 {

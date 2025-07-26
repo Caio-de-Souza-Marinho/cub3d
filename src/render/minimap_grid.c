@@ -6,13 +6,11 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:20:51 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/25 00:58:18 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/25 20:20:36 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	add_door_to_list(t_game *game, int x, int y);
 
 int	get_door_color(char door)
 {
