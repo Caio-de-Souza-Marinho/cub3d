@@ -174,6 +174,7 @@ typedef struct s_sprite_calc
 	int		draw_start_x;
 	int		draw_end_y;
 	int		draw_end_x;
+	double	sprite_distance;
 }	t_sprite_calc;
 
 typedef struct s_cfg

@@ -20,6 +20,7 @@ void	calc_sprite_transform(t_game *game, t_sprite_calc *calc)
 
 	sprite_x = game->sprite.x - game->cfg->player.x;
 	sprite_y = game->sprite.y - game->cfg->player.y;
+	calc->sprite_distance = sqrt(sprite_x * sprite_x + sprite_y * sprite_y);
 	inv_det = 1.0 / (game->cfg->player.plane_x * game->cfg->player.dir_y
 			- game->cfg->player.dir_x * game->cfg->player.plane_y);
 	calc->transform_x = inv_det * (game->cfg->player.dir_y * sprite_x
@@ -63,7 +64,7 @@ void	draw_sprite_column(t_game *game, t_sprite_calc *calc, int stripe)
 	sprite_img = &game->sprite.frames[game->sprite.current_frame];
 	if (!sprite_img->img || !sprite_img->addr)
 		return ;
-	if (calc->transform_y >= game->z_buffer[stripe])
+	if (calc->sprite_distance >= game->z_buffer[stripe])
 		return ;
 	tex_x = (int)(256 * (stripe - (-calc->sprite_width / 2
 					+ calc->sprite_screen_x)) * sprite_img->width

@@ -65,10 +65,12 @@ void	raycast_and_draw(t_game *game)
 		init_ray(&game->cfg->player, &ray, x);
 		perform_dda(&ray, game);
 		if (ray.side == 0)
-			game->z_buffer[x] = (ray.map_x - game->cfg->player.x
+			ray.perp_wall_dist = (ray.map_x - game->cfg->player.x
 					+ (1.0 - ray.step_x) / 2) / ray.dir_x;
 		else
-			game->z_buffer[x] = fabs(game->z_buffer[x]);
+			ray.perp_wall_dist = (ray.map_y - game->cfg->player.y
+					+ (1.0 - ray.step_y) / 2) / ray.dir_y;
+		game->z_buffer[x] = ray.perp_wall_dist;
 		draw_column(&ray, game, x);
 		x++;
 	}

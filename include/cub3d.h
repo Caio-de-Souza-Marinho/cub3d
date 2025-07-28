@@ -142,5 +142,6 @@ void	calc_sprite_transform(t_game *game, t_sprite_calc *calc);
 void	calc_sprite_screen_params(t_sprite_calc *calc);
 void	calc_draw_bounds(t_sprite_calc *calc);
 void	draw_sprite_column(t_game *game, t_sprite_calc *calc, int stripe);
+int		find_valid_sprite_position(t_game *game, double *x, double *y);
 
 #endif
