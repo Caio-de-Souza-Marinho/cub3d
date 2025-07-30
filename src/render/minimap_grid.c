@@ -12,11 +12,22 @@
 
 #include "../../include/cub3d.h"
 
-int	get_door_color(char door)
+int	get_minimap_color(t_game *game, int x, int y, double alpha)
 {
-	if (door == 'D')
-		return (COLOR_RED);
-	return (COLOR_GREEN);
+	char	c;
+	int	color;
+	int	back_color;
+
+	back_color = get_pixel(game->img, x * TILE_SIZE, y * TILE_SIZE); 
+	color = COLOR_FLOOR;
+	c = game->cfg->map.grid[y][x];
+	if (c == '1')
+		color = COLOR_WALL;
+	else if (c == '2' || c == 'd' || c == 'C')
+		color = COLOR_GREEN;
+	else if (c == 'D')
+		color = COLOR_RED;
+	return (blend_colors(back_color, color, alpha));
 }
 
 void	draw_minimap_grid(t_game *game)
@@ -34,13 +45,13 @@ void	draw_minimap_grid(t_game *game)
 		while (++x < game->cfg->map.width)
 		{
 			if (grid[y][x] == '0' || in("NSWE", grid[y][x]))
-				color = COLOR_FLOOR;
+				color = get_minimap_color(game, x, y, 0.6);
 			else if (grid[y][x] == '1')
-				color = COLOR_WALL;
+				color = get_minimap_color(game, x, y, 0.9);
 			else if (grid[y][x] == '2')
-				color = COLOR_GREEN;
+				color = get_minimap_color(game, x, y, 0.9);
 			else if (grid[y][x] == 'D' || grid[y][x] == 'd')
-				color = get_door_color(grid[y][x]);
+				color = get_minimap_color(game, x, y, 0.9);
 			draw_minimap_tile(game, x * TILE_SIZE, y * TILE_SIZE, color);
 		}
 		y++;

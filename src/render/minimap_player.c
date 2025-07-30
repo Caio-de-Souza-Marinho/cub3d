@@ -56,5 +56,5 @@ void	draw_minimap_player(t_game *game)
 
 	cx = (int)(game->cfg->player.x * TILE_SIZE);
 	cy = (int)(game->cfg->player.y * TILE_SIZE);
-	draw_square(game->img, cx, cy, 2);
+	draw_circle(game->img, cx, cy, TILE_SIZE / 4);
 }

@@ -22,7 +22,7 @@
 # endif
 
 # ifndef TILE_SIZE
-#  define TILE_SIZE 8 
+#  define TILE_SIZE 12 
 # endif
 
 # ifndef SPRITE_FRAMES
