@@ -69,25 +69,24 @@ void	draw_sprite(t_game *game)
 	}
 }
 
-/*
-int	find_valid_sprite_position(t_game *game, double *x, double *y)
+void	get_sprite_pos(t_game *game, double *y, double *x)
 {
-	int		attempts;
-	double	dx;
-	double	dy;
+	int	i;
+	int	j;
 
-	attempts = 100;
-	while (attempts--) {
-		*x = 5 + rand() % (game->cfg->map.width - 10);
-		*y = 5 + rand() % (game->cfg->map.height - 10);
-
-		if (game->cfg->map.grid[(int)*y][(int)*x] == '0') {
-			dx = *x - game->cfg->player.x;
-			dy = *y - game->cfg->player.y;
-			if (sqrt(dx*dx + dy*dy) > 3.0)
-				return 1;
+	i = 0;
+	while (i < game->cfg->map.height)
+	{
+		j = 0;
+		while (j < game->cfg->map.width)
+		{
+			if (game->cfg->map.grid[i][j] == 'C')
+			{
+				*y = i;
+				*x = j;
+			}
+			j++;
 		}
+		i++;
 	}
-	return 0;
 }
-*/

@@ -92,12 +92,3 @@ int	get_sprite_pixel(t_img *sprite_img, int tex_x, int tex_y)
 		* (sprite_img->bits_per_pixel / 8);
 	return (*(int *)(sprite_img->addr + offset));
 }
-
-/*
-double	get_z_buffer(t_game *game, int x)
-{
-	if (x < 0 || x >= game->z_buffer || !game->z_buffer)
-		return (1000.0);
-	return (game->z_buffer[x]);
-}
-*/
