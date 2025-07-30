@@ -6,13 +6,14 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:32:15 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/21 21:41:06 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/24 21:50:22 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 void	init_textures(t_cfg *cfg);
+void	get_sprite_pos(t_game *game, double *x, double *y);
 
 t_game	*init_empty_game(void)
 {
@@ -88,9 +89,31 @@ int	init_game_graphics(t_game *game)
 			&game->img->endian);
 	if (!game->img->addr)
 		return (1);
+	game->img->width = WIN_WIDTH;
+	game->img->height = WIN_HEIGHT;
+	game->z_buffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
 	mlx_mouse_hide(game->mlx, game->win);
 	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	game->mouse_x = WIN_WIDTH / 2;
 	game->mouse_y = WIN_HEIGHT / 2;
+	return (0);
+}
+
+int	init_sprite(t_game *game)
+{
+	t_sprite	*sprite;
+
+	sprite = &game->sprite;
+	get_sprite_pos(game, &sprite->x, &sprite->y);
+	sprite->x = game->cfg->player.x + 2.0;
+	sprite->y = game->cfg->player.y + 2.0;
+	sprite->current_frame = 0;
+	sprite->frame_timer = 0.0;
+	sprite->frame_delay = 0.5;
+	if (load_sprite_frames(game, sprite))
+	{
+		printf("Failed to load sprite frames\n");
+		return (1);
+	}
 	return (0);
 }

@@ -6,22 +6,26 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:33:05 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/18 14:37:57 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/24 21:08:13 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 void	player_camera_move(t_game *game);
-double	get_delta_time(t_game *game);
 
 int	render_frame(t_game *game)
 {
+	double	delta;
+
 	player_camera_move(game);
+	delta = get_delta_time(game);
+	update_sprite_animation(&game->sprite, delta);
 	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	game->mouse_x = WIN_WIDTH / 2;
 	ft_memset(game->img->addr, 0, WIN_HEIGHT * game->img->size_len);
 	raycast_and_draw(game);
+	draw_sprite(game);
 	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	return (0);
@@ -60,19 +64,14 @@ void	raycast_and_draw(t_game *game)
 	{
 		init_ray(&game->cfg->player, &ray, x);
 		perform_dda(&ray, game);
+		if (ray.side == 0)
+			ray.perp_wall_dist = (ray.map_x - game->cfg->player.x
+					+ (1.0 - ray.step_x) / 2) / ray.dir_x;
+		else
+			ray.perp_wall_dist = (ray.map_y - game->cfg->player.y
+					+ (1.0 - ray.step_y) / 2) / ray.dir_y;
+		game->z_buffer[x] = ray.perp_wall_dist;
 		draw_column(&ray, game, x);
 		x++;
 	}
-}
-
-double	get_delta_time(t_game *game)
-{
-	struct timeval	current;
-	double			delta;
-
-	gettimeofday(&current, NULL);
-	delta = (current.tv_sec - game->last_frame_time.tv_sec)
-		+ (current.tv_usec - game->last_frame_time.tv_usec) / 1e6;
-	game->last_frame_time = current;
-	return (delta);
 }

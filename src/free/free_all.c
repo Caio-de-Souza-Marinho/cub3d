@@ -6,11 +6,13 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:31:13 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/17 22:31:52 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/24 22:06:00 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+void	free_sprite(t_game *game);
 
 void	free_game(t_game *game)
 {
@@ -26,6 +28,9 @@ void	free_game(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->cfg)
 		free_config(game);
+	free_sprite(game);
+	if (game->z_buffer)
+		free(game->z_buffer);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
@@ -53,6 +58,19 @@ void	free_config(t_game *game)
 	if (game->cfg->map.grid)
 		free_array((void **) game->cfg->map.grid);
 	free(game->cfg);
+}
+
+void	free_sprite(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < SPRITE_FRAMES)
+	{
+		if (game->sprite.frames[i].img)
+			mlx_destroy_image(game->mlx, game->sprite.frames[i].img);
+		i++;
+	}
 }
 
 void	free_map_copy(char **map, int height)

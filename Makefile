@@ -11,7 +11,7 @@ MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
-TEST_FILE	?= maps/good/subject_map.cub
+TEST_FILE	?= maps/good/square_map.cub
 
 # DIRS
 INIT_DIR	= ${SRC_DIR}init/
@@ -40,14 +40,22 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(FREE_DIR)free_all.c \
 		  $(FREE_DIR)free_utils.c \
 		  $(RENDER_DIR)render.c \
+		  $(RENDER_DIR)render_utils.c \
 		  $(RENDER_DIR)raycast.c \
 		  $(RENDER_DIR)draw.c \
 		  $(RENDER_DIR)minimap.c \
 		  $(RENDER_DIR)minimap_grid.c \
 		  $(RENDER_DIR)minimap_player.c \
+		  $(RENDER_DIR)minimap_dda.c \
+		  $(RENDER_DIR)minimap_fov.c \
+		  $(RENDER_DIR)minimap_bresenham.c \
 		  $(RENDER_DIR)load_texture.c \
 		  $(RENDER_DIR)draw_texture.c \
+		  $(RENDER_DIR)sprite.c \
+		  $(RENDER_DIR)sprite_utils.c \
 		  $(MOVE_DIR)movements.c \
+		  $(MOVE_DIR)move_player.c \
+		  $(MOVE_DIR)actions.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 

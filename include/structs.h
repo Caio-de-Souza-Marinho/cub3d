@@ -6,13 +6,16 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:26:06 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/18 20:23:09 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/26 01:48:02 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include "macros.h"
+
+// gettimeofday
 # include <sys/time.h>
 
 typedef struct s_color
@@ -67,7 +70,48 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		size_len;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
+
+typedef struct s_bres
+{
+	int		dx;
+	int		dy;
+	int		sx;
+	int		sy;
+	int		err;
+	int		e2;
+}	t_bres;
+
+typedef struct s_point
+{
+	int		x;
+	int		y;
+}	t_point;
+
+typedef struct s_fov
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+}	t_fov;
+
+typedef struct s_dda
+{
+	t_player	*p;
+	int			map_x;
+	int			map_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	int			step_x;
+	int			step_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist;
+	int			side;
+	int			hit;
+}	t_dda;
 
 typedef struct s_ray
 {
@@ -109,6 +153,30 @@ typedef struct s_draw_args
 	float	step;
 }	t_draw_args;
 
+typedef struct s_sprite
+{
+	double	x;
+	double	y;
+	int		current_frame;
+	double	frame_timer;
+	double	frame_delay;
+	t_img	frames[SPRITE_FRAMES];
+}	t_sprite;
+
+typedef struct s_sprite_calc
+{
+	double	transform_x;
+	double	transform_y;
+	int		sprite_screen_x;
+	int		sprite_height;
+	int		sprite_width;
+	int		draw_start_y;
+	int		draw_start_x;
+	int		draw_end_y;
+	int		draw_end_x;
+	double	sprite_distance;
+}	t_sprite_calc;
+
 typedef struct s_cfg
 {
 	t_color		ceiling;
@@ -128,6 +196,8 @@ typedef struct s_game
 	struct timeval	last_frame_time;
 	int				mouse_x;
 	int				mouse_y;
+	t_sprite		sprite;
+	double			*z_buffer;
 }	t_game;
 
 #endif

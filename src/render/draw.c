@@ -37,6 +37,8 @@ void	perform_dda(t_ray *ray, t_game *game)
 			ray->hit = 1;
 		else if (grid[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
+		else if (grid[ray->map_y][ray->map_x] == 'D')
+			ray->hit = 1;
 	}
 }
 

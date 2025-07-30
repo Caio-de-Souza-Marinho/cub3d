@@ -49,7 +49,7 @@ int	validate_chars(t_map *map)
 		x = 0;
 		while (x < map->width)
 		{
-			if (!in("012DNSEW", map->grid[y][x]))
+			if (!in("012DCNSEW", map->grid[y][x]))
 				return (0);
 			if (in("NSEW", map->grid[y][x]))
 				count++;
@@ -79,7 +79,7 @@ int	flood_fill(char **map, int y, int x, int height)
 {
 	if (y < 0 || x < 0 || !map[y] || x >= (int)ft_strlen(map[y]))
 		return (0);
-	if (!in("02DNSEW", map[y][x]))
+	if (!in("02DCNSEW", map[y][x]))
 		return (1);
 	map[y][x] = 'F';
 	if (!flood_fill(map, y - 1, x, height))

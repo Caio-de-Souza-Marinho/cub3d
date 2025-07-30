@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/21 21:30:26 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/26 01:48:30 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	free_gnl(int fd);
 t_cfg	*init_config(void);
 t_game	*init_empty_game(void);
 int		init_game_graphics(t_game *game);
+int		init_sprite(t_game *game);
 
 // map validation
 int		validate_map(t_map *map, t_player *player);
@@ -95,6 +96,9 @@ void	get_player_position(t_cfg *cfg);
 
 // render
 int		render_frame(t_game *game);
+
+// render utils
+double	get_delta_time(t_game *game);
 
 // raycast
 void	raycast_and_draw(t_game *game);
@@ -109,9 +113,12 @@ int		get_rgb(t_color color);
 //minimap
 void	draw_minimap(t_game *game);
 void	put_pixel(t_img *img, int x, int y, int color);
+int		get_pixel(t_img *img, int x, int y);
+int		blend_colors(int base, int overlay, double alpha);
 void	draw_minimap_tile(t_game *game, int px, int py, int color);
 void	draw_minimap_grid(t_game *game);
 void	draw_minimap_player(t_game *game);
+void	draw_minimap_fov(t_game *game);
 
 // textures
 int		load_all_textures(t_game *game);
@@ -122,5 +129,20 @@ void	rotate_player(int keycode, t_game *game, double angle);
 int		exit_game(t_game *game);
 int		handle_key_press(int keycode, t_game *game);
 int		handle_key_release(int keycode, t_game *game);
+int		handle_mouse_move(int x, int y, t_game *game);
+void	get_new_xy(int keycode, double new_xy[2], t_game *game, double speed);
+void	handle_door(t_game *game);
+
+// sprite
+int		load_sprite_frames(t_game *game, t_sprite *sprite);
+void	update_sprite_animation(t_sprite *sprite, double delta);
+void	draw_sprite(t_game *game);
+int		get_sprite_pixel(t_img *sprite_img, int tex_x, int tex_y);
+void	calc_sprite_transform(t_game *game, t_sprite_calc *calc);
+void	calc_sprite_screen_params(t_sprite_calc *calc);
+void	calc_draw_bounds(t_sprite_calc *calc);
+void	draw_sprite_column(t_game *game, t_sprite_calc *calc, int stripe);
+int		find_valid_sprite_position(t_game *game, double *x, double *y);
+void	get_sprite_pos(t_game *game, double *y, double *x);
 
 #endif

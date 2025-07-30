@@ -12,26 +12,49 @@
 
 #include "../../include/cub3d.h"
 
-void	draw_minimap_player(t_game *game)
+void	draw_circle(t_img *img, int cx, int cy, int r)
 {
-	int	px;
-	int	py;
 	int	x;
 	int	y;
 
-	px = (int) game->cfg->player.x * 16;
-	px += (game->cfg->player.x - (int) game->cfg->player.x) * 16 + 2;
-	py = (int) game->cfg->player.y * 16;
-	py += (game->cfg->player.y - (int) game->cfg->player.y) * 16 + 2;
-	y = py - 5;
-	while (y < py)
+	y = -r;
+	while (y <= r)
 	{
-		x = px - 5;
-		while (x < px)
+		x = -r;
+		while (x <= r)
 		{
-			put_pixel(game->img, x, y, COLOR_BLUE);
+			if (x * x + y * y <= r * r)
+				put_pixel(img, cx + x, cy + y, COLOR_BLUE);
 			x++;
 		}
 		y++;
 	}
+}
+
+void	draw_square(t_img *img, int cx, int cy, int size)
+{
+	int	x;
+	int	y;
+
+	y = -size;
+	while (y <= size)
+	{
+		x = -size;
+		while (x <= size)
+		{
+			put_pixel(img, cx + x, cy + y, COLOR_BLUE);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_minimap_player(t_game *game)
+{
+	int	cx;
+	int	cy;
+
+	cx = (int)(game->cfg->player.x * TILE_SIZE);
+	cy = (int)(game->cfg->player.y * TILE_SIZE);
+	draw_square(game->img, cx, cy, 2);
 }

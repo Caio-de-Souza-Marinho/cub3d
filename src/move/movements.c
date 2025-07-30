@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 15:34:10 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/21 15:57:25 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/07/25 01:01:09 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	handle_key_press(int keycode, t_game *game)
 		game->keys.left = 1;
 	else if (keycode == KEY_RIGHT)
 		game->keys.right = 1;
+	else if (keycode == KEY_SPACE)
+		handle_door(game);
 	return (0);
 }
 
@@ -75,29 +77,25 @@ void	rotate_player(int keycode, t_game *game, double angle)
 	}
 }
 
-void	move_player(int keycode, t_game *game, double speed)
+int	handle_mouse_move(int x, int y, t_game *game)
 {
-	t_player	*p;
+	int		center_x;
+	int		dx;
+	double	sensitivity;
+	int		max_dx;
 
-	p = &game->cfg->player;
-	if (keycode == KEY_W)
-	{
-		p->x += p->dir_x * speed;
-		p->y += p->dir_y * speed;
-	}
-	else if (keycode == KEY_S)
-	{
-		p->x -= p->dir_x * speed;
-		p->y -= p->dir_y * speed;
-	}
-	else if (keycode == KEY_D)
-	{
-		p->x -= p->dir_y * speed;
-		p->y += p->dir_x * speed;
-	}
-	else if (keycode == KEY_A)
-	{
-		p->x += p->dir_y * speed;
-		p->y -= p->dir_x * speed;
-	}
+	(void)y;
+	center_x = WIN_WIDTH / 2;
+	dx = x - center_x;
+	sensitivity = 0.003;
+	max_dx = 30;
+	if (dx > max_dx)
+		dx = max_dx;
+	else if (dx < -max_dx)
+		dx = -max_dx;
+	if (dx < 0)
+		rotate_player(KEY_LEFT, game, fabs((double)dx) * sensitivity);
+	else if (dx > 0)
+		rotate_player(KEY_RIGHT, game, fabs((double)dx) * sensitivity);
+	return (0);
 }

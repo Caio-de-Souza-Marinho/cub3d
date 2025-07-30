@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:54:18 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/18 17:22:22 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/26 01:41:53 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	draw_minimap(t_game *game)
 {
 	draw_minimap_grid(game);
+	draw_minimap_fov(game);
 	draw_minimap_player(game);
 }
 
@@ -26,4 +27,26 @@ void	put_pixel(t_img *img, int x, int y, int color)
 		return ;
 	dst = img->addr + (y * img->size_len + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+int	get_pixel(t_img *img, int x, int y)
+{
+	char	*pixel;
+	int		color;
+
+	pixel = img->addr + (y * img->size_len + x * (img->bits_per_pixel / 8));
+	color = *(unsigned int *)pixel;
+	return (color);
+}
+
+int	blend_colors(int base, int overlay, double a)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (int)(((overlay >> 16 & 0xFF) * a) + ((base >> 16 & 0xFF) * (1 - a)));
+	g = (int)(((overlay >> 8 & 0xFF) * a) + ((base >> 8 & 0xFF) * (1 - a)));
+	b = (int)(((overlay & 0xFF) * a) + ((base & 0xFF) * (1 - a)));
+	return ((r << 16) | (g << 8) | b);
 }
