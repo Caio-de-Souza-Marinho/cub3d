@@ -142,6 +142,8 @@ typedef struct s_keys
 	int	d;
 	int	left;
 	int	right;
+	int	shift;
+	int	ctrl;
 }	t_keys;
 
 typedef struct s_draw_args

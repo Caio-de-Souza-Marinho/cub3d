@@ -18,6 +18,8 @@
 # define KEY_UP		65362
 # define KEY_RIGHT	65363
 # define KEY_DOWN	65364
+# define KEY_SHIFT	65505
+# define KEY_CTRL	65507
 
 # define KEY_PLUS	61
 # define KEY_MINUS	45
