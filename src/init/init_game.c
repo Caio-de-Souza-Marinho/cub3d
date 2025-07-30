@@ -104,9 +104,7 @@ int	init_sprite(t_game *game)
 	t_sprite	*sprite;
 
 	sprite = &game->sprite;
-	get_sprite_pos(game, &sprite->x, &sprite->y);
-	sprite->x = game->cfg->player.x + 2.0;
-	sprite->y = game->cfg->player.y + 2.0;
+	get_sprite_pos(game, &sprite->y, &sprite->x);
 	sprite->current_frame = 0;
 	sprite->frame_timer = 0.0;
 	sprite->frame_delay = 0.5;
