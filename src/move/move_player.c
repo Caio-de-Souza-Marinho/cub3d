@@ -54,10 +54,8 @@ void	move_player(int keycode, t_game *game, double speed)
 		speed *= 0.5;
 	get_new_xy(keycode, new_xy, game, speed);
 	grid = game->cfg->map.grid;
-	if (grid[(int)new_xy[0]][(int)new_xy[1]] == '1')
-		return ;
-	else if (grid[(int)new_xy[0]][(int)new_xy[1]] == 'D')
-		return ;
-	p->x = new_xy[1];
-	p->y = new_xy[0];
+	if (grid[(int)p->y][(int)new_xy[1]] != '1' && grid[(int)p->y][(int)new_xy[1]] != 'D')
+		p->x = new_xy[1];
+	if (grid[(int)new_xy[0]][(int)p->x] != '1' && grid[(int)new_xy[0]][(int)p->x] != 'D')
+		p->y = new_xy[0];
 }
