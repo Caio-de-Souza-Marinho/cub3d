@@ -75,7 +75,7 @@ void	run_dda_loop(t_dda *dda, t_game *game)
 	}
 }
 
-t_point	cast_ray_on_minimap(t_game *game, double ray_x, double ray_y)
+t_point	ray_minimap(t_game *game, double ray_x, double ray_y, t_mini *mini)
 {
 	t_dda	dda;
 	t_point	end;
@@ -88,7 +88,7 @@ t_point	cast_ray_on_minimap(t_game *game, double ray_x, double ray_y)
 		p_wall_dist = (dda.map_x - dda.p->x + (1.0 - dda.step_x) / 2.0) / ray_x;
 	else
 		p_wall_dist = (dda.map_y - dda.p->y + (1.0 - dda.step_y) / 2.0) / ray_y;
-	end.x = (int)((dda.p->x + ray_x * p_wall_dist) * TILE_SIZE);
-	end.y = (int)((dda.p->y + ray_y * p_wall_dist) * TILE_SIZE);
+	end.x = (int)((dda.p->x + ray_x * p_wall_dist) * mini->tile);
+	end.y = (int)((dda.p->y + ray_y * p_wall_dist) * mini->tile);
 	return (end);
 }

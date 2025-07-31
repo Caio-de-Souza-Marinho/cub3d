@@ -115,10 +115,10 @@ void	draw_minimap(t_game *game);
 void	put_pixel(t_img *img, int x, int y, int color);
 int		get_pixel(t_img *img, int x, int y);
 int		blend_colors(int base, int overlay, double alpha);
-void	draw_minimap_tile(t_game *game, int px, int py, int color);
-void	draw_minimap_grid(t_game *game);
-void	draw_minimap_player(t_game *game);
-void	draw_minimap_fov(t_game *game);
+void	draw_minimap_tile(t_game *game, int px, int py, t_mini *mini);
+void	draw_minimap_grid(t_game *game, t_mini *mini);
+void	draw_minimap_player(t_game *game, t_mini *mini);
+void	draw_minimap_fov(t_game *game, t_mini *mini);
 
 // textures
 int		load_all_textures(t_game *game);

@@ -49,12 +49,12 @@ void	draw_square(t_img *img, int cx, int cy, int size)
 	}
 }
 
-void	draw_minimap_player(t_game *game)
+void	draw_minimap_player(t_game *game, t_mini *mini)
 {
 	int	cx;
 	int	cy;
 
-	cx = (int)(game->cfg->player.x * TILE_SIZE);
-	cy = (int)(game->cfg->player.y * TILE_SIZE);
-	draw_circle(game->img, cx, cy, TILE_SIZE / 4);
+	cx = (int)(game->cfg->player.x * mini->tile) + mini->x_offset;
+	cy = (int)(game->cfg->player.y * mini->tile) + mini->y_offset;
+	draw_circle(game->img, cx, cy, mini->tile / 4);
 }

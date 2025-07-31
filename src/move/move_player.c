@@ -44,14 +44,14 @@ void	get_new_xy(int keycode, double new_xy[2], t_game *game, double speed)
 void	move_player(int keycode, t_game *game, double speed)
 {
 	t_player	*p;
-	char	**grid;
-	double	new_xy[2];
+	char		**grid;
+	double		new_xy[2];
 
 	p = &game->cfg->player;
 	if (game->keys.shift == 1)
 		speed *= 2;
 	else if (game->keys.ctrl == 1)
-		speed *= 0.5; 
+		speed *= 0.5;
 	get_new_xy(keycode, new_xy, game, speed);
 	grid = game->cfg->map.grid;
 	if (grid[(int)new_xy[0]][(int)new_xy[1]] == '1')

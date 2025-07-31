@@ -12,30 +12,26 @@
 
 #include "../../include/cub3d.h"
 
-int	get_minimap_color(t_game *game, int x, int y, double alpha)
+void	get_minimap_color(char c, t_mini *mini, double alpha)
 {
-	char	c;
 	int	color;
-	int	back_color;
 
-	back_color = get_pixel(game->img, x * TILE_SIZE, y * TILE_SIZE); 
 	color = COLOR_FLOOR;
-	c = game->cfg->map.grid[y][x];
 	if (c == '1')
 		color = COLOR_WALL;
 	else if (c == '2' || c == 'd' || c == 'C')
 		color = COLOR_GREEN;
 	else if (c == 'D')
 		color = COLOR_RED;
-	return (blend_colors(back_color, color, alpha));
+	mini->color = color;
+	mini->alpha = alpha;
 }
 
-void	draw_minimap_grid(t_game *game)
+void	draw_minimap_grid(t_game *game, t_mini *mini)
 {
 	char	**grid;
 	int		x;
 	int		y;
-	int		color;
 
 	grid = game->cfg->map.grid;
 	y = 0;
@@ -45,30 +41,36 @@ void	draw_minimap_grid(t_game *game)
 		while (++x < game->cfg->map.width)
 		{
 			if (grid[y][x] == '0' || in("NSWE", grid[y][x]))
-				color = get_minimap_color(game, x, y, 0.6);
-			else if (grid[y][x] == '1')
-				color = get_minimap_color(game, x, y, 0.9);
-			else if (grid[y][x] == '2')
-				color = get_minimap_color(game, x, y, 0.9);
+				get_minimap_color(grid[y][x], mini, 0.6);
+			else if (grid[y][x] == '1' || grid[y][x] == '2')
+				get_minimap_color(grid[y][x], mini, 0.9);
 			else if (grid[y][x] == 'D' || grid[y][x] == 'd')
-				color = get_minimap_color(game, x, y, 0.9);
-			draw_minimap_tile(game, x * TILE_SIZE, y * TILE_SIZE, color);
+				get_minimap_color(grid[y][x], mini, 0.9);
+			else if (grid[y][x] == 'C')
+				get_minimap_color(grid[y][x], mini, 0.6);
+			draw_minimap_tile(game, x * mini->tile, y * mini->tile, mini);
 		}
 		y++;
 	}
 }
 
-void	draw_minimap_tile(t_game *game, int px, int py, int color)
+void	draw_minimap_tile(t_game *game, int px, int py, t_mini *mini)
 {
 	int	x;
 	int	y;
+	int	back_color;
+	int	color;
 
+	px += mini->x_offset;
+	py += mini->y_offset;
 	y = py;
-	while (y < py + TILE_SIZE)
+	while (y < py + mini->tile)
 	{
 		x = px;
-		while (x < px + TILE_SIZE)
+		while (x < px + mini->tile)
 		{
+			back_color = get_pixel(game->img, x, y);
+			color = blend_colors(back_color, mini->color, mini->alpha);
 			put_pixel(game->img, x, y, color);
 			x++;
 		}

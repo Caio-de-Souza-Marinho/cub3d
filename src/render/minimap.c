@@ -14,9 +14,23 @@
 
 void	draw_minimap(t_game *game)
 {
-	draw_minimap_grid(game);
-	draw_minimap_fov(game);
-	draw_minimap_player(game);
+	t_mini	mini;
+
+	if (game->keys.tab == 1)
+	{
+		mini.tile = TILE_SIZE * 2;
+		mini.x_offset = (WIN_WIDTH - game->cfg->map.width * mini.tile) / 2;
+		mini.y_offset = (WIN_HEIGHT - game->cfg->map.height * mini.tile) / 2;
+	}
+	else
+	{
+		mini.tile = TILE_SIZE;
+		mini.x_offset = 0;
+		mini.y_offset = 0;
+	}
+	draw_minimap_grid(game, &mini);
+	draw_minimap_fov(game, &mini);
+	draw_minimap_player(game, &mini);
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)

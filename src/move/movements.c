@@ -32,6 +32,8 @@ int	handle_key_press(int keycode, t_game *game)
 		game->keys.shift = 1;
 	else if (keycode == KEY_CTRL)
 		game->keys.ctrl = 1;
+	else if (keycode == KEY_TAB)
+		game->keys.tab = 1;
 	else if (keycode == KEY_SPACE)
 		handle_door(game);
 	return (0);
@@ -55,6 +57,8 @@ int	handle_key_release(int keycode, t_game *game)
 		game->keys.shift = 0;
 	else if (keycode == KEY_CTRL)
 		game->keys.ctrl = 0;
+	else if (keycode == KEY_TAB)
+		game->keys.tab = 0;
 	return (0);
 }
 

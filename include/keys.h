@@ -20,6 +20,7 @@
 # define KEY_DOWN	65364
 # define KEY_SHIFT	65505
 # define KEY_CTRL	65507
+# define KEY_TAB	65289
 
 # define KEY_PLUS	61
 # define KEY_MINUS	45
