@@ -12,22 +12,38 @@
 
 #include "../../include/cub3d.h"
 
+void	set_minimap_size(t_mini *mini, t_game *game, int tab)
+{
+	double	adjust;
+	int		max_width;
+	int		max_height;
+
+	if (tab != 1)
+	{
+		mini->tile = TILE_SIZE;
+		mini->x_offset = 0;
+		mini->y_offset = 0;
+		return ;
+	}
+	mini->tile = TILE_SIZE * 2;
+	max_width = game->cfg->map.width * mini->tile;
+	max_height = game->cfg->map.height * mini->tile;
+	if (max_width >= WIN_WIDTH || max_height >= WIN_HEIGHT)
+	{
+		adjust = (double) WIN_WIDTH / max_width;
+		if ((double) WIN_HEIGHT / max_height < adjust)
+			adjust = (double) WIN_HEIGHT / max_height;
+		mini->tile *= adjust;
+	}
+	mini->x_offset = (WIN_WIDTH - game->cfg->map.width * mini->tile) / 2;
+	mini->y_offset = (WIN_HEIGHT - game->cfg->map.height * mini->tile) / 2;
+}
+
 void	draw_minimap(t_game *game)
 {
 	t_mini	mini;
 
-	if (game->keys.tab == 1)
-	{
-		mini.tile = TILE_SIZE * 2;
-		mini.x_offset = (WIN_WIDTH - game->cfg->map.width * mini.tile) / 2;
-		mini.y_offset = (WIN_HEIGHT - game->cfg->map.height * mini.tile) / 2;
-	}
-	else
-	{
-		mini.tile = TILE_SIZE;
-		mini.x_offset = 0;
-		mini.y_offset = 0;
-	}
+	set_minimap_size(&mini, game, game->keys.tab);
 	draw_minimap_grid(game, &mini);
 	draw_minimap_fov(game, &mini);
 	draw_minimap_player(game, &mini);
