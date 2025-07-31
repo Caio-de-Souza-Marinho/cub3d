@@ -90,6 +90,15 @@ typedef struct s_point
 	int		y;
 }	t_point;
 
+typedef struct s_mini
+{
+	int		color;
+	double	alpha;
+	int		x_offset;
+	int		y_offset;
+	int		tile;
+}	t_mini;
+
 typedef struct s_fov
 {
 	double	camera_x;
@@ -142,6 +151,9 @@ typedef struct s_keys
 	int	d;
 	int	left;
 	int	right;
+	int	shift;
+	int	ctrl;
+	int	tab;
 }	t_keys;
 
 typedef struct s_draw_args

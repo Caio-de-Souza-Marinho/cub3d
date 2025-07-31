@@ -57,11 +57,13 @@ void	draw_bresenham_line(t_game *game, t_point p0, t_point p1, int color)
 	}
 }
 
-void	draw_line_on_minimap(t_game *game, t_point end, int color)
+void	draw_fov(t_game *game, t_point end, int color, t_mini *mini)
 {
 	t_point	p0;
 
-	p0.x = (int)(game->cfg->player.x * TILE_SIZE);
-	p0.y = (int)(game->cfg->player.y * TILE_SIZE);
+	end.x += mini->x_offset;
+	end.y += mini->y_offset;
+	p0.x = (int)(game->cfg->player.x * mini->tile) + mini->x_offset;
+	p0.y = (int)(game->cfg->player.y * mini->tile) + mini->y_offset;
 	draw_bresenham_line(game, p0, end, color);
 }
