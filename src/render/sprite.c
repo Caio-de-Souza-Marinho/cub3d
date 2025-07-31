@@ -82,8 +82,8 @@ void	get_sprite_pos(t_game *game, double *y, double *x)
 		{
 			if (game->cfg->map.grid[i][j] == 'C')
 			{
-				*y = i;
-				*x = j;
+				*y = i + 0.5;
+				*x = j + 0.5;
 			}
 			j++;
 		}

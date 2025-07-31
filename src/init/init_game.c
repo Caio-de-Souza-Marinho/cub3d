@@ -13,7 +13,6 @@
 #include "../../include/cub3d.h"
 
 void	init_textures(t_cfg *cfg);
-void	get_sprite_pos(t_game *game, double *x, double *y);
 
 t_game	*init_empty_game(void)
 {
