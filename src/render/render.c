@@ -12,14 +12,14 @@
 
 #include "../../include/cub3d.h"
 
-void	player_camera_move(t_game *game);
+void	player_camera_move(t_game *game, double delta);
 
 int	render_frame(t_game *game)
 {
 	double	delta;
 
-	player_camera_move(game);
 	delta = get_delta_time(game);
+	player_camera_move(game, delta);
 	update_sprite_animation(&game->sprite, delta);
 	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	game->mouse_x = WIN_WIDTH / 2;
@@ -31,13 +31,11 @@ int	render_frame(t_game *game)
 	return (0);
 }
 
-void	player_camera_move(t_game *game)
+void	player_camera_move(t_game *game, double delta)
 {
-	double	delta;
 	double	move_speed;
 	double	rot_speed;
 
-	delta = get_delta_time(game);
 	move_speed = 3.0 * delta;
 	rot_speed = 2.0 * delta;
 	if (game->keys.w)
