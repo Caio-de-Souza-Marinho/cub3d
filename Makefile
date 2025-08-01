@@ -22,6 +22,8 @@ DEBUG_DIR	= $(SRC_DIR)debug/
 FREE_DIR	= $(SRC_DIR)free/
 RENDER_DIR	= $(SRC_DIR)render/
 MOVE_DIR	= $(SRC_DIR)move/
+MINIMAP_DIR	= $(SRC_DIR)minimap/
+SPRITE_DIR	= $(SRC_DIR)sprite/
 
 SRCS		= $(SRC_DIR)main.c \
 		  $(INIT_DIR)init_game.c \
@@ -43,16 +45,16 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)render_utils.c \
 		  $(RENDER_DIR)raycast.c \
 		  $(RENDER_DIR)draw.c \
-		  $(RENDER_DIR)minimap.c \
-		  $(RENDER_DIR)minimap_grid.c \
-		  $(RENDER_DIR)minimap_player.c \
-		  $(RENDER_DIR)minimap_dda.c \
-		  $(RENDER_DIR)minimap_fov.c \
-		  $(RENDER_DIR)minimap_bresenham.c \
 		  $(RENDER_DIR)load_texture.c \
 		  $(RENDER_DIR)draw_texture.c \
-		  $(RENDER_DIR)sprite.c \
-		  $(RENDER_DIR)sprite_utils.c \
+		  $(MINIMAP_DIR)minimap.c \
+		  $(MINIMAP_DIR)minimap_grid.c \
+		  $(MINIMAP_DIR)minimap_player.c \
+		  $(MINIMAP_DIR)minimap_dda.c \
+		  $(MINIMAP_DIR)minimap_fov.c \
+		  $(MINIMAP_DIR)minimap_bresenham.c \
+		  $(SPRITE_DIR)sprite.c \
+		  $(SPRITE_DIR)sprite_utils.c \
 		  $(MOVE_DIR)movements.c \
 		  $(MOVE_DIR)move_player.c \
 		  $(MOVE_DIR)actions.c \

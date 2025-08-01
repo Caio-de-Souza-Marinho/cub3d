@@ -19,10 +19,10 @@ int	load_sprite_frames(t_game *game, t_sprite *sprite)
 	int		width;
 	int		height;
 
-	paths[0] = "textures/test/east.xpm";
-	paths[1] = "textures/test/north.xpm";
-	paths[2] = "textures/test/south.xpm";
-	paths[3] = "textures/test/west.xpm";
+	paths[0] = "sprites/zombie1/zombie1_0.xpm";
+	paths[1] = "sprites/zombie1/zombie1_1.xpm";
+	paths[2] = "sprites/zombie1/zombie1_2.xpm";
+	paths[3] = "sprites/zombie1/zombie1_3.xpm";
 	i = 0;
 	while (i < SPRITE_FRAMES)
 	{
