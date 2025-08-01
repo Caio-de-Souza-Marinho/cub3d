@@ -209,7 +209,8 @@ typedef struct s_game
 	struct timeval	last_frame_time;
 	int				mouse_x;
 	int				mouse_y;
-	t_sprite		sprite;
+	t_sprite		sprites[MAX_SPRITES];
+	int				sprite_count;
 	double			*z_buffer;
 }	t_game;
 

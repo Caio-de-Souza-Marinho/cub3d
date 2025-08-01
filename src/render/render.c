@@ -20,7 +20,7 @@ int	render_frame(t_game *game)
 
 	delta = get_delta_time(game);
 	player_camera_move(game, delta);
-	update_sprite_animation(&game->sprite, delta);
+	update_all_sprite_animations(game, delta);
 	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	game->mouse_x = WIN_WIDTH / 2;
 	ft_memset(game->img->addr, 0, WIN_HEIGHT * game->img->size_len);

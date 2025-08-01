@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 19:37:37 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/26 01:48:30 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/08/01 02:56:01 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	free_gnl(int fd);
 t_cfg	*init_config(void);
 t_game	*init_empty_game(void);
 int		init_game_graphics(t_game *game);
-int		init_sprite(t_game *game);
+int		init_sprites(t_game *game);
 
 // map validation
 int		validate_map(t_map *map, t_player *player);
@@ -135,14 +135,18 @@ void	handle_door(t_game *game);
 
 // sprite
 int		load_sprite_frames(t_game *game, t_sprite *sprite);
-void	update_sprite_animation(t_sprite *sprite, double delta);
+void	update_all_sprite_animations(t_game *game, double delta);
 void	draw_sprite(t_game *game);
 int		get_sprite_pixel(t_img *sprite_img, int tex_x, int tex_y);
-void	calc_sprite_transform(t_game *game, t_sprite_calc *calc);
+void	calc_sprite_transform(t_game *g, t_sprite_calc *calc, t_sprite *s);
 void	calc_sprite_screen_params(t_sprite_calc *calc);
 void	calc_draw_bounds(t_sprite_calc *calc);
-void	draw_sprite_column(t_game *game, t_sprite_calc *calc, int stripe);
+void	draw_sprite_col(t_game *g, t_sprite_calc *c, int stripe, t_sprite *s);
 int		find_valid_sprite_position(t_game *game, double *x, double *y);
 void	get_sprite_pos(t_game *game, double *y, double *x);
+void	fill_zombie1_paths(char **paths);
+void	fill_zombie2_paths(char **paths);
+void	fill_zombie3_paths(char **paths);
+void	fill_zombie4_paths(char **paths);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:32:15 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/24 21:50:22 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 02:01:51 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,22 +97,5 @@ int	init_game_graphics(t_game *game)
 	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	game->mouse_x = WIN_WIDTH / 2;
 	game->mouse_y = WIN_HEIGHT / 2;
-	return (0);
-}
-
-int	init_sprite(t_game *game)
-{
-	t_sprite	*sprite;
-
-	sprite = &game->sprite;
-	get_sprite_pos(game, &sprite->y, &sprite->x);
-	sprite->current_frame = 0;
-	sprite->frame_timer = 0.0;
-	sprite->frame_delay = 0.5;
-	if (load_sprite_frames(game, sprite))
-	{
-		printf("Failed to load sprite frames\n");
-		return (1);
-	}
 	return (0);
 }

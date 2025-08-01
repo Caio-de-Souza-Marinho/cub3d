@@ -55,6 +55,8 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(MINIMAP_DIR)minimap_bresenham.c \
 		  $(SPRITE_DIR)sprite.c \
 		  $(SPRITE_DIR)sprite_utils.c \
+		  $(SPRITE_DIR)init_sprite.c \
+		  $(SPRITE_DIR)sprite_paths.c \
 		  $(MOVE_DIR)movements.c \
 		  $(MOVE_DIR)move_player.c \
 		  $(MOVE_DIR)actions.c \
