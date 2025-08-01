@@ -38,6 +38,11 @@ void	draw_texture_column(t_game *game, t_ray *ray, int x, int line_height)
 // 1 - Select texture (based on wall side and ray direction)
 t_tex	*select_texture(t_ray *ray, t_game *game)
 {
+	char	tile;
+
+	tile = game->cfg->map.grid[ray->map_y][ray->map_x];
+	if (tile == 'D')
+		return (&game->cfg->texture.door);
 	if (ray->side == 0)
 	{
 		if (ray->dir_x < 0)

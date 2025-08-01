@@ -51,6 +51,8 @@ void	free_config(t_game *game)
 		mlx_destroy_image(game->mlx, game->cfg->texture.we.img);
 	if (game->cfg->texture.ea.img)
 		mlx_destroy_image(game->mlx, game->cfg->texture.ea.img);
+	if (game->cfg->texture.door.img)
+		mlx_destroy_image(game->mlx, game->cfg->texture.door.img);
 	free(game->cfg->texture.no.path);
 	free(game->cfg->texture.so.path);
 	free(game->cfg->texture.we.path);
