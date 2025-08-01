@@ -63,10 +63,12 @@ void	init_textures(t_cfg *cfg)
 	cfg->texture.so.path = NULL;
 	cfg->texture.we.path = NULL;
 	cfg->texture.ea.path = NULL;
+	cfg->texture.door.path = NULL;
 	cfg->texture.no.img = NULL;
 	cfg->texture.so.img = NULL;
 	cfg->texture.we.img = NULL;
 	cfg->texture.ea.img = NULL;
+	cfg->texture.door.img = NULL;
 }
 
 int	init_game_graphics(t_game *game)

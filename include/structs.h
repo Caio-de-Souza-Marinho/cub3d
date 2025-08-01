@@ -43,6 +43,7 @@ typedef struct s_texture
 	t_tex	so;
 	t_tex	we;
 	t_tex	ea;
+	t_tex	door;
 }	t_texture;
 
 typedef struct s_map
