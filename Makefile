@@ -11,7 +11,7 @@ MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
-TEST_FILE	?= maps/good/square_map.cub
+TEST_FILE	?= maps/good/zombie.cub
 
 # DIRS
 INIT_DIR	= ${SRC_DIR}init/

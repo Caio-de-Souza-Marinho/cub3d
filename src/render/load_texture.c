@@ -27,7 +27,7 @@ int	load_all_textures(t_game *game)
 		return (1);
 	if (load_texture(game->mlx, &tex->ea))
 		return (1);
-	tex->door.path = "textures/test/west.xpm";
+	tex->door.path = "textures/pixel_door.xpm";
 	if (tex->door.path && load_texture(game->mlx, &tex->door))
 		return (1);
 	return (0);
