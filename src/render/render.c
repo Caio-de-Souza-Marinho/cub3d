@@ -14,6 +14,16 @@
 
 void	player_camera_move(t_game *game, double delta);
 
+// Renders a single frame of the game.
+// 1. Calculates time elapsed since the last frame.
+// 2. Updates player and camera movement based on input.
+// 3. Updates all sprite animations.
+// 4. Resets mouse position to the center of the window.
+// 5. Clears the frame buffer.
+// 6. Performs raycasting and draws walls.
+// 7. Draws all visible sprites.
+// 8. Draws the minimap.
+// 9. Displays the composed frame in the game window.
 int	render_frame(t_game *game)
 {
 	double	delta;
@@ -31,6 +41,11 @@ int	render_frame(t_game *game)
 	return (0);
 }
 
+// Applies movement and rotation to the player based on input.
+// 1. Calculates movement and rotation speed based no frame time.
+// 2. Moves the player forward or backward (W/S keys).
+// 3. Strafes the player left or right (A/D keys).
+// 4. Rotates the camera left or right (arrow keys).
 void	player_camera_move(t_game *game, double delta)
 {
 	double	move_speed;
@@ -52,6 +67,13 @@ void	player_camera_move(t_game *game, double delta)
 		rotate_player(KEY_RIGHT, game, rot_speed);
 }
 
+// Performs raycasting and draws vertical wall slices for the entire screen.
+// 1. Loops through each vertical screen column.
+// 2. Initializes the ray for current screen column.
+// 3. Performs DDA to detect wall hit along the ray.
+// 4. Calculates perpendicular wall distance based on hit sice.
+// 5. Stores wall distance for sprite depth sorting.
+// 6. Draws the vertical wall slice for the current column.
 void	raycast_and_draw(t_game *game)
 {
 	int			x;

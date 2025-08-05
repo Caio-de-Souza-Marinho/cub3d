@@ -16,6 +16,10 @@ void	calc_ray_dir(t_ray *ray, int x, t_player *player);
 void	calc_delta_dist(t_ray *ray, t_player *player);
 void	calc_step_and_side_dist(t_ray *ray, t_player *player);
 
+// Initializes a ray for a single screen column.
+// 1. Calculates ray direction based on player and screen column.
+// 2. Calculates delta distances used in DDA algorithm.
+// 3. Calculates initial step direction and side distances.
 void	init_ray(t_player *player, t_ray *ray, int x)
 {
 	calc_ray_dir(ray, x, player);
@@ -23,9 +27,12 @@ void	init_ray(t_player *player, t_ray *ray, int x)
 	calc_step_and_side_dist(ray, player);
 }
 
-// part 1
-// player direction vector (default: facing north = (0, -1))
-// camera plane (perpendicular to direction)
+// Calculates ray direction using player orientation and camera plane.
+// 1. Gets player direction and camera plane.
+// 2. Computes camera_x coordinate in range [-1, 1] across screen.
+// 3. Computes final ray direction vector using player direction and camera 
+// offset.
+// Note: camera_x shifts from -1 (left screen) to 1 (right screen).
 void	calc_ray_dir(t_ray *ray, int x, t_player *player)
 {
 	double	camera_x;
@@ -43,7 +50,10 @@ void	calc_ray_dir(t_ray *ray, int x, t_player *player)
 	ray->dir_y = dir_y + plane_y * camera_x;
 }
 
-// part 2
+// Calculates delta distances for the DDA ray traversal.
+// 1. Sets the map grid position from the player's coordinates.
+// 2. Calculates delta distance for x and y using ray direction.
+// 3. Initializes hit flag to 0 (no wall hit yet).
 void	calc_delta_dist(t_ray *ray, t_player *player)
 {
 	ray->map_x = (int)player->x;
@@ -53,8 +63,11 @@ void	calc_delta_dist(t_ray *ray, t_player *player)
 	ray->hit = 0;
 }
 
-// part 3
-// calculate initial step
+// Calculates step direction and initial side distances for DDA.
+// 1. Sets step direction along x axis (-1 or 1).
+// 2. Computes initial distance from player to first x-side.
+// 3. Sets step direction along y axis (-1 or 1).
+// 4. Computes initial distance from player to first y-side.
 void	calc_step_and_side_dist(t_ray *ray, t_player *player)
 {
 	if (ray->dir_x < 0)

@@ -14,6 +14,14 @@
 
 int	check_errors(char *arg, t_game *game);
 
+// Main entry point for the program.
+// 1. Validates number of arguments and checks for .cub file extension.
+// 2. Initializes an empty game struct.
+// 3. Parses the .cub file and validates configuration.
+// 4. Frees game memory and exits on failure.
+// 5. Stores the current time as the initial frame time.
+// 6. Registers MLX hooks for rendering, input and window close.
+// 7. Starts the MLX main loop.
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -26,7 +34,6 @@ int	main(int argc, char **argv)
 		free_game(game);
 		return (EXIT_FAILURE);
 	}
-	print_config(game->cfg);
 	gettimeofday(&game->last_frame_time, NULL);
 	mlx_loop_hook(game->mlx, &render_frame, game);
 	mlx_hook(game->win, 17, 0, exit_game, game);
@@ -37,6 +44,13 @@ int	main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
+// Validates the .cub file and initializes all game components.
+// 1. Verifies the game struct and attempds to parse the .cub file.
+// 2. Checks if the configuration is complete.
+// 3. Initializes graphics context (MLX, window, image).
+// 4. Loads all required wall and door textures
+// 5. Initializes sprite system and allocates sprite memory.
+// 6. Returns success (1) or failure (0).
 int	check_errors(char *arg, t_game *game)
 {
 	if (!game || !parse_cub(arg, game->cfg)
@@ -51,6 +65,7 @@ int	check_errors(char *arg, t_game *game)
 	return (1);
 }
 
+// Frees all allocated game memory and exits the program.
 int	exit_game(t_game *game)
 {
 	free_game(game);
