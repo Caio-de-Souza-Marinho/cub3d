@@ -6,6 +6,7 @@ a.out
 *.tests
 obj/
 cub3D
+cub3D_bonus
 *.txt
 apagar.c
 *.log

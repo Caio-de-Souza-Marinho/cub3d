@@ -99,7 +99,7 @@ int	handle_mouse_move(int x, int y, t_game *game)
 	(void)y;
 	center_x = WIN_WIDTH / 2;
 	dx = x - center_x;
-	sensitivity = 0.003;
+	sensitivity = 0.002;
 	max_dx = 30;
 	if (dx > max_dx)
 		dx = max_dx;

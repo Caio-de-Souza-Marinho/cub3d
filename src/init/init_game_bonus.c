@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   init_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:32:15 by caide-so          #+#    #+#             */
-/*   Updated: 2025/08/01 02:01:51 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 19:05:48 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,9 @@ int	init_game_graphics(t_game *game)
 	game->img->width = WIN_WIDTH;
 	game->img->height = WIN_HEIGHT;
 	game->z_buffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
+	mlx_mouse_hide(game->mlx, game->win);
+	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	game->mouse_x = WIN_WIDTH / 2;
+	game->mouse_y = WIN_HEIGHT / 2;
 	return (0);
 }
