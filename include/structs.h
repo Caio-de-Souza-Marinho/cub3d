@@ -176,7 +176,7 @@ typedef struct s_fov
 	double	ray_dir_y;
 }	t_fov;
 
-// DDA (Digital Diferential Analysis) algorithm.
+// DDA (Digital Differential Analyzer) algorithm.
 // Members:
 // p: Pointer to the player struct.
 // map_x: Current map tile X.

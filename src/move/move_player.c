@@ -12,6 +12,9 @@
 
 #include "../../include/cub3d.h"
 
+// Calculates new (x, y) based on player direction and key.
+// 1. Adjusts direction based on WASD keys.
+// 2. Modifies new_xy in-place with the result.
 void	get_new_xy(int keycode, double new_xy[2], t_game *game, double speed)
 {
 	t_player	*p;
@@ -41,6 +44,10 @@ void	get_new_xy(int keycode, double new_xy[2], t_game *game, double speed)
 	}
 }
 
+// Moves the player with collision detection.
+// 1. Adjusts speed if shift or ctrl is held.
+// 2. Calculates new position with get_new_xy.
+// 3. Checks for wall/door collision before updating player pos.
 void	move_player(int keycode, t_game *game, double speed)
 {
 	t_player	*p;

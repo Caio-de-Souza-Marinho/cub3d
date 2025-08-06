@@ -15,6 +15,11 @@
 t_point	ray_minimap(t_game *game, double ray_x, double ray_y, t_mini *mini);
 void	draw_fov(t_game *game, t_point end, int color, t_mini *mini);
 
+// Draws the minimap field of view (FOV) using NUM_RAYS rays.
+// 1. Iterates through all rays across the FOV.
+// 2. Calculates each ray direction from camera plane.
+// 3. Uses DDA to get wall hit point for each ray.
+// 4. Draws a red line from player to wall hit on minimap.
 void	draw_minimap_fov(t_game *game, t_mini *mini)
 {
 	t_player	*p;

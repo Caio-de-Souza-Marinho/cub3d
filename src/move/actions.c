@@ -12,6 +12,10 @@
 
 #include "../../include/cub3d.h"
 
+// Toggles a door state if the player is near it.
+// 1. Gets the player's current and next positions using get_next_xy.
+// 2. Checks if next tile is a door ('D' closed or 'd' open).
+// 3. Switches door state between 'D' and 'd' when player presses space.
 void	handle_door(t_game *game)
 {
 	char	**grid;

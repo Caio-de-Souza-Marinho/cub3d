@@ -12,6 +12,11 @@
 
 #include "../../include/cub3d.h"
 
+// Sets player direction vectors and camera plane based on cardinal direction
+// 1. For 'N' or 'S', sets dir_y and plane_x accordingly
+// 2. For 'S', reverses dir_y and plane_x
+// 3. For 'E' or 'W', sets dir_x and plane_y accordingly
+// 4. For 'W', reverses dir_x and plane_y
 void	set_player_direction(t_player *player, char dir)
 {
 	if (dir == 'N' || dir == 'S')
@@ -38,6 +43,10 @@ void	set_player_direction(t_player *player, char dir)
 	}
 }
 
+// Sets player position and direction
+// 1. Converts int grid coordinates to double centered position
+// 2. Updates player's x, y and dir fields
+// 3. Calls set_player_direction to set vectors accordingly
 void	set_player_position(t_player *player, int x, int y, char dir)
 {
 	double	f_x;
@@ -51,6 +60,10 @@ void	set_player_position(t_player *player, int x, int y, char dir)
 	set_player_direction(player, dir);
 }
 
+// Finds and sets player position and direction based on map data
+// 1. Iterates over map grid rows and columns
+// 2. Detects player start position marked by 'N', 'S', 'W', or 'E'
+// 3. Calls set_player_position to initialize player struct
 void	get_player_position(t_cfg *cfg)
 {
 	int	x;

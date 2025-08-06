@@ -12,6 +12,10 @@
 
 #include "../../include/cub3d.h"
 
+// Initializes DDA (Digital Differential Analyzer) variables for raycasting.
+// 1. Sets initial map grid position from player coordinates.
+// 2. Computes ray step distances (delta distances).
+// 3. Resets setp, side distances and hit state.
 void	init_dda_vars(t_dda *dda, t_player *p, double ray_x, double ray_y)
 {
 	dda->map_x = (int) p->x;
@@ -28,6 +32,10 @@ void	init_dda_vars(t_dda *dda, t_player *p, double ray_x, double ray_y)
 	dda->perp_wall_dist = 0;
 }
 
+// Calculates DDA step direction and initial side distances based on ray 
+// direction.
+// 1. Sets step_x/y to +1 or -1 based on ray direction.
+// 2. Computes initial side distances from player to next boundary.
 void	setup_ray_traversal(t_dda *dda, double ray_x, double ray_y)
 {
 	if (ray_x < 0)
@@ -52,6 +60,11 @@ void	setup_ray_traversal(t_dda *dda, double ray_x, double ray_y)
 	}
 }
 
+// Runs the main DDA loop to detect wall or door collision.
+// 1. Moves to the next map cell in x or y direction based on smallest
+// side_dist.
+// 2. Updates side hit flag (0 = vertical, 1 = horizontal).
+// 3. Checks if the current cell is a wall ('1') or door ('D').
 void	run_dda_loop(t_dda *dda, t_game *game)
 {
 	while (!dda->hit)
@@ -75,6 +88,10 @@ void	run_dda_loop(t_dda *dda, t_game *game)
 	}
 }
 
+// Casts a ray for minimap FOV visualization and returns wall hit position.
+// 1. Initializes and runs DDA to detect hit point.
+// 2. Computes perpendicular distance to wall.
+// 3. Calculates end point in minimap pixel coordinates.
 t_point	ray_minimap(t_game *game, double ray_x, double ray_y, t_mini *mini)
 {
 	t_dda	dda;

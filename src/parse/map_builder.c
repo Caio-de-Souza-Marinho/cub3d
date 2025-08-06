@@ -12,6 +12,11 @@
 
 #include "../../include/cub3d.h"
 
+// Adds a copy of the given line to the end of the map lines linked list
+// 1. Duplicates the input line string
+// 2. Creates a new list node with the duplicated string
+// 3. Adds new node to the end of the list
+// 4. Returns 1 on success, 0 on memory allocation failure
 int	add_map_line(t_list **map_lines, char *line)
 {
 	char	*copy;
@@ -30,6 +35,10 @@ int	add_map_line(t_list **map_lines, char *line)
 	return (1);
 }
 
+// Allocates a 2D char matrix with given width and height
+// 1. Allocates array of pointers for rows plus NULL terminator
+// 2. Allocates each row with space for width + null terminator
+// 3. Returns pointer to allocated matrix or NULL on failure
 char	**alloc_matrix(int width, int height)
 {
 	char	**matrix;
@@ -50,6 +59,11 @@ char	**alloc_matrix(int width, int height)
 	return (matrix);
 }
 
+// Copies map lines from linked list into allocated matrix
+// 1. Iterates each line in list
+// 2. Copies characters, replacing spaces with '2'
+// 3. Pads remaining columns with '2'
+// 4. Null-terminates each matrix row
 void	make_matrix(t_list **map_lines, char **matrix, int width)
 {
 	t_list	*tmp;
@@ -79,6 +93,12 @@ void	make_matrix(t_list **map_lines, char **matrix, int width)
 	}
 }
 
+// Converts linked list of map lines into a matrix and updates config
+// 1. Counts height and max width from list contents
+// 2. Allocates matrix with determined size
+// 3. Copies list lines into matrix with make_matrix()
+// 4. Updates cfg map grid, width, and height
+// 5. Finds and sets player start position
 void	convert_list_to_matrix(t_list **map_lines, t_cfg *cfg)
 {
 	t_list	*tmp;

@@ -12,6 +12,9 @@
 
 #include "../../include/cub3d.h"
 
+// Handles key press input.
+// 1. Updates the game->keys state for each relevant key.
+// 2. Triggers door handling if spacebar is pressed.
 int	handle_key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
@@ -39,6 +42,8 @@ int	handle_key_press(int keycode, t_game *game)
 	return (0);
 }
 
+// Handles key release input.
+// 1. Resets the corresponding flag in game->keys.
 int	handle_key_release(int keycode, t_game *game)
 {
 	if (keycode == KEY_W)
@@ -62,6 +67,9 @@ int	handle_key_release(int keycode, t_game *game)
 	return (0);
 }
 
+// Rotates the player's direction and camera plane.
+// 1. Uses basic rotation formulas with cosine and sine.
+// 2. Rotates left for KEY_LEFT and right for KEY_RIGHT.
 void	rotate_player(int keycode, t_game *game, double angle)
 {
 	double	tmp_dx;
@@ -89,6 +97,10 @@ void	rotate_player(int keycode, t_game *game, double angle)
 	}
 }
 
+// Handles horizontal mouse movement to rotate the player.
+// 1. Calculates delta from screen center.
+// 2. Applies capped sensitivity-based rotation.
+// 3. Calls rotate_player with angle derived from dx.
 int	handle_mouse_move(int x, int y, t_game *game)
 {
 	int		center_x;
