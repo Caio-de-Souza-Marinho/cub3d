@@ -14,6 +14,7 @@
 
 void	free_sprite(t_game *game);
 
+// Frees game struct.
 void	free_game(t_game *game)
 {
 	if (!game)
@@ -39,6 +40,7 @@ void	free_game(t_game *game)
 	free(game);
 }
 
+// Frees t_cfg struct.
 void	free_config(t_game *game)
 {
 	if (!game || !game->cfg)
@@ -62,19 +64,27 @@ void	free_config(t_game *game)
 	free(game->cfg);
 }
 
+// Frees all sprites
 void	free_sprite(t_game *game)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (i < SPRITE_FRAMES)
+	while (i < game->sprite_count)
 	{
-		if (game->sprite.frames[i].img)
-			mlx_destroy_image(game->mlx, game->sprite.frames[i].img);
+		j = 0;
+		while (j < SPRITE_FRAMES)
+		{
+			if (game->sprites[i].frames[j].img)
+				mlx_destroy_image(game->mlx, game->sprites[i].frames[j].img);
+			j++;
+		}
 		i++;
 	}
 }
 
+// Frees map and its contents.
 void	free_map_copy(char **map, int height)
 {
 	int	i;

@@ -1,0 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/05 18:59:59 by caide-so          #+#    #+#             */
+/*   Updated: 2025/08/05 19:00:22 by caide-so         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/cub3d.h"
+
+int	check_errors(char *arg, t_game *game);
+
+// Main entry point for the program.
+// 1. Validates number of arguments and checks for .cub file extension.
+// 2. Initializes an empty game struct.
+// 3. Parses the .cub file and validates configuration.
+// 4. Frees game memory and exits on failure.
+// 5. Stores the current time as the initial frame time.
+// 6. Registers MLX hooks for rendering, input and window close.
+// 7. Starts the MLX main loop.
+int	main(int argc, char **argv)
+{
+	t_game	*game;
+
+	if (argc != 2 || ft_strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub") != 0)
+		return (printf("Not a .cub file\n"), 1);
+	game = init_empty_game();
+	if (!check_errors(argv[1], game))
+	{
+		free_game(game);
+		return (EXIT_FAILURE);
+	}
+	gettimeofday(&game->last_frame_time, NULL);
+	mlx_loop_hook(game->mlx, &render_frame, game);
+	mlx_hook(game->win, 17, 0, exit_game, game);
+	mlx_hook(game->win, 2, 1L << 0, handle_key_press, game);
+	mlx_hook(game->win, 3, 1L << 1, handle_key_release, game);
+	mlx_hook(game->win, 6, 1L << 6, handle_mouse_move, game);
+	mlx_loop(game->mlx);
+	return (EXIT_SUCCESS);
+}
+
+// Validates the .cub file and initializes all game components.
+// 1. Verifies the game struct and attempds to parse the .cub file.
+// 2. Checks if the configuration is complete.
+// 3. Initializes graphics context (MLX, window, image).
+// 4. Loads all required wall and door textures
+// 5. Initializes sprite system and allocates sprite memory.
+// 6. Returns success (1) or failure (0).
+int	check_errors(char *arg, t_game *game)
+{
+	if (!game || !parse_cub(arg, game->cfg)
+		|| check_cub_complete(game->cfg))
+		return (0);
+	if (init_game_graphics(game))
+		return (0);
+	if (load_all_textures(game))
+		return (0);
+	if (init_sprites(game))
+		return (0);
+	return (1);
+}
+
+// Frees all allocated game memory and exits the program.
+int	exit_game(t_game *game)
+{
+	free_game(game);
+	exit(0);
+}

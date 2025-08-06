@@ -14,6 +14,11 @@
 
 int	load_texture(void *mlx, t_tex *tex);
 
+// Load all textures required by the game.
+// 1. Gets texture struct from game config.
+// 2. Loads north, sourh, east and west textures using load_texture().
+// 3. Sets default door texture path and loads it.
+// 4. Returns 0 on success, 1 on failure.
 int	load_all_textures(t_game *game)
 {
 	t_texture	*tex;
@@ -27,12 +32,18 @@ int	load_all_textures(t_game *game)
 		return (1);
 	if (load_texture(game->mlx, &tex->ea))
 		return (1);
-	tex->door.path = "textures/test/west.xpm";
+	tex->door.path = "textures/pixel_door.xpm";
 	if (tex->door.path && load_texture(game->mlx, &tex->door))
 		return (1);
 	return (0);
 }
 
+// Loads an XPM texture into memory and extracts its data.
+// 1. Checks if texture path is valid.
+// 2. Loads image from file with mlx_xpm_file_to_image().
+// 3. Gets pixel buffer with mlx_get_data_addr().
+// 4. Logs error and returns 1 if loading fails at any step.
+// 5. Returns 0 on success.
 int	load_texture(void *mlx, t_tex *tex)
 {
 	if (!tex->path)

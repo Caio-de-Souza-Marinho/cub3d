@@ -1,17 +1,20 @@
 NAME		= cub3D
+NAME_BONUS	= cub3D_bonus
 CC		= cc
 CFLAGS		= -Wall -Wextra -Werror -g
 RM		= rm -rf
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
+BONUS_SRC_DIR	= src/
+BONUS_OBJ_DIR	= obj_bonus/
 LIBFT_DIR	= lib/libft/
 LIBFT_LIB	= ${LIBFT_DIR}bin/libft.a
 MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 INCLUDE		= -I include -I ${LIBFT_DIR} -I ${MLX_DIR}
 LDFLAGS		= -lm -lXext -lX11
-TEST_FILE	?= maps/good/square_map.cub
+TEST_FILE	?= maps/good/zombie.cub
 
 # DIRS
 INIT_DIR	= ${SRC_DIR}init/
@@ -22,6 +25,8 @@ DEBUG_DIR	= $(SRC_DIR)debug/
 FREE_DIR	= $(SRC_DIR)free/
 RENDER_DIR	= $(SRC_DIR)render/
 MOVE_DIR	= $(SRC_DIR)move/
+MINIMAP_DIR	= $(SRC_DIR)minimap/
+SPRITE_DIR	= $(SRC_DIR)sprite/
 
 SRCS		= $(SRC_DIR)main.c \
 		  $(INIT_DIR)init_game.c \
@@ -43,21 +48,61 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(RENDER_DIR)render_utils.c \
 		  $(RENDER_DIR)raycast.c \
 		  $(RENDER_DIR)draw.c \
-		  $(RENDER_DIR)minimap.c \
-		  $(RENDER_DIR)minimap_grid.c \
-		  $(RENDER_DIR)minimap_player.c \
-		  $(RENDER_DIR)minimap_dda.c \
-		  $(RENDER_DIR)minimap_fov.c \
-		  $(RENDER_DIR)minimap_bresenham.c \
 		  $(RENDER_DIR)load_texture.c \
 		  $(RENDER_DIR)draw_texture.c \
-		  $(RENDER_DIR)sprite.c \
-		  $(RENDER_DIR)sprite_utils.c \
+		  $(MINIMAP_DIR)minimap.c \
+		  $(MINIMAP_DIR)minimap_grid.c \
+		  $(MINIMAP_DIR)minimap_player.c \
+		  $(MINIMAP_DIR)minimap_dda.c \
+		  $(MINIMAP_DIR)minimap_fov.c \
+		  $(MINIMAP_DIR)minimap_bresenham.c \
+		  $(SPRITE_DIR)sprite.c \
+		  $(SPRITE_DIR)sprite_utils.c \
+		  $(SPRITE_DIR)init_sprite.c \
+		  $(SPRITE_DIR)sprite_paths.c \
 		  $(MOVE_DIR)movements.c \
 		  $(MOVE_DIR)move_player.c \
 		  $(MOVE_DIR)actions.c \
 
 OBJS		= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
+
+BONUS_SRCS	= $(SRC_DIR)main_bonus.c \
+		  $(INIT_DIR)init_game_bonus.c \
+		  $(PARSE_DIR)parse.c \
+		  $(PARSE_DIR)is_line_function.c \
+		  $(PARSE_DIR)color_parser.c \
+		  $(PARSE_DIR)cub_check.c \
+		  $(PARSE_DIR)map_builder.c \
+		  $(PARSE_DIR)texture_parser.c \
+		  $(PARSE_DIR)parse_utils.c \
+		  $(PARSE_DIR)get_player.c \
+		  ${MAP_DIR}map_validation.c \
+		  ${MAP_DIR}map_validation_utils.c \
+		  $(ERROR_DIR)error.c \
+		  $(DEBUG_DIR)print_config.c \
+		  $(FREE_DIR)free_all.c \
+		  $(FREE_DIR)free_utils.c \
+		  $(RENDER_DIR)render_bonus.c \
+		  $(RENDER_DIR)render_utils.c \
+		  $(RENDER_DIR)raycast.c \
+		  $(RENDER_DIR)draw.c \
+		  $(RENDER_DIR)load_texture.c \
+		  $(RENDER_DIR)draw_texture.c \
+		  $(MINIMAP_DIR)minimap.c \
+		  $(MINIMAP_DIR)minimap_grid.c \
+		  $(MINIMAP_DIR)minimap_player.c \
+		  $(MINIMAP_DIR)minimap_dda.c \
+		  $(MINIMAP_DIR)minimap_fov.c \
+		  $(MINIMAP_DIR)minimap_bresenham.c \
+		  $(SPRITE_DIR)sprite.c \
+		  $(SPRITE_DIR)sprite_utils.c \
+		  $(SPRITE_DIR)init_sprite.c \
+		  $(SPRITE_DIR)sprite_paths.c \
+		  $(MOVE_DIR)movements.c \
+		  $(MOVE_DIR)move_player.c \
+		  $(MOVE_DIR)actions.c \
+
+BONUS_OBJS	= ${BONUS_SRCS:${BONUS_SRC_DIR}/%.c=${BONUS_OBJ_DIR}/%.o}
 
 # Colors
 RED	= \033[1;31m
@@ -84,6 +129,17 @@ ${OBJ_DIR}/%.o:	${SRC_DIR}/%.c
 
 ${OBJ_DIR}:
 			@mkdir -p ${OBJ_DIR}
+
+bonus:		${NAME_BONUS}
+
+${NAME_BONUS}:	${BONUS_OBJS} ${LIBFT_LIB} ${MLX_LIB}
+			@echo "${CYAN}[  COMPILING ]${RESET} Compiling bonus source files..."
+			@${CC} ${CFLAGS} ${BONUS_OBJS} ${LIBFT_LIB} ${MLX_LIB} ${LDFLAGS} -o ${NAME_BONUS}
+			@echo "${GREEN}Bonus build complete!${RESET}"
+
+${BONUS_OBJ_DIR}/%.o:	${BONUS_SRC_DIR}/%.c
+				@mkdir -p ${@D}
+				@${CC} ${CFLAGS} ${INCLUDE} -c $< -o $@
 
 ${LIBFT_LIB}:
 			@echo "${BLUE}[  BUILDING  ]${RESET} Building libft..."
@@ -115,10 +171,10 @@ clean:
 
 fclean:		clean
 			@echo "${RED}[  CLEANING  ]${RESET} Removing binary and libraries..."
-			@${RM} ${NAME}
+			@${RM} ${NAME} ${NAME_BONUS}
 			@make -s -C ${LIBFT_DIR} fclean --no-print-directory
 			@${RM} ${MLX_LIB}
 
-re:		fclean all
+re:		fclean all bonus
 
-.PHONY:		all clean fclean re leak
+.PHONY:		all clean fclean re leak bonus

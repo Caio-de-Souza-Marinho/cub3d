@@ -12,21 +12,21 @@
 
 #include "../../include/cub3d.h"
 
-void	calc_sprite_transform(t_game *game, t_sprite_calc *calc)
+void	calc_sprite_transform(t_game *g, t_sprite_calc *calc, t_sprite *s)
 {
 	double	sprite_x;
 	double	sprite_y;
 	double	inv_det;
 
-	sprite_x = game->sprite.x - game->cfg->player.x;
-	sprite_y = game->sprite.y - game->cfg->player.y;
+	sprite_x = s->x - g->cfg->player.x;
+	sprite_y = s->y - g->cfg->player.y;
 	calc->sprite_distance = sqrt(sprite_x * sprite_x + sprite_y * sprite_y);
-	inv_det = 1.0 / (game->cfg->player.plane_x * game->cfg->player.dir_y
-			- game->cfg->player.dir_x * game->cfg->player.plane_y);
-	calc->transform_x = inv_det * (game->cfg->player.dir_y * sprite_x
-			- game->cfg->player.dir_x * sprite_y);
-	calc->transform_y = inv_det * (-game->cfg->player.plane_y * sprite_x
-			+ game->cfg->player.plane_x * sprite_y);
+	inv_det = 1.0 / (g->cfg->player.plane_x * g->cfg->player.dir_y
+			- g->cfg->player.dir_x * g->cfg->player.plane_y);
+	calc->transform_x = inv_det * (g->cfg->player.dir_y * sprite_x
+			- g->cfg->player.dir_x * sprite_y);
+	calc->transform_y = inv_det * (-g->cfg->player.plane_y * sprite_x
+			+ g->cfg->player.plane_x * sprite_y);
 }
 
 void	calc_sprite_screen_params(t_sprite_calc *calc)
@@ -53,7 +53,7 @@ void	calc_draw_bounds(t_sprite_calc *calc)
 		calc->draw_end_x = WIN_WIDTH - 1;
 }
 
-void	draw_sprite_column(t_game *game, t_sprite_calc *calc, int stripe)
+void	draw_sprite_col(t_game *g, t_sprite_calc *c, int stripe, t_sprite *s)
 {
 	int		y;
 	int		tex_x;
@@ -61,22 +61,22 @@ void	draw_sprite_column(t_game *game, t_sprite_calc *calc, int stripe)
 	int		color;
 	t_img	*sprite_img;
 
-	sprite_img = &game->sprite.frames[game->sprite.current_frame];
+	sprite_img = &s->frames[s->current_frame];
 	if (!sprite_img->img || !sprite_img->addr)
 		return ;
-	if (calc->sprite_distance >= game->z_buffer[stripe])
+	if (c->sprite_distance >= g->z_buffer[stripe])
 		return ;
-	tex_x = (int)(256 * (stripe - (-calc->sprite_width / 2
-					+ calc->sprite_screen_x)) * sprite_img->width
-			/ calc->sprite_width) / 256;
-	y = calc->draw_start_y;
-	while (y < calc->draw_end_y)
+	tex_x = (int)(256 * (stripe - (-c->sprite_width / 2
+					+ c->sprite_screen_x)) * sprite_img->width
+			/ c->sprite_width) / 256;
+	y = c->draw_start_y;
+	while (y < c->draw_end_y)
 	{
-		tex_y = (((y * 256 - WIN_HEIGHT * 128 + calc->sprite_height * 128)
-					* sprite_img->height) / calc->sprite_height) / 256;
+		tex_y = (((y * 256 - WIN_HEIGHT * 128 + c->sprite_height * 128)
+					* sprite_img->height) / c->sprite_height) / 256;
 		color = get_sprite_pixel(sprite_img, tex_x, tex_y);
 		if ((color & 0x00FFFFFF) != 0)
-			put_pixel(game->img, stripe, y, color);
+			put_pixel(g->img, stripe, y, color);
 		y++;
 	}
 }

@@ -17,6 +17,11 @@ double	calc_wall_hit_point(t_game *game, t_ray *ray);
 void	draw_texture_loop(t_game *game, t_ray *ray, t_tex *tex, t_draw_args da);
 double	init_tex_pos(int draw_start, int line_height, int tex_h, double *step);
 
+// Draws the textured wall segment for a ray.
+// 1. Clamps draw_start and draw_end to screen bounds.
+// 2. Selects wall texture based on ray side and direction.
+// 3. Calculates texture step and initial tex_pos.
+// 4. Calls draw_texture_loop to draw pixels.
 void	draw_texture_column(t_game *game, t_ray *ray, int x, int line_height)
 {
 	int		draw_start;
@@ -35,7 +40,9 @@ void	draw_texture_column(t_game *game, t_ray *ray, int x, int line_height)
 		init_tex_pos(draw_start, line_height, tex->height, &t_step), t_step});
 }
 
-// 1 - Select texture (based on wall side and ray direction)
+// Selects the correct wall texture for the ray.
+// 1. Checks if tile is a door ('D'), returns door texture.
+// 2. Uses ray side and direction to choose north/south/east/west wall texture.
 t_tex	*select_texture(t_ray *ray, t_game *game)
 {
 	char	tile;
@@ -59,7 +66,9 @@ t_tex	*select_texture(t_ray *ray, t_game *game)
 	}
 }
 
-// 2 - Calculate wall hit point (used to get tex_x)
+// Calculates horizontal wall hit position (used for texture X coord).
+// 1. Uses player position and perpendicular wall distance.
+// 2. Removes floor to get fractional wall_x (in range [0, 1]).
 double	calc_wall_hit_point(t_game *game, t_ray *ray)
 {
 	double	wall_x;
@@ -72,6 +81,11 @@ double	calc_wall_hit_point(t_game *game, t_ray *ray)
 	return (wall_x);
 }
 
+// Draws wall texture to screen using vertical strip.
+// 1. Calculates texture X coordinate using wall hit point.
+// 2. Flips texture if necessary (based on ray direction and side).
+// 3. Loops from draw_start to draw_end, calculating texture Y.
+// 4. Draws each pixel from texture to screen image.
 void	draw_texture_loop(t_game *game, t_ray *ray, t_tex *tex, t_draw_args da)
 {
 	int		y;
@@ -99,6 +113,9 @@ void	draw_texture_loop(t_game *game, t_ray *ray, t_tex *tex, t_draw_args da)
 	}
 }
 
+// Initializes texture starting position and step for vertical drawing.
+// 1. Calculates texture step (how much to advance in texture per screen pixel).
+// 2. Calculates initial texture Y position based on draw_start and line height.
 double	init_tex_pos(int draw_start, int line_height, int tex_h, double *step)
 {
 	*step = (double)tex_h / (double)line_height;

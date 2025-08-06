@@ -12,6 +12,12 @@
 
 #include "../../include/cub3d.h"
 
+// Checks if floor and ceiling colors are set in configuration.
+// 1. Checks if any RGB component of floor color is unset (-1).
+// 2. Checks if any RGB component of ceiling color is unset (-1).
+// 3. Prints message depending on missing colors (floor, ceiling, or both).
+// 4. Returns status code representing missing colors (0 = none, 1 = floor,
+// 2 = ceiling, 3 = both).
 int	check_colors_cub(t_cfg *cfg)
 {
 	int	status;
@@ -32,6 +38,10 @@ int	check_colors_cub(t_cfg *cfg)
 	return (status);
 }
 
+// Checks if texture file paths have the correct .xpm extension
+// 1. Extracts texture file paths for north, south, east and west walls.
+// 2. Compares last 4 chars of each path with ".xpm".
+// 3. Returns 1 if any texture file does not have .xpm extension, 0 otherwise.
 int	check_type_f(t_cfg *cfg)
 {
 	char	*fl[4];
@@ -51,6 +61,13 @@ int	check_type_f(t_cfg *cfg)
 	return (0);
 }
 
+// Validates that texture paths are set and texture files can be opened.
+// 1. Checks if any wall texture path is missing (NULL).
+// 2. Checks that all texture files have .xpm extension via check_type().
+// 3. Opens each texture file for reading to verify accessibility.
+// 4. Counts how many texture files failed to open and closes opened files.
+// 5. Prints error message if any files can't be opened.
+// 6. Returns number of inaccessible texture files or 0 if all succeed.
 int	check_texture_cub(t_cfg *cfg)
 {
 	int	fd[4];
@@ -80,6 +97,12 @@ int	check_texture_cub(t_cfg *cfg)
 	return (status);
 }
 
+// Validates the map size in configuration.
+// 1. Checks if map dimensions are zero (no map).
+// 2. Checks if map dimensions are too small (<= 3x3).
+// 3. Prints an error message if map is missing or too small.
+// 4. Returns status code indicating map problem (0 = valid, 1 = missing,
+// 2 = too small).
 int	check_map_cub(t_cfg *cfg)
 {
 	int	status;
@@ -96,6 +119,13 @@ int	check_map_cub(t_cfg *cfg)
 	return (status);
 }
 
+// Performs comprehensive validation of the parsed configuration
+// 1. Checks for valid floor and ceiling colors via check_colors_cub()
+// 2. Checks map presence and size via check_map_cub()
+// 3. Checks textures via check_texture_cub()
+// 4. Validates map layout and player start position via validate_map()
+// 5. Prints error message if map validation fails
+// 6. Returns total status code indicating any errors detected
 int	check_cub_complete(t_cfg *cfg)
 {
 	int	status;

@@ -16,6 +16,10 @@ int		validate_chars(t_map *map);
 int		in(const char *s, char c);
 int		flood_fill(char **map, int y, int x, int height);
 
+// Validates map and player position using flood fill and other validations.
+// 1. Returns 0 if invalid characters or no player.
+// 2. Copies map and checks if flood fill reaches boundaries.
+// 3. Frees copy and returns 1 if map is closed.
 int	validate_map(t_map *map, t_player *player)
 {
 	char	**copy;
@@ -36,6 +40,10 @@ int	validate_map(t_map *map, t_player *player)
 	return (1);
 }
 
+// Validates map characters and player spawn count
+// 1. Iterates each tile in map grid.
+// 2. Returns 0 if tile is not in allowed set "012DCNSEW"
+// 3. Counts player spawns ("NSEW"), must be exactly 1.
 int	validate_chars(t_map *map)
 {
 	int	y;
@@ -75,6 +83,10 @@ int	in(const char *s, char c)
 	return (0);
 }
 
+// Performs recursive flood fill to validate map closure.
+// 1. Returns 0 if out of bounds or open edge.
+// 2. Marks visited tiles with 'F'.
+// 3. Recursively checks up, down, left, right.
 int	flood_fill(char **map, int y, int x, int height)
 {
 	if (y < 0 || x < 0 || !map[y] || x >= (int)ft_strlen(map[y]))

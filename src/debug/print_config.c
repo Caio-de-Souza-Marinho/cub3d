@@ -12,6 +12,7 @@
 
 #include "../../include/cub3d.h"
 
+// Prints t_cfg information.
 void	print_details(t_cfg *cfg)
 {
 	printf(BBLUE "Textures:\n");
@@ -26,6 +27,7 @@ void	print_details(t_cfg *cfg)
 	printf("B = %d\n" RESET, cfg->ceiling.b);
 }
 
+// Prints t_player information.
 void	print_player(t_cfg *cfg)
 {
 	printf(BBLUE "\nPlayer:\n");
@@ -34,6 +36,7 @@ void	print_player(t_cfg *cfg)
 	printf("Dir: %c\n" RESET, cfg->player.dir);
 }
 
+// Prints t_cfg, t_player and map grid information.
 void	print_config(t_cfg *cfg)
 {
 	int	i;

@@ -12,6 +12,10 @@
 
 #include "../../include/cub3d.h"
 
+// Checks if a line defines a texture (NO, SO, WE, EA)
+// 1. Skips whitespace characters
+// 2. Checks for texture identifiers "NO", "SO", "WE", or "EA"
+// 3. Returns 1 if texture line, 0 otherwise
 int	is_texture_line(char *line)
 {
 	int	i;
@@ -35,6 +39,10 @@ int	is_texture_line(char *line)
 	return (0);
 }
 
+// Checks if a line defines a color (floor 'F' or ceiling 'C')
+// 1. Skips whitespace characters
+// 2. Checks if first non-space char is 'F' or 'C'
+// 3. Returns 1 if color line, 0 otherwise
 int	is_color_line(char *line)
 {
 	int	i;
@@ -54,6 +62,12 @@ int	is_color_line(char *line)
 	return (0);
 }
 
+// Checks if a line is part of the map layout
+// 1. Skips leading whitespace
+// 2. Returns 0 if line is empty after spaces
+// 3. Scans remaining characters checking for valid map chars
+// (1,0,space,N,S,W,E,D,d)
+// 4. Returns 1 if valid map line, 0 otherwise
 int	is_map_line(char *line)
 {
 	int	i;
@@ -80,6 +94,10 @@ int	is_map_line(char *line)
 	return (valid);
 }
 
+// Checks if a line is empty or contains only whitespace
+// 1. Returns 0 if line is NULL
+// 2. Returns 0 if any non-whitespace character found
+// 3. Returns 1 if line is empty or all whitespace
 int	is_empty_line(char *line)
 {
 	int	i;

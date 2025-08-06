@@ -12,6 +12,7 @@
 
 #include "../../include/cub3d.h"
 
+// Displays an error message.
 int	error_msg(char *msg)
 {
 	printf("%s\n", msg);

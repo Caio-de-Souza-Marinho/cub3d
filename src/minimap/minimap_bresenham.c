@@ -12,6 +12,11 @@
 
 #include "../../include/cub3d.h"
 
+// Initializes variables for Bresenham's line algorithm.
+// 1. Computes dx and dy (distance in x and y).
+// 2. Sets step dirextion sx and sy.
+// 3. Calculates initial error term.
+// 4. Returns the initialized t_bres struct
 t_bres	set_vars_bres(t_point p0, t_point p1)
 {
 	t_bres	vars;
@@ -30,6 +35,11 @@ t_bres	set_vars_bres(t_point p0, t_point p1)
 	return (vars);
 }
 
+// Draws a line using Bresenham's algorithm, blending pixels with COLOR_FOV.
+// 1. Initializes Bresenham variables.
+// 2. Loops until reaching destination point p1.
+// 3. Blends current pixel color with COLOR_FOV at 20% alpha.
+// 4. Updates x and y coordinates based on error terms.
 void	draw_bresenham_line(t_game *game, t_point p0, t_point p1, int color)
 {
 	t_bres	vars;
@@ -57,6 +67,10 @@ void	draw_bresenham_line(t_game *game, t_point p0, t_point p1, int color)
 	}
 }
 
+// Draws the player's field of view (FOV) line on the minimap.
+// 1. Adjusts end point with minimap offset.
+// 2. Converts player position to screen coordinates.
+// 3. Calls Bresenham line to draw from player to end.
 void	draw_fov(t_game *game, t_point end, int color, t_mini *mini)
 {
 	t_point	p0;

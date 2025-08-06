@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:32:15 by caide-so          #+#    #+#             */
-/*   Updated: 2025/07/24 21:50:22 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 02:01:51 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	init_textures(t_cfg *cfg);
 
+// Initializes an empty game struct (t_game).
+// 1. Allocates t_game.
+// 2. Initializes t_cfg with init_config().
+// 3. Sets mlx, win and img to NULL.
+// 4. Resets keys struct to zero.
 t_game	*init_empty_game(void)
 {
 	t_game	*game;
@@ -34,6 +39,12 @@ t_game	*init_empty_game(void)
 	return (game);
 }
 
+// Initializes and returns a new config struct (t_cfg).
+// 1. Allocates t_cfg.
+// 2. Sets ceiling and floor RGB value to -1 (unset).
+// 3. Initializes texture paths and images with init_textures().
+// 4. Resets map grid, height, width.
+// 5. Resets player position and direction to -1 (unset).
 t_cfg	*init_config(void)
 {
 	t_cfg	*cfg;
@@ -57,6 +68,7 @@ t_cfg	*init_config(void)
 	return (cfg);
 }
 
+// Initializes textures paths and images to NULL.
 void	init_textures(t_cfg *cfg)
 {
 	cfg->texture.no.path = NULL;
@@ -71,6 +83,12 @@ void	init_textures(t_cfg *cfg)
 	cfg->texture.door.img = NULL;
 }
 
+// Initializes MLX graphics, window, image buffer.
+// 1. Initializes mlx and creates window.
+// 2. Allocates t_img and creates image with mlx_new_image().
+// 3. Gets image address, sets width/height.
+// 4. Allocates z_buffer for depth.
+// Returns 0 on success, 1 on failure.
 int	init_game_graphics(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -93,26 +111,5 @@ int	init_game_graphics(t_game *game)
 	game->img->width = WIN_WIDTH;
 	game->img->height = WIN_HEIGHT;
 	game->z_buffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
-	mlx_mouse_hide(game->mlx, game->win);
-	mlx_mouse_move(game->mlx, game->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	game->mouse_x = WIN_WIDTH / 2;
-	game->mouse_y = WIN_HEIGHT / 2;
-	return (0);
-}
-
-int	init_sprite(t_game *game)
-{
-	t_sprite	*sprite;
-
-	sprite = &game->sprite;
-	get_sprite_pos(game, &sprite->y, &sprite->x);
-	sprite->current_frame = 0;
-	sprite->frame_timer = 0.0;
-	sprite->frame_delay = 0.5;
-	if (load_sprite_frames(game, sprite))
-	{
-		printf("Failed to load sprite frames\n");
-		return (1);
-	}
 	return (0);
 }

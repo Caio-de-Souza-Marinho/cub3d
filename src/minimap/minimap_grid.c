@@ -12,6 +12,9 @@
 
 #include "../../include/cub3d.h"
 
+// Sets the minimap tile color and transparency (alpha) based on map character.
+// 1. Interprets characters (wall, door, sprite, etc.)
+// 2. Sets base color and alpha blend factor into mini struct.
 void	get_minimap_color(char c, t_mini *mini, double alpha)
 {
 	int	color;
@@ -27,6 +30,10 @@ void	get_minimap_color(char c, t_mini *mini, double alpha)
 	mini->alpha = alpha;
 }
 
+// Draws the full minimap grid.
+// 1. Iterates through each map cell.
+// 2. Determines tile color and alpha based on character.
+// 3. Calls draw_minimap_tile for each tile.
 void	draw_minimap_grid(t_game *game, t_mini *mini)
 {
 	char	**grid;
@@ -54,6 +61,9 @@ void	draw_minimap_grid(t_game *game, t_mini *mini)
 	}
 }
 
+// Draws a single tile on the minimap.
+// 1. Blends the background with the tile color using alpha.
+// 2. Loops through pixels in tile and draws them with blending.
 void	draw_minimap_tile(t_game *game, int px, int py, t_mini *mini)
 {
 	int	x;

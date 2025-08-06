@@ -29,6 +29,10 @@
 #  define SPRITE_FRAMES 4
 # endif
 
+# ifndef MAX_SPRITES
+#  define MAX_SPRITES 4
+# endif
+
 # ifndef NUM_RAYS
 #  define NUM_RAYS 240
 # endif

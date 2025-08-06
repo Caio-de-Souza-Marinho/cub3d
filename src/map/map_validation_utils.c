@@ -12,6 +12,7 @@
 
 #include "../../include/cub3d.h"
 
+// Copies map to perform flood fill.
 char	**copy_map(t_map *map)
 {
 	char	**copy;

@@ -14,6 +14,9 @@
 
 int	set_texture(char **target, char **values);
 
+// Parses a texture line and sets its corresponding path.
+// 1. Expects line starting with "NO", "SO", "WE", "EA".
+// Returns 1 on success, 0 on failure.
 int	parse_texture_line(t_cfg *cfg, char *line)
 {
 	char	**values;
@@ -32,6 +35,9 @@ int	parse_texture_line(t_cfg *cfg, char *line)
 	return (0);
 }
 
+// Assigns a texture path to the given target pointer.
+// 1. Prevents duplicate definitions and trims newline.
+// Returns 1 on success, 0 on error (prints message).
 int	set_texture(char **target, char **values)
 {
 	if (*target)

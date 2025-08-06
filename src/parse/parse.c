@@ -14,6 +14,10 @@
 
 int	handle_line(char *line, t_cfg *cfg, t_list **map_lines, int *in_map);
 
+// Parses a .cub configuration file into the cfg struct.
+// 1. Opens the file and reads it line-by-line.
+// 2. Sends each line to handle_line().
+// 3. Builds a list of map lines, then converts to 2D array.
 int	parse_cub(char *filename, t_cfg *cfg)
 {
 	char	*line;
@@ -41,6 +45,10 @@ int	parse_cub(char *filename, t_cfg *cfg)
 	return (close(fd), 1);
 }
 
+// Handles a single ilne from the .cub file.
+// 1. Parses textures, colors, or map lines.
+// 2. Tracks when map parsing starts via *in_map.
+// 3. Returns 2 if map ended, 0 on error, 1 on success.
 int	handle_line(char *line, t_cfg *cfg, t_list **map_lines, int *in_map)
 {
 	int	map_status;
