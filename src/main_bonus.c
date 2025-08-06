@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 19:21:33 by caide-so          #+#    #+#             */
-/*   Updated: 2025/08/01 02:01:44 by caide-so         ###   ########.fr       */
+/*   Created: 2025/08/05 18:59:59 by caide-so          #+#    #+#             */
+/*   Updated: 2025/08/05 19:00:22 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char **argv)
 	mlx_hook(game->win, 17, 0, exit_game, game);
 	mlx_hook(game->win, 2, 1L << 0, handle_key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, handle_key_release, game);
+	mlx_hook(game->win, 6, 1L << 6, handle_mouse_move, game);
 	mlx_loop(game->mlx);
 	return (EXIT_SUCCESS);
 }
