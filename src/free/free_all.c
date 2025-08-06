@@ -14,6 +14,7 @@
 
 void	free_sprite(t_game *game);
 
+// Frees game struct.
 void	free_game(t_game *game)
 {
 	if (!game)
@@ -39,6 +40,7 @@ void	free_game(t_game *game)
 	free(game);
 }
 
+// Frees t_cfg struct.
 void	free_config(t_game *game)
 {
 	if (!game || !game->cfg)
@@ -62,6 +64,7 @@ void	free_config(t_game *game)
 	free(game->cfg);
 }
 
+// Frees all sprites
 void	free_sprite(t_game *game)
 {
 	int	i;
@@ -81,6 +84,7 @@ void	free_sprite(t_game *game)
 	}
 }
 
+// Frees map and its contents.
 void	free_map_copy(char **map, int height)
 {
 	int	i;

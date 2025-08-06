@@ -18,12 +18,11 @@ void	player_camera_move(t_game *game, double delta);
 // 1. Calculates time elapsed since the last frame.
 // 2. Updates player and camera movement based on input.
 // 3. Updates all sprite animations.
-// 4. Resets mouse position to the center of the window.
-// 5. Clears the frame buffer.
-// 6. Performs raycasting and draws walls.
-// 7. Draws all visible sprites.
-// 8. Draws the minimap.
-// 9. Displays the composed frame in the game window.
+// 4. Clears the frame buffer.
+// 5. Performs raycasting and draws walls.
+// 6. Draws all visible sprites.
+// 7. Draws the minimap.
+// 8. Displays the composed frame in the game window.
 int	render_frame(t_game *game)
 {
 	double	delta;

@@ -12,6 +12,10 @@
 
 #include "../../include/cub3d.h"
 
+// Calculates time difference since last frame.
+// 1. Gets current time with gettimeofday.
+// 2. Calculates time delta in seconds (including microseconds).
+// 3. Updates game's last_frame_time to current.
 double	get_delta_time(t_game *game)
 {
 	struct timeval	current;

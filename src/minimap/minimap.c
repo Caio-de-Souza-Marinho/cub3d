@@ -12,6 +12,11 @@
 
 #include "../../include/cub3d.h"
 
+// Calculates minimap tile size and offset based on screen and map size.
+// 1. If not TAB mode, use fixed TILE_SIZE and no offset.
+// 2. Else start with double TILE_SIZE.
+// 3. Scale down if map won't fit screen (preserve aspect ration).
+// 4. Center map on screen with offsets.
 void	set_minimap_size(t_mini *mini, t_game *game, int tab)
 {
 	double	adjust;
@@ -39,6 +44,9 @@ void	set_minimap_size(t_mini *mini, t_game *game, int tab)
 	mini->y_offset = (WIN_HEIGHT - game->cfg->map.height * mini->tile) / 2;
 }
 
+// Draws the entire minimap on screen
+// 1. Initializes minimap parameters with set_minimap_size().
+// 2. Draws grid, player FOV, and player position.
 void	draw_minimap(t_game *game)
 {
 	t_mini	mini;
@@ -49,6 +57,9 @@ void	draw_minimap(t_game *game)
 	draw_minimap_player(game, &mini);
 }
 
+// Writes a pixel color into an image buffer at (x, y).
+// 1. Ignore if coordinates out of screen bounds.
+// 2. Calculate pixel offset and write the color.
 void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
@@ -59,6 +70,8 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+// Reads a pixel color from an image buffer at (x, y).
+// 1. Calculates memory offset and reads color value.
 int	get_pixel(t_img *img, int x, int y)
 {
 	char	*pixel;
@@ -69,6 +82,9 @@ int	get_pixel(t_img *img, int x, int y)
 	return (color);
 }
 
+// Blends two colors with a given alpha factor.
+// 1. Performs per-channel (r, g, b) interpolation.
+// 2. Returns resulting RGB color.
 int	blend_colors(int base, int overlay, double a)
 {
 	int	r;

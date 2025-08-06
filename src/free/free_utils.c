@@ -12,6 +12,7 @@
 
 #include "../../include/cub3d.h"
 
+// Frees an array and its contents.
 void	free_array(void **arr)
 {
 	int	i;
@@ -25,6 +26,7 @@ void	free_array(void **arr)
 	free(arr);
 }
 
+// Frees all remaining lines from a file descriptor using GNL.
 void	free_gnl(int fd)
 {
 	char	*line;

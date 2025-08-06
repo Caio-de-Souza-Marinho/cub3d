@@ -12,7 +12,11 @@
 
 #include "../../include/cub3d.h"
 
-// part 4
+// Performs Digital Differencial Analysis (DDA) until wall is hit.
+// 1. Steps in the smaller of side_dist_x or side_dist_y.
+// 2. Updates map_x / map_y based on chosen step.
+// 3. Marks hit if current tile is wall ('1') or door ('D').
+// 4. Marks hit if out of bounds.
 void	perform_dda(t_ray *ray, t_game *game)
 {
 	char	**grid;
@@ -42,6 +46,12 @@ void	perform_dda(t_ray *ray, t_game *game)
 	}
 }
 
+// Draws one vertical column of the screen for a ray.
+// 1. Calculates perpendicular wall distance.
+// 2. Calculates wall line height and draw_start/end.
+// 3. Fills ceiling color above wall.
+// 4. Draws wall texture using draw_texture_column.
+// 5. Fills floor color below wall.
 void	draw_column(t_ray *ray, t_game *game, int x)
 {
 	int	line_height;
@@ -71,6 +81,8 @@ void	draw_column(t_ray *ray, t_game *game, int x)
 		put_pixel(game->img, x, y++, get_rgb(game->cfg->floor));
 }
 
+// Converts t_color struct to RGB integer.
+// 1. Shifts red, green and blue values into 0xRRGGBB format.
 int	get_rgb(t_color color)
 {
 	return ((color.r << 16) | (color.g << 8) | color.b);
